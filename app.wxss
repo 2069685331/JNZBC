@@ -1,0 +1,19 @@
+@import "./styles/iconfont.wxss";
+
+page,view,text,swiper,swiper-item,image,navigator{
+    padding:0;
+    margin:0;
+    box-sizing:border-box;
+}
+
+/* 主题颜色 通过变量来实现*/
+
+page{
+
+    /*搜索框外层颜色*/
+    --searchouter:#0f6a7b;
+    /*搜索框内层颜色*/
+    --searchinter :#e1e1e1;
+    /*搜索框字体颜色*/
+    --searchfont:#606060;
+}

@@ -1,0 +1,22 @@
+/* pages/category/index.wxss */
+navogator {
+  /* 使用主题颜色，--themeColor放在app.wxss里面 */
+  color: var(--searchfont);
+}
+.index_swiper swiper {
+  width: 750rpx;
+  height: 340rpx;
+}
+.index_swiper swiper swiper-item navigator image {
+  width: 100%;
+}
+.index_cates {
+  display: flex;
+}
+.index_cates navigator {
+  flex: 1;
+  padding: 20rpx;
+}
+.index_cates navigator image {
+  width: 100%;
+}
