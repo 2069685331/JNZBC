@@ -1,0 +1,143 @@
+page {
+  background: #f3f3f3;
+}
+
+.center_bg {
+  width: 100%;
+  position: absolute;
+  height: 330rpx;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.avatar-warp {
+  margin: 80rpx 30rpx 0;
+  background: rgba(255, 255, 255, 0.99);
+  border-radius: 20rpx;
+  box-shadow: 0 0 20rpx rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 2;
+}
+
+.user-info{
+  display: flex;
+}
+
+.avatar-warp .avatar {
+  display: flex;
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 7%;
+  margin-left: 40rpx;
+  position: relative;
+  top: 40rpx;
+  margin-bottom: -80rpx;
+}
+
+.right-info{
+  flex: 1;
+  margin-top: 65rpx;
+  margin-left: 50rpx;
+  margin-bottom: 40rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.nickname {
+  /* text-align: center; */
+  font-size: 54rpx;
+  font-weight: bold;
+  padding-bottom:20rpx;
+  display: flex;
+  
+  color: #222;
+  /* position: relative; */
+}
+
+.motto {
+  /* text-align: center; */
+  
+  font-size: 28rpx;
+  line-height: 40rpx;
+  color: #999;
+}
+
+.motto image {
+  display: inline-block;
+  width: 40rpx;
+  height: 40rpx;
+  vertical-align: top;
+  margin-right: 8rpx;
+}
+
+.article-info {
+  overflow: hidden;
+  padding: 40rpx 0;
+}
+
+.article-item {
+  width: 33%;
+  float: left;
+  text-align: center;
+  font-size: 28rpx;
+  color: #666;
+  border-right: 1px solid #ededed;
+}
+
+.article-info .article-item:last-child {
+  border-right: none;
+}
+
+.article-item .num {
+  font-size: 46rpx;
+  display: block;
+  padding-bottom: 8rpx;
+  color: #222;
+  font-weight: bold;
+}
+
+/*菜单*/
+.menu {
+  margin: 30rpx 30rpx;
+  background: rgba(255, 255, 255, 0.99);
+  border-radius: 20rpx;
+  box-shadow: 0 0 20rpx rgba(0, 0, 0, 0.1);
+  position: relative;
+  font-size: 35rpx;
+  line-height: 30rpx;
+  padding: 30rpx 40rpx;
+  z-index: 2;
+}
+
+
+.menu-warp {
+  background: #fff;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20rpx;
+  box-shadow: 0 0 20rpx rgba(0, 0, 0, 0.1);
+  margin: 30rpx 30rpx;
+  font-size: 32rpx;
+  line-height: 40rpx;
+  padding: 30rpx 40rpx;
+  position: relative;
+}
+
+.menu-warp .icon {
+  display: inline-block;
+  width: 40rpx;
+  height: 40rpx;
+  vertical-align: top;
+  margin-right: 10rpx;
+}
+
+.menu-warp .next {
+  display: inline-block;
+  width: 40rpx;
+  height: 40rpx;
+  vertical-align: top;
+  position: absolute;
+  right: 40rpx;
+  top: 30rpx;
+}

@@ -1,18 +1,19 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/category/index",
-    "pages/message/index",
-    "pages/search/index",
-    "pages/user/index",
-    "pages/post_list/index", 
-    "pages/post_detail/index",
-    "pages/like/index",
-    "pages/feedback/index",
-    "pages/login/index",
-    "pages/auth/index",
-    "pages/add/index",
-    "pages/userindex/index"
+    "pages/category/category",
+    "pages/message/message",
+    "pages/search/search",
+    "pages/user/user",
+    "pages/post_list/post_list", 
+    "pages/post_detail/post_detail",
+    "pages/like/like",
+    "pages/feedback/feedback",
+    "pages/login/login",
+    "pages/auth/auth",
+    "pages/add/add",
+    "pages/userindex/userindex",
+    "pages/follows/follows"
   
 
   ],
@@ -29,19 +30,19 @@
     },
   
     {
-      "pagePath":"pages/category/index",
+      "pagePath":"pages/category/category",
       "text": "分区",
       "iconPath": "./icon/fenqu.png",
       "selectedIconPath": "./icon/_fenqu.png"
     },
     {
-      "pagePath":"pages/message/index",
+      "pagePath":"pages/message/message",
       "text": "消息",
       "iconPath": "./icon/message.png",
       "selectedIconPath": "./icon/_message.png"
     },
     {
-      "pagePath":"pages/user/index",
+      "pagePath":"pages/user/user",
       "text": "我",
       "iconPath": "./icon/mine.png",
       "selectedIconPath": "./icon/_mine.png"

@@ -1,0 +1,11 @@
+<view class="avatar-warp">
+  <view class="user-info">
+    <image class="avatar" mode='aspectFill' src='/dongtai/user1.jpg'></image>
+    <view class="right-info">
+      <view class="nickname">Dull</view>
+      <view class="motto">
+        简介：暨南针不戳！
+      </view>
+    </view>
+  </view>
+</view>
