@@ -13,7 +13,8 @@
     "pages/auth/auth",
     "pages/add/add",
     "pages/userindex/userindex",
-    "pages/follows/follows"
+    "pages/follows/follows",
+    "pages/followers/followers"
   
 
   ],

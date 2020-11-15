@@ -22,7 +22,9 @@
     </view>
   </view>
   <view class="menu">
+    
     <navigator url="">
+      <image class="icon" src="../../icon/about.png"></image>
       关于我们
     </navigator>
   </view>
