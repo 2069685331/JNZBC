@@ -87,6 +87,7 @@
 .container .status-group .status-content-group .content .hide {
   text-align: justify;
   font-size: 35rpx;
+  /*关键属性（必须有的）  */
   display: -webkit-box;
   /*规定子元素的排列方向 */
   -webkit-box-orient: vertical;
