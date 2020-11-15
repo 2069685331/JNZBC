@@ -16,4 +16,6 @@ page{
     --searchinter :#e1e1e1;
     /*搜索框字体颜色*/
     --searchfont:#606060;
+    /* 主题颜色 */
+    --themecolor:#0f6a7b;
 }

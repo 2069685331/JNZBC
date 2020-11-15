@@ -33,19 +33,19 @@
     {
       "pagePath":"pages/category/category",
       "text": "分区",
-      "iconPath": "./icon/fenqu.png",
+      "iconPath": "/icon/fenqu.png",
       "selectedIconPath": "./icon/_fenqu.png"
     },
     {
       "pagePath":"pages/message/message",
       "text": "消息",
-      "iconPath": "./icon/message.png",
+      "iconPath": "/icon/message.png",
       "selectedIconPath": "./icon/_message.png"
     },
     {
       "pagePath":"pages/user/user",
       "text": "我",
-      "iconPath": "./icon/mine.png",
+      "iconPath": "/icon/mine.png",
       "selectedIconPath": "./icon/_mine.png"
     }
   ]},

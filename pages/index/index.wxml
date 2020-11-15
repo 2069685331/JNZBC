@@ -55,12 +55,11 @@ wx:for-item="item1">
         <view class="status-content-group">
             <!-- 文本部分 -->
             <view class="content">
-            <text class="{{item1.isF?'hide':'conts'}}" selectable="{{true}}" decode="{{true}}">
-            {{item1.content}}  
-            </text>
-            <text class="" bindtap='textFold' data-item="{{item1}}" data-index="{{index1}}">
-            {{item1.isF ? '展开' : '收起'}}  
-            </text>
+                <text class="{{item1.isF?'hide':'conts'}}" selectable="{{true}}" decode="{{true}}">{{item1.content}}
+                </text>
+                <text class="iffold" bindtap='textFold' wx:if="{{item1.isF!= null}}" data-item="{{item1}}" data-index="{{index1}}">{{item1.isF ? '展开' : '收起'}}  
+                </text> 
+                
             </view>
              <!-- 图片部分 -->
              <!-- 只允许1~4张图片 -->

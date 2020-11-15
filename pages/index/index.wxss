@@ -11,28 +11,29 @@
   width: 100%;
 }
 .toptabswrap .toptabs .searchtab {
-  display: inline;
-  float: left;
+  display: flex;
   width: 90%;
 }
 .toptabswrap .toptabs .searchtab searchinput {
   width: 100%;
 }
 .toptabswrap .toptabs .releasetab {
-  display: inline;
-  float: left;
   width: 10%;
   background-color: var(--searchouter);
+  justify-content: center;
+  align-items: center;
   display: flex;
   flex: 1;
 }
 .toptabswrap .toptabs .releasetab navigator {
   width: 100%;
+  justify-content: center;
+  align-items: center;
 }
 .toptabswrap .toptabs .releasetab navigator image {
   height: 8.04vw;
-  width: 80%;
-  margin-top: 10rpx;
+  width: 8.5425vw;
+  margin-top: 8rpx;
 }
 .container {
   padding-bottom: 5rpx;
@@ -77,12 +78,14 @@
   padding-top: 20rpx;
 }
 .container .status-group .status-content-group .content .conts {
+  text-align: justify;
   font-size: 35rpx;
-  line-height: 50rpx;
+  line-height: 45rpx;
   /*关键属性（必须有的）  */
   display: -webkit-box;
 }
 .container .status-group .status-content-group .content .hide {
+  text-align: justify;
   font-size: 35rpx;
   display: -webkit-box;
   /*规定子元素的排列方向 */
@@ -91,7 +94,10 @@
   -webkit-line-clamp: 2;
   /*实现多余的文字隐藏并用省略号来代表被隐藏的文字  */
   overflow: hidden;
-  text-overflow: ellipsis;
+}
+.container .status-group .status-content-group .content .iffold {
+  font-size: 35rpx;
+  color: #0f6a7b;
 }
 .container .status-group .status-content-group .image-list-group {
   display: flex;
