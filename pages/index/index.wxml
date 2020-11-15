@@ -11,7 +11,7 @@
 
     <!--动态发布框--> 
 <view class="releasetab" hover-class="none" hover-stop-propagation="false">
-    <navigator class="" target="" url="../add/index" hover-class="navigator-hover" open-type="navigate">
+    <navigator class="" target="" url="../add/add" hover-class="navigator-hover" open-type="navigate">
   <image class="" src="/icon/add.png" mode="scaleToFill" lazy-load="false" binderror="" bindload="">
     
   </image>
@@ -30,7 +30,7 @@ wx:for-item="item1">
     <view class="status-group">
         <view class="user-group">
             <!-- 头像 -->
-            <navigator class="avatar" target="" url="../userindex/index" hover-class="navigator-hover" open-type="navigate">
+            <navigator class="avatar" target="" url="../userindex/userindex" hover-class="navigator-hover" open-type="navigate">
                 <image class="" src="{{item1.avatar}}"  lazy-load="false" binderror="" bindload="">
                 </image>
             </navigator>
@@ -41,7 +41,7 @@ wx:for-item="item1">
             <view class="right-info">
                 <!-- 用户名 -->
                 <view class="username">
-                <navigator class="" target="" url="../userindex/index" hover-class="navigator-hover" open-type="navigate">
+                <navigator class="" target="" url="../userindex/userindex" hover-class="navigator-hover" open-type="navigate">
                   {{item1.userName}}  
                 </navigator>
                     </view>
@@ -55,7 +55,7 @@ wx:for-item="item1">
         <view class="status-content-group">
             <!-- 文本部分 -->
             <view class="content">
-            <text class="{{item1.isF?'hide':'conts'}}">
+            <text class="{{item1.isF?'hide':'conts'}}" selectable="{{true}}" decode="{{true}}">
             {{item1.content}}  
             </text>
             <text class="" bindtap='textFold' data-item="{{item1}}" data-index="{{index1}}">
