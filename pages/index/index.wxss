@@ -83,6 +83,7 @@
   display: -webkit-box;
 }
 .container .status-group .status-content-group .content .hide {
+  font-size: 35rpx;
   display: -webkit-box;
   /*规定子元素的排列方向 */
   -webkit-box-orient: vertical;
