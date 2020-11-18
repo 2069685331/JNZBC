@@ -1,11 +1,11 @@
 <view>
   <view class="avatar-warp">
     <view class="user-info">
-      <image class="avatar" mode='aspectFill' src='/dongtai/user1.jpg'></image>
+      <image class="avatar" mode='aspectFill' src='{{avatar}}'></image>
       <view class="right-info">
-        <view class="nickname">Dull</view>
+        <view class="nickname">{{userName}}</view>
         <view class="motto">
-          简介：暨南针不戳！
+          简介：{{motto}}
         </view>
       </view>
     </view>
@@ -13,11 +13,11 @@
   
     <view class="article-info">
       <navigator url="../follows/follows" class="article-item">
-        <text class="num">13</text>关注</navigator>
+        <text class="num">{{follow_num}}</text>关注</navigator>
       <navigator url="../followers/followers" class="article-item">
-        <text class="num">3</text>关注我的</navigator>
+        <text class="num">{{follower_num}}</text>关注我的</navigator>
       <view class="article-item">
-        <text class="num">15</text>动态</view>
+        <text class="num">{{status_num}}</text>动态</view>
       
     </view>
   </view>

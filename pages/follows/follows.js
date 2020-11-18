@@ -5,7 +5,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    follows:[
+      {
+        userName:'Leonardo',
+        avatar:"/dongtai/user1.jpg",
+        motto:"暨南针不戳！"
+      },
+      {
+        userName:'Depp',
+        avatar:"/dongtai/user2.jpg",
+        motto:"暨南针不错！"
+      }
+    ]
   },
 
   /**

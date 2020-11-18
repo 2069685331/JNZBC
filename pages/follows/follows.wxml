@@ -1,22 +1,13 @@
-<view class="avatar-warp">
+<view class="avatar-warp"
+wx:for="{{follows}}"
+wx:for-index="index1"
+wx:for-item="item1">
   <view class="user-info">
-    <image class="avatar" mode='aspectFill' src='/dongtai/user1.jpg'></image>
+    <image class="avatar" mode='aspectFill' src='{{item1.avatar}}'></image>
     <view class="right-info">
-      <view class="nickname">Leonardo</view>
+      <view class="nickname">{{item1.userName}}</view>
       <view class="motto">
-        简介：暨南针不戳！
-      </view>
-    </view>
-  </view>
-</view>
-
-<view class="avatar-warp">
-  <view class="user-info">
-    <image class="avatar" mode='aspectFill' src='/dongtai/user2.jpg'></image>
-    <view class="right-info">
-      <view class="nickname">Depp</view>
-      <view class="motto">
-        简介：暨南针不戳！
+        简介：{{item1.motto}}
       </view>
     </view>
   </view>

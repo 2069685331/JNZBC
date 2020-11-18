@@ -22,20 +22,19 @@
 
 .avatar-warp .avatar {
   display: flex;
-  width: 120rpx;
-  height: 120rpx;
+  width: 110rpx;
+  height: 110rpx;
   border-radius: 7%;
   margin-left: 40rpx;
   position: relative;
-  top: 40rpx;
-  margin-bottom: -80rpx;
+  top: 33rpx;
 }
 
 .right-info{
   flex: 1;
-  margin-top: 40rpx;
+  margin-top: 30rpx;
   margin-left: 50rpx;
-  margin-bottom: 40rpx;
+  margin-bottom: 30rpx;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -45,8 +44,8 @@
   /* text-align: center; */
   font-size: 43rpx;
   font-weight: bold;
-  padding-top: 8rpx;
-  padding-bottom: 13rpx;
+  padding-top: 5rpx;
+  padding-bottom: 10rpx;
   display: flex;
   
   color: #222;
