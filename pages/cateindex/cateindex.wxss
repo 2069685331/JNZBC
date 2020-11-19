@@ -115,7 +115,7 @@
   font-size: 30rpx;
 }
 .container .status-group .status-handle .comment-group {
-  border-right: 1px solid #c0c0c0;
+  border-right: 1px solid #909090;
 }
 .container .status-group .status-handle view {
   display: flex;

@@ -1,5 +1,5 @@
 /* pages/category/index.wxss */
-navogator {
+navigator {
   /* 使用主题颜色，--themeColor放在app.wxss里面 */
   color: var(--searchfont);
 }
@@ -10,13 +10,37 @@ navogator {
 .index_swiper swiper swiper-item navigator image {
   width: 100%;
 }
-.index_cates {
+.cates-container {
   display: flex;
-}
-.index_cates navigator {
-  flex: 1;
-  padding: 20rpx;
-}
-.index_cates navigator image {
   width: 100%;
+}
+.cates-container .right-content {
+  width: 100%;
+}
+.cates-container .right-content .goods-group {
+  width: 100%;
+}
+.cates-container .right-content .goods-group .goods-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cates-container .right-content .goods-group .goods-title .delimiter {
+  color: #ccc;
+  padding: 10rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cates-container .right-content .goods-group .goods-list {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.cates-container .right-content .goods-group .goods-list navigator {
+  width: 25%;
+  text-align: center;
+}
+.cates-container .right-content .goods-group .goods-list navigator image {
+  width: 50%;
 }

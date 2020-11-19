@@ -14,6 +14,7 @@ Page({
     
 
   },
+  cates:[],
 
   /**
    * 生命周期函数--监听页面加载
@@ -60,11 +61,15 @@ Page({
      })
    });
    //分区加载函数
-   request({url:"https://api-hmugo-web.itheima.net/api/public/v1/home/catitems"})
+   request({url:"https://api-hmugo-web.itheima.net/api/public/v1/categories"})
    .then(result=>{
-    this.setData({
-      catesList:result.data.message
-  })
+    
+      this.cates=result.data.message
+      //构造catelist
+      let catesList=this.cates[0].children
+      this.setData({
+        catesList
+      })
   })
   },
 

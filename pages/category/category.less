@@ -1,5 +1,5 @@
 /* pages/category/index.wxss */
-navogator{
+navigator{
     /* 使用主题颜色，--themeColor放在app.wxss里面 */
     color:var(--searchfont);}
 .index_swiper{
@@ -15,14 +15,40 @@ navogator{
         }
      }
 }
-.index_cates{
+.cates-container{
     display:flex;
-    navigator{
-        flex:1;
-        padding:20rpx;
-        image{
+    width:100%;
+    .right-content{
+        width:100%;
+        .goods-group{
             width:100%;
+            .goods-title{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .delimiter{
+                    color:#ccc;
+                    padding:10rpx;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                .title{
 
+                }
+            }
+            .goods-list{
+                width:100%;
+                display:flex;
+                flex-wrap: wrap;
+                navigator{
+                    width:25%;
+                    text-align: center;
+                    image{
+                        width:50%;
+                    }
+                }
+            }
         }
     }
 }

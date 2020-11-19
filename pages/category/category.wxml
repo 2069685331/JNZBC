@@ -12,13 +12,24 @@
   </swiper>
 </view>
   <!--轮播图-->
-
+  
   <!--分区-->
-<view class="index_cates">
-    <navigator wx:for="{{catesList}}" wx:key="name" url="" hover-class="navigator-hover" open-type="navigate">
-        <image mode="widthFix" class="" src="{{item.image_src}}"  lazy-load="false" binderror="" bindload="">
+<view class="cates-container" hover-class="none" hover-stop-propagation="false">
+  <view class="right-content">
+      <view class="goods-group"wx:for="{{catesList}}" wx:for-index="index1" wx:for-item="item1">
+        <view class="goods-title">
+          <text class="delimiter">/</text>
+          <text class="title">{{item1.cat_name}}</text>
+          <text class="delimiter">/</text>
+          </view>
+        <view class="goods-list">
+          <navigator  wx:for="{{item1.children}}" wx:for-index="index2" wx:for-item="item2" wx:key="cat_id" url="/pages/cateindex/cateindex?cid={{item2.cat_id}}">
+            <image mode="widthFix"class="" src="{{item2.cat_icon}}"> </image>
+            <view class="goods-name">{{item2.cat_name}}</view>
             
-        </image>
-    </navigator>
+          </navigator>
+        </view>
+      </view>
+  </view>
 </view>
 <!--分区-->
