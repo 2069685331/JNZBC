@@ -1,1 +1,104 @@
-/* pages/search/search.wxss */
+.search {
+  height: 124rpx;
+  background-color: #F7F7F7;
+  display: flex;
+  justify-content: center;
+}
+.search .search-container {
+  margin-top: 30rpx;
+  height: 64rpx;
+  margin-left: 22rpx;
+  margin-right: 33rpx;
+  width: 695rpx;
+  display: flex;
+}
+.search .search-container .search-left {
+  display: flex;
+  background-color: #FFFFFF;
+  border-radius: 32rpx;
+}
+.search .search-container .search-left .search-input {
+  height: 64rpx;
+  line-height: 64rpx;
+  font-size: 28rpx;
+  width: 500rpx;
+}
+.search .search-container .search-left .search-image {
+  width: 34rpx;
+  height: 34rpx;
+  margin-left: 30rpx;
+  margin-top: 15rpx;
+  margin-right: 15rpx;
+}
+.search .search-container .search-btn {
+  font-size: 32rpx;
+  line-height: 64rpx;
+  font-weight: bold;
+  color: #313131;
+  text-align: center;
+  margin-left: 30rpx;
+}
+.history {
+  margin: 0 auto;
+  width: 710rpx;
+  margin-top: 30rpx;
+}
+.history .history-title {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15rpx;
+}
+.history .history-title .history-title-left {
+  font-size: 28rpx;
+  color: #313131;
+}
+.history .history-title .history-title-right {
+  font-size: 28rpx;
+  color: #AAAAAA;
+}
+.history .history-content {
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+.history .history-content .history-item {
+  margin-top: 15rpx;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  height: 48rpx;
+  background-color: #eeeeee;
+  border-radius: 24rpx;
+  font-size: 24rpx;
+  line-height: 48rpx;
+}
+.hot {
+  margin: 0 auto;
+  width: 710rpx;
+  margin-top: 50rpx;
+}
+.hot .hot-title {
+  display: flex;
+  justify-content: space-between;
+  font-size: 28rpx;
+  color: #313131;
+  margin-bottom: 15rpx;
+}
+.hot .hot-content {
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+.hot .hot-content .hot-item {
+  margin-top: 15rpx;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  height: 48rpx;
+  background-color: #eeeeee;
+  border-radius: 24rpx;
+  font-size: 24rpx;
+  line-height: 48rpx;
+}
