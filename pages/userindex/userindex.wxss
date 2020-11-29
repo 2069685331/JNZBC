@@ -1,1 +1,223 @@
-/* pages/userindex/userindex.wxss */
+page {
+  background: #f3f3f3;
+}
+
+.center_bg {
+  width: 100%;
+  position: absolute;
+  height: 330rpx;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.avatar-warp {
+  margin: 0 0 30rpx 0;
+  background: rgba(255, 255, 255, 0.99);
+  /* border-radius: 20rpx; */
+  box-shadow: 0 0 20rpx rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 2;
+}
+
+.user-info{
+  display: flex;
+}
+
+.avatar-warp .avatar {
+  display: flex;
+  width: 130rpx;
+  height: 130rpx;
+  border-radius: 7%;
+  margin-left: 80rpx;
+  position: relative;
+  top: 45rpx;
+  margin-bottom: -80rpx;
+}
+
+.user-right-info{
+  flex: 1;
+  margin-top: 50rpx;
+  margin-left: 65rpx;
+  margin-bottom: 30rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.nickname {
+  /* text-align: center; */
+  font-size: 48rpx;
+  font-weight: bold;
+  padding-bottom:20rpx;
+  display: flex;
+  
+  color: #222;
+  /* position: relative; */
+}
+
+.motto {
+  /* text-align: center; */
+  
+  font-size: 28rpx;
+  line-height: 40rpx;
+  color: #999;
+}
+
+
+.article-info {
+  overflow: hidden;
+  padding: 15rpx 0 40rpx 0;
+}
+
+.article-item {
+  width: 33%;
+  float: left;
+  text-align: center;
+  font-size: 28rpx;
+  color: #666;
+  border-right: 1px solid #ededed;
+}
+
+.article-info .article-item:last-child {
+  border-right: none;
+}
+
+.article-item .num {
+  font-size: 36rpx;
+  display: block;
+  padding-bottom: 8rpx;
+  color: #222;
+  font-weight: bold;
+}
+
+.toptabswrap {
+  display: flex;
+  width: 100%;
+  height: 95rpx;
+}
+.toptabswrap .toptabs {
+  display: flex;
+  padding: 10rpx;
+  background-color: var(--searchouter);
+  position: fixed;
+  width: 100%;
+}
+.toptabswrap .toptabs .searchtab {
+  display: flex;
+  width: 90%;
+}
+.toptabswrap .toptabs .searchtab searchinput {
+  width: 100%;
+}
+.toptabswrap .toptabs .releasetab {
+  width: 10%;
+  background-color: var(--searchouter);
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex: 1;
+}
+.toptabswrap .toptabs .releasetab navigator {
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.toptabswrap .toptabs .releasetab navigator image {
+  height: 8.04vw;
+  width: 8.5425vw;
+  margin-top: 8rpx;
+}
+.container {
+  padding-bottom: 5rpx;
+  background: #f2f2f2;
+}
+.container .status-group {
+  width: 100%;
+  margin-bottom: 30rpx;
+  background: #fff;
+  padding: 30rpx;
+  box-sizing: border-box;
+}
+.container .status-group .user-group {
+  display: flex;
+}
+.container .status-group .user-group .avatar {
+  width: 80rpx;
+  height: 80rpx;
+  display: flex;
+}
+.container .status-group .user-group .avatar image {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  border-radius: 7%;
+}
+.container .status-group .user-group .right-info {
+  flex: 1;
+  margin-left: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.container .status-group .user-group .right-info .username {
+  font-size: 35rpx;
+}
+.container .status-group .user-group .right-info .time {
+  font-size: 24rpx;
+  color: #656565;
+}
+.container .status-group .status-content-group {
+  padding-top: 20rpx;
+}
+.container .status-group .status-content-group .content .conts {
+  text-align: justify;
+  font-size: 35rpx;
+  line-height: 45rpx;
+  /*关键属性（必须有的）  */
+  display: -webkit-box;
+}
+.container .status-group .status-content-group .content .hide {
+  text-align: justify;
+  font-size: 35rpx;
+  /*关键属性（必须有的）  */
+  display: -webkit-box;
+  /*规定子元素的排列方向 */
+  -webkit-box-orient: vertical;
+  /*限制文本显示的行数  */
+  -webkit-line-clamp: 2;
+  /*实现多余的文字隐藏并用省略号来代表被隐藏的文字  */
+  overflow: hidden;
+}
+.container .status-group .status-content-group .content .iffold {
+  font-size: 35rpx;
+  color: #0f6a7b;
+}
+.container .status-group .status-content-group .image-list-group {
+  display: flex;
+  padding-top: 20rpx;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.container .status-group .status-content-group .image-list-group image {
+  margin-bottom: 5rpx;
+}
+.container .status-group .status-handle {
+  display: flex;
+  padding-top: 30rpx;
+  font-size: 30rpx;
+}
+.container .status-group .status-handle .comment-group {
+  border-right: 1px solid #c0c0c0;
+}
+.container .status-group .status-handle view {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+.container .status-group .status-handle view image {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 20rpx;
+}
