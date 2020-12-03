@@ -1,26 +1,4 @@
-<view class="jnz_index">
-
-<view class="toptabswrap">
-<view class="toptabs" hover-class="none" hover-stop-propagation="false">
-
-    <!--搜素框开始-->
-<view class="searchtab" hover-class="none" hover-stop-propagation="false">
-    <searchinput class=""></searchinput>
-</view>
-    <!--搜索框结束-->
-
-    <!--动态发布框--> 
-<view class="releasetab" hover-class="none" hover-stop-propagation="false">
-    <navigator class="" target="" url="../add/add" hover-class="navigator-hover" open-type="navigate">
-  <image class="" src="/icon/add.png" mode="scaleToFill" lazy-load="false" binderror="" bindload="">
-    
-  </image>
-</navigator> 
-</view>
-    <!--动态发布框--> 
-</view>
-</view>
-
+<!--pages/statusdetail/statusdetail.wxml-->
 
 <view class="container" 
 wx:for="{{status}}"
@@ -54,10 +32,10 @@ wx:for-item="item1">
 
         <view class="status-content-group">
             <!-- 文本部分 -->
-            <navigator class="content" url="/pages/statusdetail/statusdetail?statusid={{item1.statusid}}">
-                <text class="conts" selectable="{{true}}" decode="{{true}}">{{item1.content}}
+            <view class="content">
+                <text class="conts" user-select="{{true}}" decode="{{true}}">{{item1.content}}
                 </text> 
-            </navigator>
+            </view>
              <!-- 图片部分 -->
              <!-- 只允许1~4张图片 -->
              <view class="image-list-group"   wx:if="{{item1.imgArr.length==1}}" style='width:100%'>
@@ -77,12 +55,12 @@ wx:for-item="item1">
         </view>
         <view class="status-handle">
             <!-- 评论 -->
-            <navigator class="comment-group" url="/pages/statusdetail/statusdetail?statusid={{item1.statusid}}">
+            <view   class="comment-group" bindtap='focusButn'>
                 <image class="" src="/dongtai/comment.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">   
                 </image>{{item1.commentnum}}
-            </navigator>
+            </view>
             <!-- like -->
-            <view class="praise-group" hover-class="none" hover-stop-propagation="false" bindtap="onCollectionTap" data-index='{{index1}}'>
+           <view class="praise-group" hover-class="none" hover-stop-propagation="false" bindtap="onCollectionTap" data-index='{{index1}}'>
                 <image class="" src="{{item1.collected?'/dongtai/haslike.png':'/dongtai/like.png'}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
                     
                 </image>{{item1.likenum}}
@@ -90,15 +68,26 @@ wx:for-item="item1">
         </view>
     </view>
     
+    <!-- 悬浮的评论框 -->
+     <view class="status-handle">
+            <!-- 评论 -->
+            <view   class="comment-group" bindtap='focusButn'>
+                <image class="" src="/dongtai/comment.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">   
+                </image>{{item1.commentnum}}
+            </view>
+            <!-- like -->
+           <view class="praise-group" hover-class="none" hover-stop-propagation="false" bindtap="onCollectionTap" data-index='{{index1}}'>
+                <image class="" src="{{item1.collected?'/dongtai/haslike.png':'/dongtai/like.png'}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
+                    
+                </image>{{item1.likenum}}
+            </view>
+    </view>
+
+    <!-- 弹出评论框 -->
+    <view class='commentInputView' wx:if='{{isInput}}'>
+        <view  class='commentInput'>
+            <textarea class='input' show-confirm-bar="{{false}}" auto-focus="{{true}}" cursor-spacing="{{20}}" auto-height="{{true}}" value="{{value}}" bindfocus="inputFocus" focus='{{focusInput}}' bindblur="inputBlur"></textarea>
+            <view class='send'bindtap="sendComment">发送</view>
+        </view>
+    </view>
 </view>
-
-
-
-
-
-
-
-    
-</view>
-
-

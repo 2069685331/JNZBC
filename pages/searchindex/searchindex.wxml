@@ -1,0 +1,35 @@
+<!--pages/searchindex/searchindex.wxml-->
+<view class="search-container">
+    <input class="search-input"  placeholder="{{searchValue}}" bindinput="handleInput" bindconfirm="handleConfirm"/>
+    <navigator url="../index/index" class="search-btn" open-type="switchTab" >取消</navigator>
+</view>
+
+
+<!--  wx：if的效果是如果hasInput为true，则显示搜索结果-->
+<view class="search-result-container" wx:if="{{hasInput}}">
+    <navigator class="search-item" 
+    wx:for="{{advice}}" target="" url="/pages/statusdetail/statusdetail?statusid={{item.goods_id}}" url="" hover-class="navigator-hover" open-type="navigate">{{item.goods_name}}</navigator>
+</view>
+
+<!-- wx：if的效果是如果hasInput为false，则显示当前结果页面 -->
+<view class="result-container" wx:if="{{!hasInput}}">
+    <view class="result-tab">
+        <view wx:for="{{tabs}}"
+        wx:key="id"
+        data-index="{{index}}"
+        bindtap="clickTab" 
+        class="tab-item {{item.isActive?'active':''}}">
+        {{item.name}}
+        </view>
+    </view>
+    <!-- 显示动态页 -->
+    <view class="status-container" wx:if="{{isStatus}}">
+    显示动态页
+    </view>
+    <!-- 显示用户页 -->
+    <view class="user-container" wx:if="{{!isStatus}}">
+    显示用户页
+    </view>
+</view>
+
+

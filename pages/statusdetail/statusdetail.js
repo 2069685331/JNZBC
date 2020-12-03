@@ -1,4 +1,4 @@
-//Page Object
+// pages/statusdetail/statusdetail.js
 Page({
   data: {
     status:[
@@ -21,39 +21,16 @@ Page({
         likenum:54,
         //本用户是否点赞过
         collected:0
-      },
-      {
-         //动态id
-        statusid:2,
-        //头像
-        avatar:"/dongtai/user2.jpg",
-        //用户名
-        userName:'Depp',
-        //日期
-        time:'2020/11/11 11:11:11',
-        //文本
-        content:"1998",
-        //图片
-        imgArr:[
-          "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1604499631080&di=d857331ea96b03c3f2440491cb60e0f4&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201708%2F16%2F20170816131622_fVYmk.thumb.700_0.jpeg",
-          "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1604826933589&di=8e10305e8e9a85bf3618765a4a613a08&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201805%2F30%2F20180530172421_kdKcu.jpeg",
-          "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3580164859,3776785180&fm=26&gp=0.jpg",
-          "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=485066500,410625334&fm=26&gp=0.jpg"
-      ],
-      //评论
-      commentnum:76,
-      //点赞数
-      likenum:54,
-      //本用户是否点赞过
-      collected:1
-    
-    }
-  ]
+      }
+  ],
+  focusInput: false,
+  isInput: false
 
   },
   QueryParams:{
     
   },
+
 // 更改点赞状态
 onCollectionTap: function(event) {
   // 获取当前点击下标
@@ -103,10 +80,31 @@ onCollectionTap: function(event) {
 
   /////////////
 },
+//弹出评论框函数
+  inputFocus(e) {
+    console.log(e, '键盘弹起')
+    this.setData({
+      isInput: true
+    })
+  },
+//收起评论框
+  inputBlur() {
+    console.log('键盘收起')
+    this.setData({
+      isInput: false
+    })
+  },
+//评论按钮点击事件触发
+  focusButn: function () {
+    this.setData({
+      focusInput: true,
+      isInput: true
+    })
+  },
+//向后端发送评论及相关信息
+sendComment:function(){
 
-
-
-
+},
 //图片预览函数
 handlePreviewImg:function(e){
 console.log(e)
@@ -120,18 +118,6 @@ fail: function(res) {},
 complete: function(res) {},
 }) 
 },
-//文本折叠函数
-textFold: function(e) {
-console.log(e)
-const index=e.currentTarget.dataset.index
-console.log(index)
-const item=e.currentTarget.dataset.item
-var isF=item.isF
-this.setData({
-  [`status[${index}].isF`]:!item.isF
-})
-},
-
 
 //动态图片宽度预处理函数
 initImageSize:function(){

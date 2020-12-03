@@ -1,97 +1,67 @@
 <view class="jnz_index">
-
-<view class="toptabswrap">
-<view class="toptabs" hover-class="none" hover-stop-propagation="false">
-
-    <!--搜素框开始-->
-<view class="searchtab" hover-class="none" hover-stop-propagation="false">
-    <searchinput class=""></searchinput>
-</view>
-    <!--搜索框结束-->
-
-    <!--动态发布框--> 
-<view class="releasetab" hover-class="none" hover-stop-propagation="false">
-    <navigator class="" target="" url="../add/add" hover-class="navigator-hover" open-type="navigate">
-  <image class="" src="/icon/add.png" mode="scaleToFill" lazy-load="false" binderror="" bindload="">
-    
-  </image>
-</navigator> 
-</view>
-    <!--动态发布框--> 
-</view>
-</view>
-
-
-<view class="container" 
-wx:for="{{status}}"
-wx:for-index="index1"
-wx:for-item="item1">
-    <!--用户动态-->
-    <view class="status-group">
-        <view class="user-group">
-            <!-- 头像 -->
-            <navigator class="avatar" target="" url="../userindex/userindex" hover-class="navigator-hover" open-type="navigate">
-                <image class="" src="{{item1.goods_small_logo}}"  lazy-load="false" binderror="" bindload="">
-                </image>
-            </navigator>
-           
-           
-            <!-- 头像 -->
-
-            <view class="right-info">
-                <!-- 用户名 -->
-                <view class="username">
-                <navigator class="" target="" url="../userindex/userindex" hover-class="navigator-hover" open-type="navigate">
-                  {{item1.goods_id}}  
+    <view class="container" 
+    wx:for="{{status}}"
+    wx:for-index="index1"
+    wx:for-item="item1">
+        <!--用户动态-->
+        <view class="status-group">
+            <view class="user-group">
+                <!-- 头像 -->
+                <navigator class="avatar" target="" url="../userindex/userindex" hover-class="navigator-hover" open-type="navigate">
+                    <image class="" src="{{item1.goods_small_logo}}"  lazy-load="false" binderror="" bindload="">
+                    </image>
                 </navigator>
-                    </view>
-                <!-- 用户名 -->
-                <!-- 日期 -->
-                <view class="time">2020</view>
-                <!-- 日期 -->
-            </view>  
+
+
+                <!-- 头像 -->
+
+                <view class="right-info">
+                    <!-- 用户名 -->
+                    <view class="username">
+                    <navigator class="" target="" url="../userindex/userindex" hover-class="navigator-hover" open-type="navigate">
+                      {{item1.goods_id}}  
+                    </navigator>
+                        </view>
+                    <!-- 用户名 -->
+                    <!-- 日期 -->
+                    <view class="time">2020</view>
+                    <!-- 日期 -->
+                </view>  
+            </view>
+
+            <view class="status-content-group">
+                <!-- 文本部分 -->
+                <view class="content">
+                    <text class="{{item1.isF?'hide':'conts'}}" selectable="{{true}}" decode="{{true}}">{{item1.goods_name}}
+                    </text>
+                    <text class="iffold" bindtap='textFold' wx:if="{{item1.isF!= null}}" data-item="{{item1}}" data-index="{{index1}}">{{item1.isF ? '展开' : '收起'}}  
+                    </text> 
+
+                </view>
+                 <!-- 图片部分 -->
+                 <!-- 只允许1~4张图片 这部分有修改 后续需要重新写-->
+                 <view class="image-list-group"    style='width:100%'>
+                     <image class="" src='{{item1.goods_big_logo}}' data-index='{{index1}}' data-item='{{item1.imgArr}}' mode="aspectFill" 
+                     style='width:100%;max-height:500rpx'></image>  
+                 </view>
+            </view>
+            <view class="status-handle">
+                <!-- 评论 -->
+                <view class="comment-group">
+                    <image class="" src="/dongtai/comment.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
+
+                    </image>评论
+                </view>
+                <!-- like -->
+                <view class="praise-group" hover-class="none" hover-stop-propagation="false">
+                    <image class="" src="/dongtai/like.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
+
+                    </image>Like
+                </view>
+            </view>
         </view>
 
-        <view class="status-content-group">
-            <!-- 文本部分 -->
-            <view class="content">
-                <text class="{{item1.isF?'hide':'conts'}}" selectable="{{true}}" decode="{{true}}">{{item1.goods_name}}
-                </text>
-                <text class="iffold" bindtap='textFold' wx:if="{{item1.isF!= null}}" data-item="{{item1}}" data-index="{{index1}}">{{item1.isF ? '展开' : '收起'}}  
-                </text> 
-                
-            </view>
-             <!-- 图片部分 -->
-             <!-- 只允许1~4张图片 这部分有修改 后续需要重新写-->
-             <view class="image-list-group"    style='width:100%'>
-                 <image class="" src='{{item1.goods_big_logo}}' data-index='{{index1}}' data-item='{{item1.imgArr}}' mode="aspectFill" 
-                 style='width:100%;max-height:500rpx'></image>  
-             </view>
-        </view>
-        <view class="status-handle">
-            <!-- 评论 -->
-            <view class="comment-group">
-                <image class="" src="/dongtai/comment.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
-                    
-                </image>评论
-            </view>
-            <!-- like -->
-            <view class="praise-group" hover-class="none" hover-stop-propagation="false">
-                <image class="" src="/dongtai/like.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
-                    
-                </image>Like
-            </view>
-        </view>
     </view>
-    
-</view>
-
-
-
-
-
-
-
     
 </view>
 

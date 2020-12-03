@@ -5,8 +5,6 @@
     "pages/message/message",
     "pages/search/search",
     "pages/user/user",
-    "pages/post_list/post_list", 
-    "pages/post_detail/post_detail",
     "pages/like/like",
     "pages/feedback/feedback",
     "pages/login/login",
@@ -15,7 +13,10 @@
     "pages/userindex/userindex",
     "pages/follows/follows",
     "pages/followers/followers",
-    "pages/cateindex/cateindex"
+    "pages/cateindex/cateindex",
+    "pages/statusdetail/statusdetail",
+    "pages/searchindex/searchindex",
+    "pages/test/test"
   
 
   ],

@@ -11,16 +11,35 @@ Page({
     //不仅用于显示初始值
     searchValue:"搜索暨南针",
     //用于接收建议数据
-    advice:[]
+    advice:[],
+    //用于动态结果与用户结果页面的切换
+    tabs:[
+      {
+        id:0,
+        name:"动态",
+        isActive:true
+
+      },
+      {
+        id:1,
+        name:"用户",
+        isActive:false
+      }
+    ],
+    isStatus:true
   },
   //用于页面防抖
    TimeId:-1,
   
+
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+      this.setData({
+        searchValue:options.value
+      })
   },
 
   //输入框的值改变，就会触发的时间
@@ -53,6 +72,7 @@ Page({
     }
 
   },
+
   //为Input绑定回车事件
   handleConfirm:function(e){
     console.log(e);
@@ -76,5 +96,35 @@ Page({
             advice:result.data.message
           })
   })
+  },
+
+  //点击切换tab分页
+  clickTab:function(e){
+    const {index}=e.currentTarget.dataset
+    let tabs=this.data.tabs
+    //修改激活按钮
+    tabs.forEach((v,i) => {
+      i==index?v.isActive=true:v.isActive=false
+    });
+    this.setData({
+      tabs
+    })
+
+
+    //页面切换
+    if(index==0)
+    {
+      this.setData({
+        isStatus:true
+      });
+    }
+    else
+    {
+      this.setData({
+        isStatus:false
+      });
+    }
+
   }
+
 })

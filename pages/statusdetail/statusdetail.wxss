@@ -1,43 +1,5 @@
-.toptabswrap {
-  display: flex;
-  width: 100%;
-  height: 80rpx;
-}
-.toptabswrap .toptabs {
-  display: flex;
-  padding: 10rpx;
-  background-color: var(--searchouter);
-  position: fixed;
-  width: 100%;
-  padding-bottom: 0;
-}
-.toptabswrap .toptabs .searchtab {
-  display: flex;
-  width: 90%;
-}
-.toptabswrap .toptabs .searchtab searchinput {
-  width: 100%;
-}
-.toptabswrap .toptabs .releasetab {
-  display: flex;
-  width: 10%;
-  background-color: var(--searchouter);
-  justify-content: center;
-  align-items: center;
-}
-.toptabswrap .toptabs .releasetab navigator {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.toptabswrap .toptabs .releasetab navigator image {
-  height: 8.04vw;
-  width: 8.5425vw;
-  margin-top: 8rpx;
-}
 .container {
-  padding-bottom: 5rpx;
+  padding-bottom: 50rpx;
   background: #f2f2f2;
 }
 .container .status-group {
@@ -82,14 +44,6 @@
   text-align: justify;
   font-size: 35rpx;
   line-height: 45rpx;
-  /*关键属性（必须有的）  */
-  display: -webkit-box;
-  /*规定子元素的排列方向 */
-  -webkit-box-orient: vertical;
-  /*限制文本显示的行数  */
-  -webkit-line-clamp: 5;
-  /*实现多余的文字隐藏并用省略号来代表被隐藏的文字  */
-  overflow: hidden;
 }
 .container .status-group .status-content-group .image-list-group {
   display: flex;
@@ -100,33 +54,87 @@
 .container .status-group .status-content-group .image-list-group image {
   margin-bottom: 5rpx;
 }
-.container .status-group .status-handle {
+.container .status-handle {
   display: flex;
   padding-top: 30rpx;
+  padding-bottom: 30rpx;
   font-size: 30rpx;
+  position: fixed;
+  bottom: 0;
+  background-color: #fff;
+  width: 100%;
+  border-top: 1px solid #909090;
 }
-.container .status-group .status-handle .comment-group {
+.container .status-handle .comment-group {
   border-right: 1px solid #909090;
 }
-.container .status-group .status-handle navigator {
+.container .status-handle navigator {
   display: flex;
   flex: 1;
   justify-content: center;
   align-items: center;
 }
-.container .status-group .status-handle navigator image {
+.container .status-handle navigator image {
   width: 40rpx;
   height: 40rpx;
   margin-right: 20rpx;
 }
-.container .status-group .status-handle view {
+.container .status-handle view {
   display: flex;
   flex: 1;
   justify-content: center;
   align-items: center;
 }
-.container .status-group .status-handle view image {
+.container .status-handle view image {
   width: 40rpx;
   height: 40rpx;
   margin-right: 20rpx;
+}
+.container .commentInputView {
+  width: 100%;
+  background-color: #fff;
+  position: absolute;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+.container .commentInputView .commentInput {
+  width: 100%;
+  min-height: 40rpx;
+  max-height: 120rpx;
+  background-color: #fff;
+  padding: 20rpx 12rpx;
+  position: absolute;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+.container .commentInputView .commentInput .input {
+  background: var(--inputbgc);
+  border-radius: 8rpx;
+  width: 550rpx;
+  min-height: 40rpx;
+  max-height: 120rpx;
+  border-width: 10rpx 20rpx;
+  border-style: solid;
+  border-color: var(--inputbgc);
+  line-height: 40rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #333333;
+  display: flex;
+}
+.container .commentInputView .commentInput .send {
+  width: 100rpx;
+  color: var(--themecolor);
+  font-size: 34rpx;
+  border: 0;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  height: 64rpx;
+  line-height: 64rpx;
+  background-color: #fff;
 }
