@@ -47,27 +47,17 @@
   },
   "scripts": {},
   "condition": {
-    "search": {
-      "current": -1,
-      "list": []
-    },
-    "conversation": {
-      "current": -1,
-      "list": []
-    },
     "plugin": {
-      "current": -1,
       "list": []
     },
     "game": {
-      "current": -1,
       "list": []
     },
     "gamePlugin": {
-      "current": -1,
       "list": []
     },
     "miniprogram": {
+<<<<<<< HEAD
       "current": -1,
       "list": [
         {
@@ -96,6 +86,12 @@
           "name": "pages/test/test",
           "pathName": "pages/test/test",
           "query": "",
+=======
+      "list": [
+        {
+          "name": "pages/userindex/userindex",
+          "pathName": "pages/userindex/userindex",
+>>>>>>> main
           "scene": null
         }
       ]
