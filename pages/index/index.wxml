@@ -47,7 +47,7 @@ wx:for-item="item1">
                     </view>
                 <!-- 用户名 -->
                 <!-- 日期 -->
-                <view class="time">{{item1.time}}</view>
+                <view class="time">{{item1.sendTime}}</view>
                 <!-- 日期 -->
             </view>  
         </view>

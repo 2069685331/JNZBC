@@ -1,62 +1,72 @@
-// component/uploadImages/index.js
-Component({
-  /**
-   * 组件的属性列表
-   */
-  properties: {
-    count: { //最多选择图片的张数，默认4张
-      type: Number,
-      value: 4
+Page({
+  
+   /**
+  * 组件的初始数据
+  */
+  data: {
+    status :{
+      userId:"1",
+      sendTime:"2020/11/11/11:11",
+      imgArr: ["https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1604499631080&di=d857331ea96b03c3f2440491cb60e0f4&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201708%2F16%2F20170816131622_fVYmk.thumb.700_0.jpeg",
+      "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1604826933589&di=8e10305e8e9a85bf3618765a4a613a08&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201805%2F30%2F20180530172421_kdKcu.jpeg",
+      "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3580164859,3776785180&fm=26&gp=0.jpg",
+      "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=485066500,410625334&fm=26&gp=0.jpg"
+], //上传的结果图片集合
     },
-    uploadUrl: { //图片上传的服务器路径
-      type: String,
-      value: ''
-    },
-    showUrl: { //图片的拼接路径
-      type: String,
-      value: ''
+
+    properties: {
+      count: { //最多选择图片的张数，默认9张
+        type: Number,
+        value: 4
+      },
+      uploadUrl: { //图片上传的服务器路径
+        type: String,
+        value: ''
+      },
+      showUrl: { //图片的拼接路径
+        type: String,
+        value: ''
+      }
     }
   },
 
-  /**
-   * 组件的初始数据
-   */
-  data: {
-    detailPics: [], //上传的结果图片集合
-  },
+  
+  
 
-  ready: function () {
-    console.log(this.data)
-  },
 
   /**
-   * 组件的方法列表
+   * 方法列表
    */
-  methods: {
 
     uploadDetailImage: function (e) { //这里是选取图片的方法
       var that = this;
       var pics = [];
-      var detailPics = that.data.detailPics;
-      if (detailPics.length >= that.data.count) {
+      var imgArr = that.data.status.imgArr;
+      console.log(imgArr.length);
+      console.log(that.data.properties.count.value);
+      if (imgArr.length >= that.data.properties.count) {
         wx.showToast({
-          title: '最多选择' + that.data.count + '张！',
+          title: '最多选择' + that.data.properties.count + '张！',
         })
         return;
       }
       wx.chooseImage({
-        count: that.data.count, // 最多可以选择的图片张数，默认9
+        count: that.data.properties.count.value, // 最多可以选择的图片张数，默认4
         sizeType: ['original', 'compressed'], // original 原图，compressed 压缩图，默认二者都有
         sourceType: ['album', 'camera'], // album 从相册选图，camera 使用相机，默认二者都有
         success: function (res) {
           var imgs = res.tempFilePaths;
           for (var i = 0; i < imgs.length; i++) {
-            pics.push(imgs[i])
+            imgArr.push(imgs[i])
           }
-          that.uploadimg({
-            url: "http://www.test.com//test-api/wechat/applet/api/uploadUserAvatar", //这里是你图片上传的接口
-            path: pics, //这里是选取的图片的地址数组
+          that.setData({
+            ['status.imgArr']:imgArr
           });
+          console.log(that.data.status.imgArr)
+          /*that.uploadimg({
+            url: "http://www.test.com//test-api/wechat/applet/api/uploadUserAvatar", //这里是你图片上传的接口
+            path: imgArr, //这里是选取的图片的地址数组
+          });8*/
         },
       })
 
@@ -75,7 +85,7 @@ Component({
         url: data.url,
         filePath: data.path[i],
         name: 'file',
-        formData: {"userId":"35"},
+        formData: {"userId":that.data.userId},
         success: (resp) => {
           wx.hideLoading();
           success++;
@@ -113,6 +123,20 @@ Component({
         }
       });
     },
+  // 删除图片
+  deleteImgage: function (e) {
+    var imgArr = this.data.status.imgArr;
+    var index = e.currentTarget.dataset.index;
+    console.log(index);
+    imgArr.splice(index, 1);
+    this.setData({
+     ['status.imgArr']: imgArr
+    });
+    console.log(this.data.status.imgArr);
+    console.log(imgArr);
+    console.log("shanchuchenggong");
+   },
 
-  }
+  ready: function () {
+  },
 })

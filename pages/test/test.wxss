@@ -1,4 +1,4 @@
-.content {
+.img-add {
   width: 100%;
   background-color: #fff;
 }
@@ -15,13 +15,13 @@
 .img-item {
   width: 30%;
   text-align: left;
-  margin-right: 20rpx;
-  margin-bottom: 10rpx;
+  padding: 20rpx;
+  padding-bottom: 10rpx;
 }
 
 .img-item image {
-  width: 180rpx;
-  height: 180rpx;
+  width: 200rpx;
+  height: 200rpx;
 }
 
 .submit-btn {
@@ -42,10 +42,10 @@
 .weui-uploader__input-box {
   float: left;
   position: relative;
-  margin-right: 9px;
-  margin-bottom: 9px;
-  width: 180rpx;
-  height: 180rpx;
+  padding: 9px;
+  padding-bottom: 9px;
+  width: 200rpx;
+  height: 200rpx;
   border: 1px solid #d9d9d9;
 }
 

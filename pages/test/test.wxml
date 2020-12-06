@@ -1,11 +1,13 @@
-<view class='content'>
+<view class='img-add'>
   <view class='img-box'>
     <view class='img-list'>
-      <block wx:for="{{detailPics}}" wx:key="index">
+      <view hidden="{{status.imgArr.length==0}}" wx:for="{{status.imgArr}}" wx:key="index"
+      wx:for-index="index1"
+      wx:for-item="item1">
         <view class='img-item'>
-          <image src='{{item}}' bindlongpress="bindlongpressimg" data-id='{{index}}'></image>
+          <image src='{{item1}}' bindlongpress="deleteImgage" data-index='{{index1}}'></image>
         </view>
-      </block>
+      </view>
       <view class='chooseimg' bindtap='uploadDetailImage'>
         <view class="weui-uploader__input-box"></view>
       </view>
