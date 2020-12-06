@@ -10,29 +10,25 @@ Page({
         url:'',
         icon:'../../icon/message_page/notification.png',
         title:"官方通知",
-        isUnread:false,
-        unreadNum:0,
+        isUnread:true,
       },
       {
         url:'',
         icon:'../../icon/message_page/follow.png',
         title:"关注",
-        isUnread:false,
-        unreadNum:0,
+        isUnread:false
       },
       {
         url:'',
         icon:'../../icon/message_page/comment.png',
         title:"评论",
-        isUnread:false,
-        unreadNum:0,
+        isUnread:false
       },
       {
         url:'',
         icon:'../../icon/message_page/like.png',
         title:"赞",
-        isUnread:false,
-        unreadNum:0,
+        isUnread:false
       },
       
     ]
