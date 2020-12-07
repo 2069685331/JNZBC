@@ -13,13 +13,13 @@ exports.main = async (event, context) => {
   var postid=event.statusid
 
   //修改帖子集合的likenum字段,自增1
-  db.collection("posts").where({
-    _id:postid,
-  }).update({
-    data:{
-      likenum:_.inc(1)
-    }
-  })
+  // db.collection("posts").where({
+  //   _id:postid,
+  // }).update({
+  //   data:{
+  //     likenum:_.inc(1)
+  //   }
+  // })
   
   //增加点赞记录
   return await db.collection("likes").add({
