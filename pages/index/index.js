@@ -121,6 +121,7 @@ onCollectionTap: function(event) {
       page:sp
     })
     //limit内是限制条数
+    //sort里面实现对发送时间降序排序（从大到小），实现显示最新数据
     db.collection("posts").limit(3).skip(sp*3).get().then(res=>{
       console.log(res);
       this.setData({
@@ -135,6 +136,12 @@ onCollectionTap: function(event) {
 //    this.getLimit();
 //  },
 
+//options(Object)
+//一开始加载页面展示3条
+onLoad: function(options) {
+  this.initImageSize();
+  this.getLimit();
+},
  //上拉触底调用getlimit()函数
  onPullDownRefresh:function(){
    var page=this.data.page;
@@ -180,11 +187,6 @@ this.setData({
 })
 },
 
-//options(Object)
-onLoad: function(options) {
-  this.initImageSize();
-  this.getLimit();
-},
 onReady: function() {
   
 },
@@ -197,9 +199,7 @@ onHide: function() {
 onUnload: function() {
 
 },
-onPullDownRefresh: function() {
 
-},
 onReachBottom: function() {
 
 },
