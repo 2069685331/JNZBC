@@ -1,27 +1,100 @@
-.textarea {
+page {
+  background-color: #f2f2f2;
+}
+.add .text-add {
   width: 100%;
   background-color: #fff;
+  padding-bottom: 20rpx;
+  height: 350rpx;
 }
-.textarea .textinput {
+.add .text-add .textinput {
   width: 96%;
-  height: 500rpx;
+  height: 350rpx;
   margin-left: 2%;
   margin-right: 2%;
   padding-top: 20rpx;
   padding-bottom: 20rpx;
-  font-size: 38rpx;
+  font-size: 32rpx;
 }
-.click {
-  width: 84%;
-  height: 100rpx;
-  line-height: 100rpx;
-  border-radius: 10rpx;
+.add .img-add {
+  width: 100%;
+  background-color: #fff;
+}
+.add .img-add .img-box {
+  width: 92%;
   margin: auto;
-  margin-top: 70rpx;
-  margin-left: 8%;
-  margin-right: 8%;
-  background-color:var(--themecolor);
-  text-align: center;
+  padding-top: 20rpx;
+}
+.add .img-add .img-box .img-list {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.add .img-add .img-box .img-list view .img-item {
+  width: 30%;
+  text-align: left;
+  margin-right: 20rpx;
+  margin-bottom: 10rpx;
+}
+.add .img-add .img-box .img-list view .img-item image {
+  width: 205rpx;
+  height: 205rpx;
+}
+.add .img-add .img-box .img-list .chooseimg {
+  background-color: #fff;
+}
+.add .img-add .img-box .img-list .chooseimg .choose-item {
+  float: left;
+  position: relative;
+  margin-right: 9rpx;
+  margin-bottom: 9rpx;
+  width: 205rpx;
+  height: 205rpx;
+  border: 1px solid #d9d9d9;
+}
+.add .img-add .img-box .tips {
+  color: #888888;
+  font-size: 24rpx;
+  padding-bottom: 20rpx;
+}
+.add .cid-select {
+  margin-top: 10rpx;
+  background-color: #fff;
+}
+.add .cid-select picker .select {
+  display: flex;
+  padding-left: 20rpx;
+  padding-top: 20rpx;
+  font-size: 32rpx;
+  color: #888888;
+}
+.add .cid-select picker .select .select-cate {
+  display: flex;
+  color: var(--themecolor);
+}
+.add .cid-select picker .cate-tips {
+  display: flex;
+  padding-left: 20rpx;
+  padding-bottom: 20rpx;
+  color: #888888;
+  font-size: 24rpx;
+}
+.add .send {
+  float: right;
+  width: 160rpx;
+  height: 80rpx;
+  display: flex;
+  background-color: var(--themecolor);
+  align-items: center;
+  justify-content: center;
+  margin-top: 50rpx;
+  margin-right: 50rpx;
+  border-radius: 15rpx;
+}
+.add .send .click {
   color: white;
   font-size: 33rpx;
 }

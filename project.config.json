@@ -71,7 +71,22 @@
     },
     "miniprogram": {
       "current": -1,
-      "list": []
+      "list": [
+        {
+          "id": -1,
+          "name": "pages/test/test",
+          "pathName": "pages/test/test",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/add/add",
+          "pathName": "pages/add/add",
+          "query": "",
+          "scene": null
+        }
+      ]
     }
   }
 }

@@ -62,7 +62,7 @@ Page({
       //不合法
       return;
     }
-    wx.redirectTo({   //保留当前页面，跳转到应用内的某个页面（最多打开5个页面，之后按钮就没有响应的）后续可以使用wx.navigateBack 可以返回;
+    wx.redirectTo({   //关闭当前页面，跳转到应用内的某个页面（最多打开5个页面，之后按钮就没有响应的）后续可以使用wx.navigateBack 可以返回;
       url:"/pages/searchindex/searchindex?value="+value
     })
   },

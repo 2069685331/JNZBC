@@ -1,24 +1,23 @@
 <view class="jnz_index">
 
 <view class="toptabswrap">
-<view class="toptabs" hover-class="none" hover-stop-propagation="false">
+    <view class="toptabs" hover-class="none" hover-stop-propagation="false">
 
-    <!--搜素框开始-->
-<view class="searchtab" hover-class="none" hover-stop-propagation="false">
-    <searchinput class=""></searchinput>
-</view>
-    <!--搜索框结束-->
+        <!--搜素框开始-->
+        <view class="searchtab" hover-class="none" hover-stop-propagation="false">
+            <searchinput class=""></searchinput>
+        </view>
+        <!--搜索框结束-->
 
-    <!--动态发布框--> 
-<view class="releasetab" hover-class="none" hover-stop-propagation="false">
-    <navigator class="" target="" url="../add/add" hover-class="navigator-hover" open-type="navigate">
-  <image class="" src="/icon/add.png" mode="scaleToFill" lazy-load="false" binderror="" bindload="">
-    
-  </image>
-</navigator> 
-</view>
-    <!--动态发布框--> 
-</view>
+        <!--动态发布框--> 
+        <view class="releasetab" hover-class="none" hover-stop-propagation="false">
+            <navigator class="" target="" url="../add/add" hover-class="navigator-hover" open-type="navigate">
+                <image class="" src="/icon/add.png" mode="scaleToFill" lazy-load="false" binderror="" bindload="">
+                </image>
+            </navigator> 
+        </view>
+        <!--动态发布框--> 
+    </view>
 </view>
 
 

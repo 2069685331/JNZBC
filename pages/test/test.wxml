@@ -1,17 +1,15 @@
-<view class='img-add'>
-  <view class='img-box'>
-    <view class='img-list'>
-      <view hidden="{{status.imgArr.length==0}}" wx:for="{{status.imgArr}}" wx:key="index"
-      wx:for-index="index1"
-      wx:for-item="item1">
-        <view class='img-item'>
-          <image src='{{item1}}' bindlongpress="deleteImgage" data-index='{{index1}}'></image>
+<view bindtap='isfouce'><navigator>{{textareaVal.length != 0?textareaVal:'请输入文本'}}</navigator></view> 
+
+
+<view wx:if="{{!hiddenmodalput}}" title="" class='textareaModal'>
+    <view class='shadow' bindtap="cancel"></view>
+    <view>
+      <view>
+         <textarea placeholder='请输入文本' value='{{textareaVal}}' fixed='true' bindinput='textarea'></textarea>   
+        <view class='modalBtn clearfix'>
+          <navigator class='fl' bindtap='cancel'>取消</navigator>
+          <navigator class='fr' bindtap="confirm">确定</navigator>
         </view>
       </view>
-      <view class='chooseimg' bindtap='uploadDetailImage'>
-        <view class="weui-uploader__input-box"></view>
-      </view>
     </view>
-    <view class='tips'>长按对应的图片即可删除</view>
-  </view>
 </view>

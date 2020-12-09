@@ -1,7 +1,7 @@
 // pages/statusdetail/statusdetail.js
 Page({
   data: {
-    status:[
+    status:
       {
         //动态id
         statusid:1,
@@ -21,16 +21,39 @@ Page({
         likenum:54,
         //本用户是否点赞过
         collected:0
-      }
+      },
+  comments:[
+    {
+      //评论Id
+      //commentId:
+      //用户名
+      //评论时间
+      //用户id
+      //评论内容
+    },
   ],
+  //本用户相关信息
+  myinfo:{
+    myUserId:""
+  },
+  
   focusInput: false,
-  isInput: false
+  isInput: false,
+  //计算评论框高度
+  height:''
 
   },
   QueryParams:{
     
   },
+//删除评论(未实现)
+deleteComment:function(){
 
+},
+//获取我的信息（未实现）
+getMyInfo:function(){
+
+},
 // 更改点赞状态
 onCollectionTap: function(event) {
   // 获取当前点击下标
@@ -59,7 +82,7 @@ onCollectionTap: function(event) {
   })
   //向后端返回点赞数据（还没实现）
   //////////////
-
+  this.sendLike();
 
 
 
@@ -82,10 +105,12 @@ onCollectionTap: function(event) {
 },
 //弹出评论框函数
   inputFocus(e) {
-    console.log(e, '键盘弹起')
+    console.log(e.detail.height,'键盘弹起')
     this.setData({
+      height: e.detail.height,
       isInput: true
     })
+    console.log(this.data.isInput)
   },
 //收起评论框
   inputBlur() {
@@ -93,6 +118,7 @@ onCollectionTap: function(event) {
     this.setData({
       isInput: false
     })
+    console.log(this.data.isInput)
   },
 //评论按钮点击事件触发
   focusButn: function () {
@@ -131,7 +157,10 @@ this.setData({
 
 //options(Object)
 onLoad: function(options) {
-  this.initImageSize()
+  //如果有多张图片，提前计算图片宽度
+  this.initImageSize();
+  //获取用户信息
+  this.getMyInfo();
 },
 onReady: function() {
   
