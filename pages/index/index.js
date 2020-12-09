@@ -47,7 +47,6 @@ Page({
     //   likenum:54,
     //   //本用户是否点赞过
     //   collected:1
-
     
     // }
   // ]
