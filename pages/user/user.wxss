@@ -12,7 +12,7 @@ page {
 }
 
 .avatar-warp {
-  margin: 70rpx 30rpx 0;
+  margin: 40rpx 30rpx 0;
   background: rgba(255, 255, 255, 0.99);
   border-radius: 20rpx;
   box-shadow: 0 0 20rpx rgba(0, 0, 0, 0.1);
@@ -100,7 +100,7 @@ page {
 
 /*菜单*/
 .menu {
-  margin: 30rpx 30rpx;
+  margin: 40rpx 30rpx;
   background: rgba(255, 255, 255, 0.99);
   border-radius: 20rpx;
   box-shadow: 0 0 20rpx rgba(0, 0, 0, 0.1);
@@ -140,4 +140,17 @@ page {
   position: absolute;
   right: 40rpx;
   top: 30rpx;
+}
+
+.btm {
+  margin: 0rpx 10rpx 20rpx;
+  border-radius: 20rpx;
+  position: relative;
+  font-size: 38rpx;
+  text-align: center;
+  line-height: 33rpx;
+  padding: 20rpx 3rpx;
+  width: 30%;
+  background-color:#0F6A7B; 
+  color:white
 }

@@ -16,6 +16,7 @@
     "pages/cateindex/cateindex",
     "pages/statusdetail/statusdetail",
     "pages/searchindex/searchindex",
+    "pages/editor/editor",
     "pages/test/test"
   
 

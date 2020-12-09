@@ -1,16 +1,11 @@
-// pages/user/index.js
+// pages/editor/editor.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    userinfo:{},
-    logoUrl:"/icon/logo.png",  //头像
-    motto:"暨南针不戳！",  //简介
-    follow_num:'13',  //我关注的数量
-    follower_num:'15',  //关注我的数量
-    status_num:'5'  //动态数量
+
   },
 
   /**
@@ -31,8 +26,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    const userinfo=wx.getStorageSync("userinfo");
-    this.setData({userinfo});
+
   },
 
   /**
