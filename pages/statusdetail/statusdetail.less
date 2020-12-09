@@ -5,11 +5,8 @@
     .status-group{
 
         width: 100%;
-        margin-bottom:30rpx;
         background: #fff;
         padding: 30rpx;
-        padding-top:100rpx;
-        box-sizing: border-box;
         .user-group{
             display: flex;
             .avatar{
@@ -72,11 +69,9 @@
         display: flex;
         padding: 30rpx;
         font-size: 30rpx;
-        position: fixed;
-        top: 0;
         background-color: #fff;
         width:100%;
-        padding-bottom: 20rpx;
+        margin-bottom: 30rpx;
         .comment-group{
             border-right: 1px solid #909090;
         }
@@ -104,7 +99,80 @@
         }
     }
     
-    
+    .comment-area-container{
+        width: 100%;
+        background: #f2f2f2;
+        flex-wrap: nowrap;
+            .single-comment{
+                background: #fff;
+                padding: 30rpx;
+                padding-bottom: 10rpx;
+                box-sizing: border-box;
+                display: flex;
+                .left-part{
+                    display:flex;
+                    width: 80rpx;
+                    .comment-avatar{
+                        width:100%;
+                        height: 80rpx;
+                        display: flex;
+                        image{
+                            display: flex;
+                            width: 100%;
+                            height: 100%;
+                            border-radius: 7%;
+                        }
+                    }
+                }
+                .right-part{
+                    flex: 1;
+                    padding-left: 20rpx;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    padding-bottom: 30rpx;
+                    border-bottom: 1px solid #c2c2c2;
+                    .comment-username{
+                        font-size:35rpx;
+                        padding-bottom: 10rpx;
+                    }
+                    .commentpart{
+                        display:flex;
+                        padding-bottom: 10rpx;
+                        .comment-text{
+                            text-align: justify;
+                            font-size: 30rpx;
+                            line-height: 35rpx;
+                        }
+                    }
+                    .comment-time{
+                            font-size:24rpx;
+                            color: #656565;
+                            padding-bottom: 10rpx;
+                        }
+                    .function-list{
+                        display:flex;
+                        justify-content: space-between;
+                        
+                        .delete-comment{
+                            font-size:30rpx;
+                            color: var(--themecolor);
+                        }
+                        .comment-group{
+                            display: flex;
+                            flex: 1;
+                            margin-right: 50rpx;
+                            justify-content: flex-end;
+                            align-items: center;
+                            image{
+                                width: 32rpx;
+                                height: 32rpx;
+                            }
+                        }
+                    }
+                }
+            }
+        
+    }
     
     .commentInputView{
         width: 100%;

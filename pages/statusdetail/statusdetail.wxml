@@ -9,8 +9,6 @@
                 <image class="" src="{{status.avatar}}"  lazy-load="false" binderror="" bindload="">
                 </image>
             </navigator>
-           
-           
             <!-- 头像 -->
 
             <view class="right-info">
@@ -46,8 +44,8 @@
              </view>
         </view>
     </view>
-    <!-- 悬浮的评论框 -->
-   
+
+    <!--评论 -->
     <view class="status-handle">
            <!-- 评论 -->
            <view   class="comment-group" bindtap='focusButn'>
@@ -64,25 +62,48 @@
 
     <!-- 评论区 -->
     <view class="comment-area-container">
-        <view class="comment-area"
-            wx:for="{{comments}}"
-            wx:for-index="index3"
-            wx:for-item="item3">
-            <view class="single-comment">
-                <view class="comment-user-info">
+        <view class="single-comment" 
+        wx:for="{{comments}}"
+        wx:for-index="index1"
+        wx:for-item="item1">                    
+            <view class="left-part">
+                    <!-- 头像 -->
+                     <navigator class="comment-avatar" target="" url="../userindex/userindex" hover-class="navigator-hover" open-type="navigate">
+                         <image class="" src="{{item1.avatar}}"  lazy-load="false" binderror="" bindload="">
+                         </image>
+                     </navigator>
+                     <!-- 头像 -->
+                </view>
+                <view class="right-part">
                     <!-- 用户名 -->
                     <view class="comment-username">
                         <navigator class="" target="" url="../userindex/userindex" hover-class="navigator-hover" open-type="navigate">
-                          {{item3.userName}}  
+                          {{item1.userName}}  
                         </navigator>
                     </view>
                     <!-- 用户名 -->
+                    <!-- 评论内容 -->
+                    <view class="commentpart">
+                        <text class="comment-text" user-select="{{true}}" decode="{{true}}">{{item1.commentText}}</text> 
+                    </view>
+                    <!-- 评论内容 -->
                     <!-- 日期 -->
-                    <view class="comment-time">{{item3.sendTime}}</view>
+                    <view class="comment-time">{{item1.sendTime}}</view>
                     <!-- 日期 -->
+                     
+                    <view class="function-list">
+                        <!-- 删除 -->
+                        <view class="delete-comment">删除</view>
+                        <!-- 删除 -->
+                        <!-- 评论的评论按钮 -->
+                        <view   class="comment-group" bindtap='focusButn'>
+                        <image class="" src="/dongtai/comment.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload=""></image>
+                        </view>
+                        <!-- 评论的评论按钮 -->
+                    </view>
                 </view>
-            </view>
         </view>
+    
     </view>
     <!-- 弹出评论输入框 -->
     <view class='commentInputView'>

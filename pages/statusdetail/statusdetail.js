@@ -25,16 +25,134 @@ Page({
   comments:[
     {
       //评论Id
-      //commentId:
+      commentId:'',
       //用户名
+      userName:'XXX',
+      //头像
+      avatar:"/dongtai/user1.jpg",
       //评论时间
+      sendTime:'2020/11/11 11:11:11',
       //用户id
+      userId:'01',
       //评论内容
+      commentText:'这是评论'
+    },
+    {
+      //评论Id
+      commentId:'',
+      //用户名
+      userName:'XXX',
+      //头像
+      avatar:"/dongtai/user1.jpg",
+      //评论时间
+      sendTime:'2020/11/11 11:11:11',
+      //用户id
+      userId:'01',
+      //评论内容
+      commentText:'这是评论'
+    },
+    {
+      //评论Id
+      commentId:'',
+      //用户名
+      userName:'XXX',
+      //头像
+      avatar:"/dongtai/user1.jpg",
+      //评论时间
+      sendTime:'2020/11/11 11:11:11',
+      //用户id
+      userId:'01',
+      //评论内容
+      commentText:'这是评论'
+    },
+    {
+      //评论Id
+      commentId:'',
+      //用户名
+      userName:'XXX',
+      //头像
+      avatar:"/dongtai/user1.jpg",
+      //评论时间
+      sendTime:'2020/11/11 11:11:11',
+      //用户id
+      userId:'01',
+      //评论内容
+      commentText:'这是评论'
+    },
+    {
+      //评论Id
+      commentId:'',
+      //用户名
+      userName:'XXX',
+      //头像
+      avatar:"/dongtai/user1.jpg",
+      //评论时间
+      sendTime:'2020/11/11 11:11:11',
+      //用户id
+      userId:'01',
+      //评论内容
+      commentText:'这是评论'
+    },
+    {
+      //评论Id
+      commentId:'',
+      //用户名
+      userName:'XXX',
+      //头像
+      avatar:"/dongtai/user1.jpg",
+      //评论时间
+      sendTime:'2020/11/11 11:11:11',
+      //用户id
+      userId:'01',
+      //评论内容
+      commentText:'这是评论'
+    },
+    {
+      //评论Id
+      commentId:'',
+      //用户名
+      userName:'XXX',
+      //头像
+      avatar:"/dongtai/user1.jpg",
+      //评论时间
+      sendTime:'2020/11/11 11:11:11',
+      //用户id
+      userId:'01',
+      //评论内容
+      commentText:'这是评论'
+    },
+    {
+      //评论Id
+      commentId:'',
+      //用户名
+      userName:'XXX',
+      //头像
+      avatar:"/dongtai/user1.jpg",
+      //评论时间
+      sendTime:'2020/11/11 11:11:11',
+      //用户id
+      userId:'01',
+      //评论内容
+      commentText:'这是评论'
+    },
+    {
+      //评论Id
+      commentId:'',
+      //用户名
+      userName:'XXX',
+      //头像
+      avatar:"/dongtai/user1.jpg",
+      //评论时间
+      sendTime:'2020/11/11 11:11:11',
+      //用户id
+      userId:'01',
+      //评论内容
+      commentText:'这是评论'
     },
   ],
   //本用户相关信息
   myinfo:{
-    myUserId:""
+    myUserId:"01"
   },
   
   focusInput: false,
