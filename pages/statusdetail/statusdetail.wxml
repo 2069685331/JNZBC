@@ -1,15 +1,12 @@
 <!--pages/statusdetail/statusdetail.wxml-->
 
-<view class="container" 
-wx:for="{{status}}"
-wx:for-index="index1"
-wx:for-item="item1">
+<view class="container">
     <!--用户动态-->
     <view class="status-group" >
         <view class="user-group">
             <!-- 头像 -->
             <navigator class="avatar" target="" url="../userindex/userindex" hover-class="navigator-hover" open-type="navigate">
-                <image class="" src="{{item1.avatar}}"  lazy-load="false" binderror="" bindload="">
+                <image class="" src="{{status.avatar}}"  lazy-load="false" binderror="" bindload="">
                 </image>
             </navigator>
            
@@ -20,12 +17,12 @@ wx:for-item="item1">
                 <!-- 用户名 -->
                 <view class="username">
                 <navigator class="" target="" url="../userindex/userindex" hover-class="navigator-hover" open-type="navigate">
-                  {{item1.userName}}  
+                  {{status.userName}}  
                 </navigator>
                     </view>
                 <!-- 用户名 -->
                 <!-- 日期 -->
-                <view class="time">{{item1.sendTime}}</view>
+                <view class="time">{{status.sendTime}}</view>
                 <!-- 日期 -->
             </view>  
         </view>
@@ -33,60 +30,68 @@ wx:for-item="item1">
         <view class="status-content-group">
             <!-- 文本部分 -->
             <view class="content">
-                <text class="conts" user-select="{{true}}" decode="{{true}}">{{item1.content}}
-                </text> 
+                <text class="conts" user-select="{{true}}" decode="{{true}}">{{status.content}}</text> 
             </view>
              <!-- 图片部分 -->
              <!-- 只允许1~4张图片 -->
-             <view class="image-list-group"   wx:if="{{item1.imgArr.length==1}}" style='width:100%'>
-                 <image wx:for='{{item1.imgArr}}' 
-                 wx:for-index="index2"
-                 wx:for-item="item2"
-                 class="" src='{{item2}}' data-index='{{index2}}' data-item='{{item1.imgArr}}' mode="aspectFill" 
+             <view class="image-list-group"   wx:if="{{status.imgArr.length==1}}" style='width:100%'>
+                 <image wx:for='{{status.imgArr}}' 
+                 class="" src='{{item}}' data-index='{{index}}' data-item='{{status.imgArr}}' mode="aspectFill" 
                  style='width:100%;max-height:500rpx' bindtap='handlePreviewImg'></image>  
              </view>
-              <view class="image-list-group"   wx:elif="{{item1.imgArr.length>1}}" style='width:100%'>
-                 <image wx:for='{{item1.imgArr}}' 
-                 wx:for-index="index2"
-                 wx:for-item="item2"
-                class="" src='{{item2}}' data-index='{{index2}}' data-item='{{item1.imgArr}}' mode="aspectFill"
+              <view class="image-list-group"   wx:elif="{{status.imgArr.length>1}}" style='width:100%'>
+                 <image wx:for='{{status.imgArr}}' 
+                class="" src='{{item}}' data-index='{{index}}' data-item='{{status.imgArr}}' mode="aspectFill"
                  style='width:{{imagesSize}}px;height:{{imagesSize}}px' bindtap='handlePreviewImg'></image>  
              </view>
         </view>
-        <view class="status-handle">
-            <!-- 评论 -->
-            <view   class="comment-group" bindtap='focusButn'>
-                <image class="" src="/dongtai/comment.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">   
-                </image>{{item1.commentnum}}
-            </view>
-            <!-- like -->
+    </view>
+    <!-- 悬浮的评论框 -->
+   
+    <view class="status-handle">
+           <!-- 评论 -->
+           <view   class="comment-group" bindtap='focusButn'>
+               <image class="" src="/dongtai/comment.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">   
+               </image>{{status.commentnum}}
+           </view>
+           <!-- like -->
            <view class="praise-group" hover-class="none" hover-stop-propagation="false" bindtap="onCollectionTap" data-index='{{index1}}'>
-                <image class="" src="{{item1.collected?'/dongtai/haslike.png':'/dongtai/like.png'}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
-                    
-                </image>{{item1.likenum}}
+               <image class="" src="{{item1.collected?'/dongtai/haslike.png':'/dongtai/like.png'}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
+               </image>{{status.likenum}}
+           </view>
+    </view>
+    
+
+    <!-- 评论区 -->
+    <view class="comment-area-container">
+        <view class="comment-area"
+            wx:for="{{comments}}"
+            wx:for-index="index3"
+            wx:for-item="item3">
+            <view class="single-comment">
+                <view class="comment-user-info">
+                    <!-- 用户名 -->
+                    <view class="comment-username">
+                        <navigator class="" target="" url="../userindex/userindex" hover-class="navigator-hover" open-type="navigate">
+                          {{item3.userName}}  
+                        </navigator>
+                    </view>
+                    <!-- 用户名 -->
+                    <!-- 日期 -->
+                    <view class="comment-time">{{item3.sendTime}}</view>
+                    <!-- 日期 -->
+                </view>
             </view>
         </view>
     </view>
-    
-    <!-- 悬浮的评论框 -->
-     <view class="status-handle">
-            <!-- 评论 -->
-            <view   class="comment-group" bindtap='focusButn'>
-                <image class="" src="/dongtai/comment.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">   
-                </image>{{item1.commentnum}}
-            </view>
-            <!-- like -->
-           <view class="praise-group" hover-class="none" hover-stop-propagation="false" bindtap="onCollectionTap" data-index='{{index1}}'>
-                <image class="" src="{{item1.collected?'/dongtai/haslike.png':'/dongtai/like.png'}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
-                    
-                </image>{{item1.likenum}}
-            </view>
-    </view>
-
-    <!-- 弹出评论框 -->
-    <view class='commentInputView' wx:if='{{isInput}}'>
-        <view  class='commentInput'>
-            <textarea class='input' show-confirm-bar="{{false}}" auto-focus="{{true}}" cursor-spacing="{{20}}" auto-height="{{true}}" value="{{value}}" bindfocus="inputFocus" focus='{{focusInput}}' bindblur="inputBlur"></textarea>
+    <!-- 弹出评论输入框 -->
+    <view class='commentInputView'>
+        <view  class='commentInput' wx:if='{{isInput}}'>
+            <textarea class='input' show-confirm-bar="{{false}}" 
+            auto-focus="{{true}}" cursor-spacing="{{20}}" 
+            auto-height="{{true}}" value="{{value}}" 
+            bindfocus="inputFocus" focus='{{focusInput}}' 
+            bindblur="inputBlur"></textarea>
             <view class='send'bindtap="sendComment">发送</view>
         </view>
     </view>

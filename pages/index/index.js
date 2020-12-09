@@ -1,59 +1,61 @@
 //Page Object
+const db=wx.cloud.database();
 Page({
   data: {
-    status:[
-      {
-        //动态id
-        statusid:1,
-        //头像
-        avatar:"/dongtai/user1.jpg",
-        //用户名
-        userName:'Leonardo',
-        //日期
-        time:'2020/11/11 11:11:11',
-        //文本
-        content:"The Revenant was the product of the tireless efforts of an unbelievable cast and crew. First off, to my brother in this endeavor, Mr. Tom Hardy. Tom, your talent on screen can only be surpassed by your friendship off screen… thank you for creating a transcendent cinematic experience. Thank you to everybody at Fox and New Regency…my entire team. I have to thank everyone from the very onset of my career… To my parents, none of this would be possible without you. And to my friends, I love you dearly, you know who you are.And lastly I just want to say this: Making ‘The Revenant’ was about man's relationship to the natural world. A world that we collectively felt in 2015 as the hottest year in recorded history. Our production needed to move to the southern tip of this planet just to be able to find snow. Climate change is real, it is happening right now. It is the most urgent threat facing our entire species, and we need to work collectively together and stop procrastinating. We need to support leaders around the world who do not speak for the big polluters, but who speak for all of humanity, for the indigenous people of the world, for the billions and billions of underprivileged people out there who would be most affected by this. For our children’s children, and for those people out there whose voices have been drowned out by the politics of greed. I thank you all for this amazing award tonight. Let us not take this planet for granted. I do not take tonight for granted. Thank you so very much.",
-        //图片,，支持0~4张图片
-        imgArr:[],
-        //评论
-        commentnum:76,
-        //点赞数
-        likenum:54,
-        //本用户是否点赞过
-        collected:0
-      },
-      {
-         //动态id
-        statusid:2,
-        //头像
-        avatar:"/dongtai/user2.jpg",
-        //用户名
-        userName:'Depp',
-        //日期
-        sendTime:'2020/11/11 11:11:11',
-        //文本
-        content:"1998",
-        //图片
-        imgArr:[
-          "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1604499631080&di=d857331ea96b03c3f2440491cb60e0f4&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201708%2F16%2F20170816131622_fVYmk.thumb.700_0.jpeg",
-          "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1604826933589&di=8e10305e8e9a85bf3618765a4a613a08&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201805%2F30%2F20180530172421_kdKcu.jpeg",
-          "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3580164859,3776785180&fm=26&gp=0.jpg",
-          "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=485066500,410625334&fm=26&gp=0.jpg"
-      ],
-      //评论
-      commentnum:76,
-      //点赞数
-      likenum:54,
-      //本用户是否点赞过
-      collected:1
+    // status:[
+    //   {
+    //     //动态id
+    //     statusid:1,
+    //     //头像
+    //     avatar:"/dongtai/user1.jpg",
+    //     //用户名
+    //     userName:'Leonardo',
+    //     //日期
+    //     time:'2020/11/11 11:11:21',
+    //     //文本
+    //     content:"The Revenant was the product of the tireless efforts of an unbelievable cast and crew. First off, to my brother in this endeavor, Mr. Tom Hardy. Tom, your talent on screen can only be surpassed by your friendship off screen… thank you for creating a transcendent cinematic experience. Thank you to everybody at Fox and New Regency…my entire team. I have to thank everyone from the very onset of my career… To my parents, none of this would be possible without you. And to my friends, I love you dearly, you know who you are.And lastly I just want to say this: Making ‘The Revenant’ was about man's relationship to the natural world. A world that we collectively felt in 2015 as the hottest year in recorded history. Our production needed to move to the southern tip of this planet just to be able to find snow. Climate change is real, it is happening right now. It is the most urgent threat facing our entire species, and we need to work collectively together and stop procrastinating. We need to support leaders around the world who do not speak for the big polluters, but who speak for all of humanity, for the indigenous people of the world, for the billions and billions of underprivileged people out there who would be most affected by this. For our children’s children, and for those people out there whose voices have been drowned out by the politics of greed. I thank you all for this amazing award tonight. Let us not take this planet for granted. I do not take tonight for granted. Thank you so very much.",
+    //     //图片,，支持0~4张图片
+    //     imgArr:[],
+    //     //评论
+    //     commentnum:76,
+    //     //点赞数
+    //     likenum:53,
+    //     //本用户是否点赞过
+    //     collected:0
+    //   },
+    //   {
+    //      //动态id
+    //     statusid:2,
+    //     //头像
+    //     avatar:"/dongtai/user2.jpg",
+    //     //用户名
+    //     userName:'Depp',
+    //     //日期
+    //     sendTime:'2020/11/11 11:11:11',
+    //     //文本
+    //     content:"1998",
+    //     //图片
+    //     imgArr:[
+    //       "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1604499631080&di=d857331ea96b03c3f2440491cb60e0f4&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201708%2F16%2F20170816131622_fVYmk.thumb.700_0.jpeg",
+    //       "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1604826933589&di=8e10305e8e9a85bf3618765a4a613a08&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201805%2F30%2F20180530172421_kdKcu.jpeg",
+    //       "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3580164859,3776785180&fm=26&gp=0.jpg",
+    //       "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=485066500,410625334&fm=26&gp=0.jpg"
+    //   ],
+    //   //评论
+    //   commentnum:76,
+    //   //点赞数
+    //   likenum:54,
+    //   //本用户是否点赞过
+    //   collected:1
     
-    }
-  ]
+    // }
+  // ]
 
   },
   QueryParams:{
     
   },
+  
 // 更改点赞状态
 onCollectionTap: function(event) {
   // 获取当前点击下标
@@ -64,18 +66,45 @@ onCollectionTap: function(event) {
   for (let i in message) { //遍历列表数据
     if (i == index) { //根据下标找到目标
       var collectStatus = false
-      if (message[i].collected == 0) { //如果是没点赞+1
+      if (message[i].collected == 0) { 
+        //前端：界面修改
+        //如果是没点赞+1
         collectStatus = true
         message[i].collected = parseInt(message[i].collected) + 1
         message[i].likenum = parseInt(message[i].likenum) + 1
         console.log('like');
+        //后端：上传数据postid,调用云函数like点赞
+        wx.cloud.callFunction({
+          name:"like",
+          data:{
+            statusid:message[i].statusid
+          },
+          success:res=>{
+            console.log(res);
+          }
+        })
+
       } else {
+        //前端：修改界面
         collectStatus = false
         message[i].collected = parseInt(message[i].collected) - 1
         message[i].likenum = parseInt(message[i].likenum) - 1
         console.log('quitlike');
-      }
+        
+        //后端：上传数据postid,调用云函数lickcancel取消点赞
+        wx.cloud.callFunction({
+        name:"likecancel",
+        data:{
+          statusid:message[i].statusid
+        },
+        success:res=>{
+          console.log(res);
+        }
+      })
     }
+  }
+
+     
   }
   this.setData({
     status: message
@@ -83,28 +112,43 @@ onCollectionTap: function(event) {
   //向后端返回点赞数据（还没实现）
   //////////////
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   /////////////
 },
 
+ //触底返回10条数据功能
+ getLimit(sp=0){
+    this.setData({
+      page:sp
+    })
+    //limit内是限制条数
+    //sort里面实现对发送时间降序排序（从大到小），实现显示最新数据
+    db.collection("posts").limit(3).skip(sp*3).get().then(res=>{
+      console.log(res);
+      this.setData({
+        status:res.data
+      })
+    })
+ },
 
+ //一打开页面时调用getLimit()函数
+//  onLoad:function(){
+//    console.log("yes");
+//    this.getLimit();
+//  },
+
+//options(Object)
+//一开始加载页面展示3条
+onLoad: function(options) {
+  this.initImageSize();
+  this.getLimit();
+},
+ //上拉触底调用getlimit()函数
+ onPullDownRefresh:function(){
+   var page=this.data.page;
+   page++
+   console.log(page)
+   this.getLimit(page);
+ },
 
 
 //图片预览函数
@@ -143,10 +187,6 @@ this.setData({
 })
 },
 
-//options(Object)
-onLoad: function(options) {
-  this.initImageSize()
-},
 onReady: function() {
   
 },
@@ -159,9 +199,7 @@ onHide: function() {
 onUnload: function() {
 
 },
-onPullDownRefresh: function() {
 
-},
 onReachBottom: function() {
 
 },

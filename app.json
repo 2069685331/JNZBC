@@ -1,5 +1,5 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
     "pages/category/category",
     "pages/message/message",
@@ -18,45 +18,42 @@
     "pages/searchindex/searchindex",
     "pages/editor/editor",
     "pages/test/test"
-  
-
   ],
   "tabBar": {
-    "color":"#515151",
-    "selectedColor":"#000000",
-    
-    "list": [{
-      "pagePath": "pages/index/index",
-      "text": "首页",
-      "iconPath": "/icon/index.png",
-      "selectedIconPath": "/icon/_index.png"
-      
-    },
-  
-    {
-      "pagePath":"pages/category/category",
-      "text": "分区",
-      "iconPath": "/icon/fenqu.png",
-      "selectedIconPath": "./icon/_fenqu.png"
-    },
-    {
-      "pagePath":"pages/message/message",
-      "text": "消息",
-      "iconPath": "/icon/message.png",
-      "selectedIconPath": "./icon/_message.png"
-    },
-    {
-      "pagePath":"pages/user/user",
-      "text": "我",
-      "iconPath": "/icon/mine.png",
-      "selectedIconPath": "./icon/_mine.png"
-    }
-  ]},
-  "window":{
-    "backgroundTextStyle":"light",
+    "color": "#515151",
+    "selectedColor": "#000000",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/icon/index.png",
+        "selectedIconPath": "/icon/_index.png"
+      },
+      {
+        "pagePath": "pages/category/category",
+        "text": "分区",
+        "iconPath": "/icon/fenqu.png",
+        "selectedIconPath": "./icon/_fenqu.png"
+      },
+      {
+        "pagePath": "pages/message/message",
+        "text": "消息",
+        "iconPath": "/icon/message.png",
+        "selectedIconPath": "./icon/_message.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "我",
+        "iconPath": "/icon/mine.png",
+        "selectedIconPath": "./icon/_mine.png"
+      }
+    ]
+  },
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#0f6a7b",
     "navigationBarTitleText": "暨南针",
-    "navigationBarTextStyle":"white"
+    "navigationBarTextStyle": "white"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"

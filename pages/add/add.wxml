@@ -1,5 +1,40 @@
 <!--pages/add/add.wxml-->
-<view class='textarea'>
-   <textarea placeholder="暨南针不错~" placeholder-style="color:#888888; font-size:38rpx;" class='textinput' maxlength='-1' bindinput ="bindTextAreaBlur"></textarea>
+<view class="add">
+   <!-- 文本编辑区 -->
+   <!-- 字数限制：700字 -->
+   <view class='text-add'>
+      <textarea placeholder="暨南针不错~" placeholder-style="color:#888888; font-size:32rpx;" class='textinput' maxlength='700' bindinput ="getText"></textarea>
+   </view>
+   
+   <!-- 图片添加区 -->
+   <view class='img-add'>
+      <view class='img-box'>
+       <view class='img-list'>
+         <view hidden="{{status.imgArr.length==0}}" wx:for="{{status.imgArr}}" wx:key="index"
+            wx:for-index="index1"
+            wx:for-item="item1">
+           <view class='img-item'>
+             <image src='{{item1}}' bindlongpress="deleteImgage" data-index='{{index1}}' mode="aspectFill"></image>
+           </view>
+         </view>
+         <view class='chooseimg' bindtap='uploadDetailImage'>
+           <image src="/icon/addphoto.png" class="choose-item"></image>
+         </view>
+      </view>
+      <view class='tips'>长按对应的图片即可删除</view>
+      </view>
+   </view>
+
+   <!-- 分区选择器 -->
+   <view class="cid-select">
+      <picker mode="selector" bindchange="Change" value="{{index}}" range="{{array}}" range-key="cate">
+         <view class="select">为你的动态选择一个话题：<view class="select-cate">{{array[index].cate}}</view></view>
+         <view class='cate-tips'>动态将投入相应的话题分区</view>
+      </picker>
+   </view>
+
+   <!-- 发送 -->
+   <view  class='send' bindtap='send'>
+      <view class="click">发送</view>
+   </view>
 </view>
-<view id='btn' class='click' bindtap='send'>发送</view>
