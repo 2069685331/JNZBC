@@ -67,21 +67,8 @@
       "list": []
     },
     "miniprogram": {
-      "list": [
-        {
-          "id": -1,
-          "name": "pages/statusdetail/statusdetail",
-          "pathName": "pages/statusdetail/statusdetail",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "pages/searchindex/searchindex",
-          "pathName": "pages/searchindex/searchindex",
-          "scene": null
-        }
-      ]
+      "current": -1,
+      "list": []
     }
   }
 }
