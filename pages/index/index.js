@@ -127,6 +127,7 @@ onCollectionTap: function(event) {
       this.setData({
         status:res.data
       })
+      wx.stopPullDownRefresh();
     })
  },
 

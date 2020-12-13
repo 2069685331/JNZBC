@@ -25,7 +25,7 @@ Page({
   comments:[
     {
       //评论Id
-      commentId:'',
+      commentId:'01',
       //用户名
       userName:'XXX',
       //头像
@@ -35,11 +35,13 @@ Page({
       //用户id
       userId:'01',
       //评论内容
-      commentText:'这是评论'
+      commentText:'这是评论',
+      //评论的回复数目
+      replyNum:2
     },
     {
       //评论Id
-      commentId:'',
+      commentId:'02',
       //用户名
       userName:'XXX',
       //头像
@@ -47,13 +49,15 @@ Page({
       //评论时间
       sendTime:'2020/11/11 11:11:11',
       //用户id
-      userId:'01',
+      userId:'02',
       //评论内容
-      commentText:'这是评论'
+      commentText:'这是评论',
+      //评论的回复数目
+      replyNum:0
     },
     {
       //评论Id
-      commentId:'',
+      commentId:'03',
       //用户名
       userName:'XXX',
       //头像
@@ -61,13 +65,15 @@ Page({
       //评论时间
       sendTime:'2020/11/11 11:11:11',
       //用户id
-      userId:'01',
+      userId:'03',
       //评论内容
-      commentText:'这是评论'
+      commentText:'这是评论',
+      //评论的回复数目
+      replyNum:0
     },
     {
       //评论Id
-      commentId:'',
+      commentId:'04',
       //用户名
       userName:'XXX',
       //头像
@@ -75,104 +81,62 @@ Page({
       //评论时间
       sendTime:'2020/11/11 11:11:11',
       //用户id
-      userId:'01',
+      userId:'04',
       //评论内容
-      commentText:'这是评论'
+      commentText:'这是评论',
+      //评论的回复数目
+      replyNum:4
     },
-    {
-      //评论Id
-      commentId:'',
-      //用户名
-      userName:'XXX',
-      //头像
-      avatar:"/dongtai/user1.jpg",
-      //评论时间
-      sendTime:'2020/11/11 11:11:11',
-      //用户id
-      userId:'01',
-      //评论内容
-      commentText:'这是评论'
-    },
-    {
-      //评论Id
-      commentId:'',
-      //用户名
-      userName:'XXX',
-      //头像
-      avatar:"/dongtai/user1.jpg",
-      //评论时间
-      sendTime:'2020/11/11 11:11:11',
-      //用户id
-      userId:'01',
-      //评论内容
-      commentText:'这是评论'
-    },
-    {
-      //评论Id
-      commentId:'',
-      //用户名
-      userName:'XXX',
-      //头像
-      avatar:"/dongtai/user1.jpg",
-      //评论时间
-      sendTime:'2020/11/11 11:11:11',
-      //用户id
-      userId:'01',
-      //评论内容
-      commentText:'这是评论'
-    },
-    {
-      //评论Id
-      commentId:'',
-      //用户名
-      userName:'XXX',
-      //头像
-      avatar:"/dongtai/user1.jpg",
-      //评论时间
-      sendTime:'2020/11/11 11:11:11',
-      //用户id
-      userId:'01',
-      //评论内容
-      commentText:'这是评论'
-    },
-    {
-      //评论Id
-      commentId:'',
-      //用户名
-      userName:'XXX',
-      //头像
-      avatar:"/dongtai/user1.jpg",
-      //评论时间
-      sendTime:'2020/11/11 11:11:11',
-      //用户id
-      userId:'01',
-      //评论内容
-      commentText:'这是评论'
-    },
+    
   ],
   //本用户相关信息
   myinfo:{
     myUserId:"01"
   },
-  
+  //我的回复（在sendreply中使用）
+  myreply:{
+    myUserId:"",
+    statusid:"",
+    comment:""
+  },
+  //我的评论（在sendcomment中使用）
+  mycomment:{
+    myUserid:"",
+    statusId:"",
+    commentId:"",
+    reply:""
+  },
+
+  //用于弹出评论框
   focusInput: false,
   isInput: false,
-  //计算评论框高度
-  height:''
-
+  
+  //用于弹出回复框
+  commentFoucusInput:false,
+  commentIsInput:false,
   },
   QueryParams:{
     
   },
 //删除评论(未实现)
 deleteComment:function(){
-
+  wx.showModal({
+    title: '提示',
+    content: '确定删除这条评论及该评论下所有内容吗',
+    success (res) {
+      if (res.confirm) {
+        console.log('用户点击确定')
+      } else if (res.cancel) {
+        console.log('用户点击取消')
+      }
+    }
+  })
 },
 //获取我的信息（未实现）
 getMyInfo:function(){
 
 },
-// 更改点赞状态
+// 更改动态点赞状态
 onCollectionTap: function(event) {
   // 获取当前点击下标
   var index = event.currentTarget.dataset.index;
@@ -209,30 +173,19 @@ onCollectionTap: function(event) {
 
 
 
-
-
-
-
-
-
-
-
-
-
   /////////////
 },
-//弹出评论框函数
+//弹出动态评论框函数
   inputFocus(e) {
-    console.log(e.detail.height,'键盘弹起')
+    console.log('评论键盘弹起')
     this.setData({
-      height: e.detail.height,
       isInput: true
     })
     console.log(this.data.isInput)
   },
-//收起评论框
+//收起动态评论框
   inputBlur() {
-    console.log('键盘收起')
+    console.log('评论键盘收起')
     this.setData({
       isInput: false
     })
@@ -245,8 +198,35 @@ onCollectionTap: function(event) {
       isInput: true
     })
   },
-//向后端发送评论及相关信息
+  //弹出评论回复框函数
+  commentInputFocus(e) {
+    console.log('回复键盘弹起')
+    this.setData({
+      commentIsInput: true
+    })
+    console.log(this.data.commentIsInput)
+  },
+//收起评论回复框
+  commentInputBlur() {
+    console.log('回复键盘收起')
+    this.setData({
+      commentIsInput: false
+    })
+    console.log(this.data.commentIsInput)
+  },
+  //回复按钮点击事件触发
+  focusCommentButn: function () {
+    this.setData({
+      commentFocusInput: true,
+      commentIsInput: true
+    })
+  },
+//向后端发送动态评论及相关信息
 sendComment:function(){
+
+},
+//向后端发送动态评论的回复的相关信息
+sendReply:function(){
 
 },
 //图片预览函数

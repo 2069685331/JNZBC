@@ -17,7 +17,8 @@
     "pages/statusdetail/statusdetail",
     "pages/searchindex/searchindex",
     "pages/editor/editor",
-    "pages/test/test"
+    "pages/test/test",
+    "pages/commentreply/commentreply"
   ],
   "tabBar": {
     "color": "#515151",

@@ -82,24 +82,33 @@
                         </navigator>
                     </view>
                     <!-- 用户名 -->
+
+                    <!-- 日期 -->
+                    <view class="comment-time">{{item1.sendTime}}</view>
+                    <!-- 日期 -->
+                    
                     <!-- 评论内容 -->
                     <view class="commentpart">
                         <text class="comment-text" user-select="{{true}}" decode="{{true}}">{{item1.commentText}}</text> 
                     </view>
                     <!-- 评论内容 -->
-                    <!-- 日期 -->
-                    <view class="comment-time">{{item1.sendTime}}</view>
-                    <!-- 日期 -->
+
+                    <!-- 评论的回复 -->
+                    <view class="comment-reply" wx:if="{{item1.replyNum>0}}">
+                        <navigator class="reply" target="" url="/pages/commentreply/commentreply?statusid={{status.statusid}}&commentId={{item1.commentId}}" hover-class="navigator-hover" open-type="navigate">
+                        查看{{item1.replyNum}}条回复
+                        </navigator>
+                    </view>
+                    <!-- 评论的回复 -->
                      
                     <view class="function-list">
-                        <!-- 删除 -->
-                        <view class="delete-comment">删除</view>
-                        <!-- 删除 -->
                         <!-- 评论的评论按钮 -->
-                        <view   class="comment-group" bindtap='focusButn'>
-                        <image class="" src="/dongtai/comment.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload=""></image>
-                        </view>
+                        <view   class="comment-group" bindtap='focusCommentButn'>回复</view>
                         <!-- 评论的评论按钮 -->
+
+                        <!-- 删除 -->
+                        <view class="delete-comment" bindtap="deleteComment" wx:if="{{myinfo.myUserId==item1.userId}}">删除</view>
+                        <!-- 删除 -->
                     </view>
                 </view>
         </view>
@@ -114,6 +123,18 @@
             bindfocus="inputFocus" focus='{{focusInput}}' 
             bindblur="inputBlur"></textarea>
             <view class='send'bindtap="sendComment">发送</view>
+        </view>
+    </view>
+    
+    <!-- 弹出回复评论的输入框 -->
+    <view class='commentInputView'>
+        <view  class='commentInput' wx:if='{{commentIsInput}}'>
+            <textarea class='input' show-confirm-bar="{{false}}" 
+            auto-focus="{{true}}" cursor-spacing="{{20}}" 
+            auto-height="{{true}}" value="{{value}}" 
+            bindfocus="commentInputFocus" focus='{{commentFoucusInput}}' 
+            bindblur="commentInputBlur"></textarea>
+            <view class='send'bindtap="sendReply">发送</view>
         </view>
     </view>
 </view>
