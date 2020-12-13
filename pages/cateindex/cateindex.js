@@ -11,7 +11,7 @@ Page({
   QueryParams:{
     query:"",//链接
     cid:"",//分类号
-    pagenum:1,//页码
+    pagenum:0,//页码
     pagesize:10//页长度
   },
 
@@ -25,9 +25,13 @@ onLoad: function(options) {
 },
 //获取动态列表数据
 getStatusList:function(){
-  request({url:"https://api-hmugo-web.itheima.net/api/public/v1/goods/search",data:this.QueryParams})
-  .then(result=>{
-    const total=result.data.message.total;
+  // request({url:"https://api-hmugo-web.itheima.net/api/public/v1/goods/search",data:this.QueryParams})
+  wx.cloud.callFunction({
+    name:"getpost",
+    data:this.QueryParams
+  }).then(result=>{
+    console.log(result)
+    const total=result.data;
     this.totalPages=Math.ceil(total/this.QueryParams.pagesize);
     this.setData({
       //将原status数据与新请求的数据拼接在一起
@@ -85,6 +89,18 @@ fail: function(res) {},
 complete: function(res) {},
 }) 
 },
+//文本折叠函数
+textFold: function(e) {
+console.log(e)
+const index=e.currentTarget.dataset.index
+console.log(index)
+const item=e.currentTarget.dataset.item
+var isF=item.isF
+this.setData({
+  [`status[${index}].isF`]:!item.isF
+})
+},
+
 
 //动态图片宽度预处理函数
 initImageSize:function(){

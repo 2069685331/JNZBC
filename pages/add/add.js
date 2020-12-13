@@ -9,7 +9,7 @@ Page({
        userId:"1",//用户id
        content:"",//动态文本
        imgArr: [], //上传的结果图片集合
-       cid:""//分区号
+       cid:"0"//分区号
      },
     
      properties: {
@@ -34,40 +34,7 @@ Page({
      index:0,
   
     },
-  /**
- * 生命周期函数--监听页面加载
- */
-  onLoad: function(options) {
-    //调用获取用户ID函数，获取用户ID
-    this.getUserId();
-  },
-  //打包发送(未实现)
-  send: function(e){
-    //检查文本是否为空
-    if(!this.data.status.content.trim())
-    {
-      wx.showToast({
-        title: '文本不能为空',
-        image:'/icon/reachbottom.png'
-      })
-      return;
-    }
-    //检测代码用，后期可删除
-    console.log("打包发送下列信息")
-    console.log(this.data.status)
-    //向后端发送数据（后端选手来完成）
-
-    //跳转到首页
-    wx.switchTab({
-      url: '/pages/index/index'
-    })
-  },
-  //获取我的信息（未实现，存于this.data.status.userId中）(未实现)
-  //获取用户ID（暂未实现）
-  getUserId:function(){
-    console.log("还没有获取用户ID")
-  },
-   //分区cid值改变
+  //分区cid值改变
   Change:function(e){
     var index=e.detail.value
     var cid=this.data.array[index].cid
@@ -100,14 +67,17 @@ Page({
         for (var i = 0; i < imgs.length; i++) {
           imgArr.push(imgs[i])
         }
+
         //将获得的图片的本地连接存在status.imgArr中
         that.setData({
           ['status.imgArr']:imgArr
         });
+
         /*that.uploadimg({
           url: "http://www.test.com//test-api/wechat/applet/api/uploadUserAvatar", //这里是你图片上传的接口
           path: imgArr, //这里是选取的图片的地址数组
         });8*/
+        
       },
     })
    },
@@ -183,6 +153,62 @@ Page({
     }) 
      console.log(this.data.status.content)
   },
+  //获取用户ID（暂未实现）
+  // getUserId:function(){
+  //   console.log("还没有获取用户ID")
+  // },
+  //打包发送
+  send: function(e){
+    //检查文本是否为空
+    if(!this.data.status.content.trim())
+    {
+      wx.showToast({
+        title: '文本不能为空',
+        image:'/icon/reachbottom.png'
+      })
+      return;
+    }
+    /*
+    //将图片打包上传到图床
+    var newimgs=[];     //储存转换后的链接
+    var imgs = this.data.imgArr;  //获取本地链接
+    for (var i = 0; i < imgArr.length; i++) {
+          //转换地方还不会写
+          newimg.push(imgs[i])
+        }
+    this.setData({
+      imgArr:newimgs
+    });
+    */
+
+    //检测代码用，后期可删除
+    console.log("打包发送下列信息")
+    console.log(this.data.status)
+
+    //调用云函数
+    wx.cloud.callFunction({
+      name:'sendpost',
+      data:{
+        status:this.data.status
+      },
+      success:res=>{
+        console.log(res);
+      }
+    })
+
+    //跳转到首页
+    wx.switchTab({
+      url: '/pages/index/index'
+    })
+  },
+  
+    /**
+     * 生命周期函数--监听页面加载
+     */
+    onLoad: function(options) {
+      // //调用获取用户ID函数，获取用户ID
+      // this.getUserId();
+    },
   
     /**
      * 生命周期函数--监听页面初次渲染完成
