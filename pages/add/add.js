@@ -34,7 +34,40 @@ Page({
      index:0,
   
     },
-  //分区cid值改变
+  /**
+ * 生命周期函数--监听页面加载
+ */
+  onLoad: function(options) {
+    //调用获取用户ID函数，获取用户ID
+    this.getUserId();
+  },
+  //打包发送(未实现)
+  send: function(e){
+    //检查文本是否为空
+    if(!this.data.status.content.trim())
+    {
+      wx.showToast({
+        title: '文本不能为空',
+        image:'/icon/reachbottom.png'
+      })
+      return;
+    }
+    //检测代码用，后期可删除
+    console.log("打包发送下列信息")
+    console.log(this.data.status)
+    //向后端发送数据（后端选手来完成）
+
+    //跳转到首页
+    wx.switchTab({
+      url: '/pages/index/index'
+    })
+  },
+  //获取我的信息（未实现，存于this.data.status.userId中）(未实现)
+  //获取用户ID（暂未实现）
+  getUserId:function(){
+    console.log("还没有获取用户ID")
+  },
+   //分区cid值改变
   Change:function(e){
     var index=e.detail.value
     var cid=this.data.array[index].cid
@@ -150,37 +183,6 @@ Page({
     }) 
      console.log(this.data.status.content)
   },
-  //获取用户ID（暂未实现）
-  getUserId:function(){
-    console.log("还没有获取用户ID")
-  },
-  //打包发送
-  send: function(e){
-    //检查文本是否为空
-    if(!this.data.status.content.trim())
-    {
-      wx.showToast({
-        title: '文本不能为空',
-        image:'/icon/reachbottom.png'
-      })
-      return;
-    }
-    //检测代码用，后期可删除
-    console.log("打包发送下列信息")
-    console.log(this.data.status)
-    //跳转到首页
-    wx.switchTab({
-      url: '/pages/index/index'
-    })
-  },
-  
-    /**
-     * 生命周期函数--监听页面加载
-     */
-    onLoad: function(options) {
-      //调用获取用户ID函数，获取用户ID
-      this.getUserId();
-    },
   
     /**
      * 生命周期函数--监听页面初次渲染完成

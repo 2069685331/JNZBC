@@ -29,7 +29,7 @@ wx:for-item="item1">
     <view class="status-group" >
         <view class="user-group">
             <!-- 头像 -->
-            <navigator class="avatar" target="" url="../userindex/userindex" hover-class="navigator-hover" open-type="navigate">
+            <navigator class="avatar" target="" url="../userindex/userindex?userId={{item1.userId}}" hover-class="navigator-hover" open-type="navigate">
                 <image class="" src="{{item1.avatar}}"  lazy-load="false" binderror="" bindload="">
                 </image>
             </navigator>
@@ -40,7 +40,7 @@ wx:for-item="item1">
             <view class="right-info">
                 <!-- 用户名 -->
                 <view class="username">
-                <navigator class="" target="" url="../userindex/userindex" hover-class="navigator-hover" open-type="navigate">
+                <navigator class="" target="" url="../userindex/userindex?userId={{item1.userId}}" hover-class="navigator-hover" open-type="navigate">
                   {{item1.userName}}  
                 </navigator>
                     </view>

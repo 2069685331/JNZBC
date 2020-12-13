@@ -85,18 +85,6 @@ fail: function(res) {},
 complete: function(res) {},
 }) 
 },
-//文本折叠函数
-textFold: function(e) {
-console.log(e)
-const index=e.currentTarget.dataset.index
-console.log(index)
-const item=e.currentTarget.dataset.item
-var isF=item.isF
-this.setData({
-  [`status[${index}].isF`]:!item.isF
-})
-},
-
 
 //动态图片宽度预处理函数
 initImageSize:function(){

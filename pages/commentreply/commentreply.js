@@ -6,6 +6,10 @@ Page({
    */
   data: {
     comment:{
+        //用户Id
+        userId:'01',
+        //动态id
+        statusid:'01',
         //评论Id
         commentId:'04',
         //用户名
@@ -82,6 +86,14 @@ Page({
     myinfo:{
       myUserId:"04"
     },
+
+    //我的回复（在sendcomment中使用）
+    myreply:{
+      myUserid:"",
+      statusid:"",
+      commentId:"",
+      reply:""
+    },
      //用于弹出回复框
     commentFoucusInput:false,
     commentIsInput:false,
@@ -89,12 +101,43 @@ Page({
 
   //向端口请求动态送给端口的数据
   QueryParams:{
-    query:"",//链接
+    query:"",//获取该条评论及其回复内容的链接
     statusid:"",//动态ID
     commentId:"",//评论ID
   },
+  //数据初始化
+  onLoad: function (options) {
+    console.log(options)
+    this.QueryParams.statusid=options.statusid;
+    this.QueryParams.commentId=options.commentId;
+    console.log(this.QueryParams.statusid);
+    console.log(this.QueryParams.commentId);
+    this.getMyInfo();
+    this.getCommentReply();
+  },
+  //获取个人信息(）未实现)
+  getMyInfo:function(){
+    console.log('获取个人信息');
 
-  //删除评论(未实现)
+  },
+  //获取初始化页面，利用QueryParams作为参数
+  getCommentReply:function(){
+    console.log('获取初始化页面');
+  },
+   //向后端发送动态评论的回复的相关信息（未实现）
+  sendReply:function(){
+    if(!this.data.myreply.reply.trim())
+    {
+      wx.showToast({
+        title: '回复不能为空',
+        image:'/icon/reachbottom.png'
+      })
+      return;
+    }
+    console.log(this.data.myreply);
+
+  },
+  //删除评论(未完全实现)
   deleteComment:function(){
     wx.showModal({
       title: '提示',
@@ -102,6 +145,7 @@ Page({
       success (res) {
         if (res.confirm) {
           console.log('用户点击确定')
+          //用户点击确定后，需要向后端传输数据（未实现）
         } else if (res.cancel) {
           console.log('用户点击取消')
         }
@@ -116,15 +160,12 @@ Page({
       success (res) {
         if (res.confirm) {
           console.log('用户点击确定')
+          //用户点击确定后，需要向后端传输数据（未实现
         } else if (res.cancel) {
           console.log('用户点击取消')
         }
       }
     })
-  },
-  //获取我的信息（未实现）
-  getMyInfo:function(){
-  
   },
    //弹出评论回复框函数
  commentInputFocus(e) {
@@ -143,23 +184,28 @@ commentInputBlur() {
   console.log(this.data.commentIsInput)
 },
 //回复按钮点击事件触发
-focusCommentButn: function () {
+focusCommentButn: function (e) {
+  console.log(e);
+  var statusid=e.currentTarget.dataset.statusid;
+  var commentId=e.currentTarget.dataset.commentid;
   this.setData({
     commentFocusInput: true,
-    commentIsInput: true
+    commentIsInput: true,
+    ['myreply.statusid']:statusid,
+    ['myreply.commentId']:commentId
   })
 },
-
+  //获取回复内容
+  getReply:function(e){
+    var content=e.detail.value
+    this.setData({
+      ['myreply.reply']: content
+    }) 
+     console.log(this.data.myreply.reply)
+  },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    console.log(options)
-    this.QueryParams.statusid=options.statusid;
-    this.QueryParams.commentId=options.commentId;
-    console.log(this.QueryParams.statusid);
-    console.log(this.QueryParams.commentId);
-  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

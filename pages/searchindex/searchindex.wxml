@@ -23,12 +23,89 @@
         </view>
     </view>
     <!-- 显示动态页 -->
-    <view class="status-container" wx:if="{{isStatus}}">
-    显示动态页
+    <view class="status-container" wx:if="{{isStatus}}"
+    wx:for="{{status}}"
+    wx:for-index="index1"
+    wx:for-item="item1">
+        <!--用户动态-->
+        <view class="status-group" >
+            <view class="user-group">
+                <!-- 头像 -->
+                <navigator class="avatar" target="" url="../userindex/userindex?userId={{item1.userId}}" hover-class="navigator-hover" open-type="navigate">
+                    <image class="" src="{{item1.avatar}}"  lazy-load="false" binderror="" bindload="">
+                    </image>
+                </navigator>
+
+
+                <!-- 头像 -->
+
+                <view class="right-info">
+                    <!-- 用户名 -->
+                    <view class="username">
+                    <navigator class="" target="" url="../userindex/userindex?userId={{item1.userId}}" hover-class="navigator-hover" open-type="navigate">
+                      {{item1.userName}}  
+                    </navigator>
+                        </view>
+                    <!-- 用户名 -->
+                    <!-- 日期 -->
+                    <view class="time">{{item1.sendTime}}</view>
+                    <!-- 日期 -->
+                </view>  
+            </view>
+
+            <view class="status-content-group">
+                <!-- 文本部分 -->
+                <navigator class="content" url="/pages/statusdetail/statusdetail?statusid={{item1.statusid}}">
+                    <text class="conts" selectable="{{true}}" decode="{{true}}">{{item1.content}}
+                    </text> 
+                </navigator>
+                 <!-- 图片部分 -->
+                 <!-- 只允许1~4张图片 -->
+                 <view class="image-list-group"   wx:if="{{item1.imgArr.length==1}}" style='width:100%'>
+                     <image wx:for='{{item1.imgArr}}' 
+                     wx:for-index="index2"
+                     wx:for-item="item2"
+                     class="" src='{{item2}}' data-index='{{index2}}' data-item='{{item1.imgArr}}' mode="aspectFill" 
+                     style='width:100%;max-height:500rpx' bindtap='handlePreviewImg'></image>  
+                 </view>
+                  <view class="image-list-group"   wx:elif="{{item1.imgArr.length>1}}" style='width:100%'>
+                     <image wx:for='{{item1.imgArr}}' 
+                     wx:for-index="index2"
+                     wx:for-item="item2"
+                    class="" src='{{item2}}' data-index='{{index2}}' data-item='{{item1.imgArr}}' mode="aspectFill"
+                     style='width:{{imagesSize}}px;height:{{imagesSize}}px' bindtap='handlePreviewImg'></image>  
+                 </view>
+            </view>
+            <view class="status-handle">
+                <!-- 评论 -->
+                <navigator class="comment-group" url="/pages/statusdetail/statusdetail?statusid={{item1.statusid}}">
+                    <image class="" src="/dongtai/comment.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">   
+                    </image>{{item1.commentnum}}
+                </navigator>
+                <!-- like -->
+                <view class="praise-group" hover-class="none" hover-stop-propagation="false" bindtap="onCollectionTap" data-index='{{index1}}'>
+                    <image class="" src="{{item1.collected?'/dongtai/haslike.png':'/dongtai/like.png'}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
+
+                    </image>{{item1.likenum}}
+                </view>
+            </view>
+        </view>
     </view>
+        
     <!-- 显示用户页 -->
-    <view class="user-container" wx:if="{{!isStatus}}">
-    显示用户页
+    <view class="user-container" wx:if="{{!isStatus}}"
+        wx:for="{{users}}"
+        wx:for-index="index1"
+        wx:for-item="item1">
+        <navigator url="../userindex/userindex?userId={{item1.userId}}" class="user-info">
+          <image class="avatar" mode='aspectFill' src='{{item1.avatar}}'></image>
+          <view class="right-info">
+            <view class="nickname">{{item1.userName}}</view>
+            <view class="motto">
+              简介：{{item1.motto}}
+            </view>
+          </view>
+        </navigator>
     </view>
 </view>
 

@@ -5,7 +5,7 @@
         <view class="single-comment" >                  
             <view class="left-part">
                     <!-- 头像 -->
-                     <navigator class="comment-avatar" target="" url="../userindex/userindex" hover-class="navigator-hover" open-type="navigate">
+                     <navigator class="comment-avatar" target="" url="../userindex/userindex?userId={{comment.userId}}" hover-class="navigator-hover" open-type="navigate">
                          <image class="" src="{{comment.avatar}}"  lazy-load="false" binderror="" bindload="">
                          </image>
                      </navigator>
@@ -14,7 +14,7 @@
                 <view class="right-part">
                     <!-- 用户名 -->
                     <view class="comment-username">
-                        <navigator class="" target="" url="../userindex/userindex" hover-class="navigator-hover" open-type="navigate">
+                        <navigator class="" target="" url="../userindex/userindex?userId={{comment.userId}}" hover-class="navigator-hover" open-type="navigate">
                           {{comment.userName}}  
                         </navigator>
                     </view>
@@ -32,7 +32,7 @@
  
                     <view class="function-list">
                         <!-- 评论的评论按钮 -->
-                        <view   class="comment-group" bindtap='focusCommentButn'>回复</view>
+                         <view   class="comment-group" bindtap='focusCommentButn' data-statusid='{{comment.statusid}}' data-commentId='{{comment.commentId}}'>回复</view>
                         <!-- 评论的评论按钮 -->
 
                         <!-- 删除 -->
@@ -52,7 +52,7 @@
         wx:for-item="item1">                    
             <view class="left-part">
                     <!-- 头像 -->
-                     <navigator class="reply-avatar" target="" url="../userindex/userindex" hover-class="navigator-hover" open-type="navigate">
+                     <navigator class="reply-avatar" target="" url="../userindex/userindex?userId={{item1.userId}}" hover-class="navigator-hover" open-type="navigate">
                          <image class="" src="{{item1.avatar}}"  lazy-load="false" binderror="" bindload="">
                          </image>
                      </navigator>
@@ -61,7 +61,7 @@
                 <view class="right-part">
                     <!-- 用户名 -->
                     <view class="reply-username">
-                        <navigator class="" target="" url="../userindex/userindex" hover-class="navigator-hover" open-type="navigate">
+                        <navigator class="" target="" url="../userindex/userindex?userId={{item1.userId}}" hover-class="navigator-hover" open-type="navigate">
                           {{item1.userName}}  
                         </navigator>
                     </view>
@@ -95,7 +95,7 @@
             auto-focus="{{true}}" cursor-spacing="{{20}}" 
             auto-height="{{true}}" value="{{value}}" 
             bindfocus="commentInputFocus" focus='{{commentFoucusInput}}' 
-            bindblur="commentInputBlur"></textarea>
+            bindblur="commentInputBlur" bindinput="getReply"></textarea>
             <view class='send'bindtap="sendReply">发送</view>
         </view>
     </view>

@@ -3,6 +3,8 @@ Page({
   data: {
     status:
       {
+        //用户id
+        userId:'01',
         //动态id
         statusid:1,
         //头像
@@ -89,20 +91,20 @@ Page({
     },
     
   ],
-  //本用户相关信息
+  //本用户相关信息（在getmyinfo中使用）
   myinfo:{
     myUserId:"01"
   },
-  //我的回复（在sendreply中使用）
-  myreply:{
+  //我的评论（在sendreply中使用）
+  mycomment:{
     myUserId:"",
     statusid:"",
     comment:""
   },
-  //我的评论（在sendcomment中使用）
-  mycomment:{
+  //我的回复（在sendcomment中使用）
+  myreply:{
     myUserid:"",
-    statusId:"",
+    statusid:"",
     commentId:"",
     reply:""
   },
@@ -116,9 +118,53 @@ Page({
   commentIsInput:false,
   },
   QueryParams:{
-    
+    query:"",//链接
+    statusid:"",//动态id
   },
-//删除评论(未实现)
+//options(Object)(未实现)
+onLoad: function(options) {
+  //获取上个页面传过来的参数写入QueryParams
+  console.log(options)
+  //如果有多张图片，提前计算图片宽度
+  this.initImageSize();
+  //获取用户信息
+  this.getMyInfo();
+  //借助QueryParams获取页面
+  this.getStatusDetail();
+},
+//获取初始化页面(未实现)
+getStatusDetail:function(){
+  console.log('获取statusdetail页面')
+},
+//向后端发送动态评论及相关信息(未实现,tip:任何对后端的修改都需要重新request重新获取以便重新渲染页面)
+sendComment:function(){
+    if(!this.data.mycomment.comment.trim())
+  {
+    wx.showToast({
+      title: '评论不能为空',
+      image:'/icon/reachbottom.png'
+    })
+    return;
+  }
+  console.log(this.data.mycomment);
+},
+//向后端发送动态评论的回复的相关信息（未实现）
+sendReply:function(){
+  if(!this.data.myreply.reply.trim())
+  {
+    wx.showToast({
+      title: '回复不能为空',
+      image:'/icon/reachbottom.png'
+    })
+    return;
+  }
+  //发送回复
+
+  
+  console.log(this.data.myreply);
+
+},
+//删除评论(未实现)(tip:删除后要重新request改变js里面的数据重新渲染，否则用户看到的页面不会改变，应该任何执行删除操作的都需要重新request)
 deleteComment:function(){
   wx.showModal({
     title: '提示',
@@ -126,17 +172,24 @@ deleteComment:function(){
     success (res) {
       if (res.confirm) {
         console.log('用户点击确定')
+        //删除要发送什么还没实现
       } else if (res.cancel) {
         console.log('用户点击取消')
+        //取消直接return就行
+        return;
       }
     }
   })
 },
-//获取我的信息（未实现）
+//发送点赞信息（未实现）
+sendLike:function(){
+  console.log('发送like信息');
+},
+//获取我的信息（未实现，存于this.data.myinfo中）
 getMyInfo:function(){
 
 },
-// 更改动态点赞状态
+// 更改动态点赞状态（未完全实现）
 onCollectionTap: function(event) {
   // 获取当前点击下标
   var index = event.currentTarget.dataset.index;
@@ -192,11 +245,22 @@ onCollectionTap: function(event) {
     console.log(this.data.isInput)
   },
 //评论按钮点击事件触发
-  focusButn: function () {
+  focusButn: function (e) {
+    console.log(e);
+    var statusid=e.currentTarget.dataset.statusid;
     this.setData({
       focusInput: true,
-      isInput: true
+      isInput: true,
+      ['mycomment.statusid']:statusid
     })
+  },
+ //获取评论内容
+  getComment:function(e){
+    var content=e.detail.value
+    this.setData({
+      ['mycomment.comment']: content
+    }) 
+     console.log(this.data.mycomment.comment)
   },
   //弹出评论回复框函数
   commentInputFocus(e) {
@@ -215,20 +279,26 @@ onCollectionTap: function(event) {
     console.log(this.data.commentIsInput)
   },
   //回复按钮点击事件触发
-  focusCommentButn: function () {
+  focusCommentButn: function (e) {
+    console.log(e);
+    var statusid=e.currentTarget.dataset.statusid;
+    var commentId=e.currentTarget.dataset.commentid;
     this.setData({
       commentFocusInput: true,
-      commentIsInput: true
+      commentIsInput: true,
+      ['myreply.statusid']:statusid,
+      ['myreply.commentId']:commentId
     })
   },
-//向后端发送动态评论及相关信息
-sendComment:function(){
-
+  //获取回复内容
+ getReply:function(e){
+  var content=e.detail.value
+  this.setData({
+    ['myreply.reply']: content
+  }) 
+   console.log(this.data.myreply.reply)
 },
-//向后端发送动态评论的回复的相关信息
-sendReply:function(){
 
-},
 //图片预览函数
 handlePreviewImg:function(e){
 console.log(e)
@@ -253,13 +323,6 @@ this.setData({
 })
 },
 
-//options(Object)
-onLoad: function(options) {
-  //如果有多张图片，提前计算图片宽度
-  this.initImageSize();
-  //获取用户信息
-  this.getMyInfo();
-},
 onReady: function() {
   
 },
