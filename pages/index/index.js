@@ -32,56 +32,25 @@ Page({
   QueryParams:{
     query:"",//链接
     //cid:"",//注意，此处没有分区号，因为首页可以看到任何类型的分区内容
-    pagenum:1,//页码
+    pagenum:0,//页码
     pagesize:10//页长度
   },
 
 //总页数
-totalPages:1,
+totalPages:0,
 
 
 
-//////建议照着这个修改实现页面触底与下拉刷新
-//页面触底事件
-onReachBottom: function() {
-  if(this.QueryParams.pagenum>=this.totalPages)
-  {
-    wx.showToast({
-      title: '没有更多内容啦',
-      image:'/icon/reachbottom.png'
-    });
-  }
-  else
-  {
-    //请求页码+1
-    this.QueryParams.pagenum++
-    //请求页面
-    this.getStatusList();
-    //console.log("还有下一页");
-  }
-},
-//下拉刷新事件
-onPullDownRefresh: function(){
-  //重置status数组
-  this.setData({
-    status:[]
-  });
-  //重置页码
-  this.QueryParams.pagenum=1;
-  //重新发送请求
-  this.getStatusList();
-  //完成请求，关闭下拉刷新界面
-  wx.stopPullDownRefresh();
-},
 //获取动态列表数据
 getStatusList:function(){
-  request({url:"https://api-hmugo-web.itheima.net/api/public/v1/goods/search",data:this.QueryParams})
-  .then(result=>{
-    const total=result.data.message.total;
-    this.totalPages=Math.ceil(total/this.QueryParams.pagesize);
+  wx.cloud.callFunction({
+    name:"getpost",
+    data:this.QueryParams
+  }).then(result=>{
+    console.log(result)
     this.setData({
       //将原status数据与新请求的数据拼接在一起
-      status:[...this.data.status,...result.data.message.goods]
+      status:[...this.data.status,...result.result.status]
     });
   })
 },
@@ -147,43 +116,43 @@ onCollectionTap: function(event) {
 
   /////////////
 },
-
- //触底返回10条数据功能
- getLimit(sp=0){
-    this.setData({
-      page:sp
-    })
-    //limit内是限制条数
-    //sort里面实现对发送时间降序排序（从大到小），实现显示最新数据
-    db.collection("posts").limit(3).skip(sp*3).get().then(res=>{
-      console.log(res);
-      this.setData({
-        status:res.data
-      })
-      wx.stopPullDownRefresh();
-    })
- },
-
- //一打开页面时调用getLimit()函数
-//  onLoad:function(){
-//    console.log("yes");
-//    this.getLimit();
-//  },
-
-//options(Object)
-//一开始加载页面展示3条
+//照着cateindex.js实现页面初次加载、触底、下拉刷新
 onLoad: function(options) {
   this.initImageSize();
-  this.getLimit();
+  this.getStatusList();
 },
- //上拉触底调用getlimit()函数
- onPullDownRefresh:function(){
-   var page=this.data.page;
-   page++
-   console.log(page)
-   this.getLimit(page);
- },
+//页面触底事件
+onReachBottom: function() {
+  if(this.QueryParams.pagenum>=this.totalPages)
+  {
+    wx.showToast({
+      title: '没有更多内容啦',
+      image:'/icon/reachbottom.png'
+    });
+  }
+  else
+  {
+    //请求页码+1
+    this.QueryParams.pagenum++
+    //请求页面
+    this.getStatusList();
+    //console.log("还有下一页");
+  }
+},
 
+//下拉刷新事件
+onPullDownRefresh: function(){
+  //重置status数组
+  this.setData({
+    status:[]
+  });
+  //重置页码
+  this.QueryParams.pagenum=0;
+  //重新发送请求
+  this.getStatusList();
+  //完成请求，关闭下拉刷新界面
+  wx.stopPullDownRefresh();
+},
 
 //图片预览函数
 handlePreviewImg:function(e){
@@ -209,30 +178,6 @@ this.setData({
 })
 },
 
-onReady: function() {
-  
-},
-onShow: function() {
-  
-},
-onHide: function() {
 
-},
-onUnload: function() {
 
-},
-
-onReachBottom: function() {
-
-},
-onShareAppMessage: function() {
-
-},
-onPageScroll: function() {
-
-},
-//item(index,pagePath,text)
-onTabItemTap:function(item) {
-
-}
 });

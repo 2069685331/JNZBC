@@ -16,11 +16,12 @@ Page({
   },
 
 //总页数
-totalPages:1,
+totalPages:0,
 
 //options(Object)
 onLoad: function(options) {
   this.QueryParams.cid=options.cid;
+  this.initImageSize();
   this.getStatusList();
 },
 //获取动态列表数据
