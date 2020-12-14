@@ -63,13 +63,7 @@
       "list": []
     },
     "miniprogram": {
-      "list": [
-        {
-          "name": "编辑资料",
-          "pathName": "pages/editor/editor",
-          "scene": null
-        }
-      ]
+      "list": []
     }
   }
 }
