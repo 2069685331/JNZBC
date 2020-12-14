@@ -190,9 +190,9 @@ Page({
     // let newdate= new Date()
     // let dateStr= newdate.getFullYear() + '/' + (newdate.getMonth() + 1) + '/' + newdate.getDate() + ' ' + newdate.getHours() + ':' + (newdate.getMinutes() < 10 ? '0' + newdate.getMinutes() : newdate.getMinutes() ) + ':' + ( newdate.getSeconds() < 10 ? '0' + newdate.getSeconds() : newdate.getSeconds() )
    
-    this.setData({
-      ['status.sendTime']: dateStr
-    }) 
+    // this.setData({
+    //   ['status.sendTime']: dateStr
+    // }) 
 
     //调用云函数
     wx.cloud.callFunction({

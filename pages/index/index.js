@@ -35,11 +35,8 @@ Page({
     pagenum:0,//页码
     pagesize:10//页长度
   },
-
 //总页数
 totalPages:0,
-
-
 
 //获取动态列表数据
 getStatusList:function(){
@@ -75,11 +72,12 @@ onCollectionTap: function(event) {
         message[i].collected = parseInt(message[i].collected) + 1
         message[i].likenum = parseInt(message[i].likenum) + 1
         console.log('like');
+        console.log(message[i])
         //后端：上传数据postid,调用云函数like点赞
         wx.cloud.callFunction({
-          name:"like",
+          name:"likeadd",
           data:{
-            statusid:message[i].statusid
+            statusid:message[i]._id
           },
           success:res=>{
             console.log(res);
@@ -93,11 +91,13 @@ onCollectionTap: function(event) {
         message[i].likenum = parseInt(message[i].likenum) - 1
         console.log('quitlike');
         
+        console.log(message[i]);
+
         //后端：上传数据postid,调用云函数lickcancel取消点赞
         wx.cloud.callFunction({
         name:"likecancel",
         data:{
-          statusid:message[i].statusid
+          statusid:message[i]._id
         },
         success:res=>{
           console.log(res);
