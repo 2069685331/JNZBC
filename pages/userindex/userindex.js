@@ -5,12 +5,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    avatar:"/dongtai/user1.jpg",  //头像
-    userName:'Leonardo',  //用户名
-    motto:"暨南针不戳！",  //简介
-    follow_num:'13',  //我关注的数量
-    follower_num:'15',  //关注我的数量
-    status_num:'5',  //动态数量
+    userData:{  //该主页的用户信息（从服务器获取）
+      avatar:"/dongtai/user1.jpg",  //头像
+      userName:'Leonardo',  //用户名
+      motto:"暨南针不戳！",  //简介
+      followNum:'13',  //我关注的数量
+      followerNum:'15',  //关注我的数量
+      statusNum:'5',  //动态数量
+      },
     status:[
       {
         //头像
@@ -47,7 +49,7 @@ Page({
     ]
   },
 
-  //图片预览函数
+//图片预览函数
 handlePreviewImg:function(e){
   console.log(e)
   var index = e.currentTarget.dataset.index;
@@ -58,36 +60,24 @@ handlePreviewImg:function(e){
   success: function(res) {},
   fail: function(res) {},
   complete: function(res) {},
-}) 
-},
-//文本折叠函数
-textFold: function(e) {
-  console.log(e)
-  const index=e.currentTarget.dataset.index
-  console.log(index)
-  const item=e.currentTarget.dataset.item
-  var isF=item.isF
-  this.setData({
-    [`status[${index}].isF`]:!item.isF
-  })
-},
-
-
-//动态图片宽度预处理函数
-initImageSize:function(){
+  }) 
+  },
+  
+  //动态图片宽度预处理函数
+  initImageSize:function(){
   const windowWidth=wx.getSystemInfoSync().windowWidth;
   const statusWidth=windowWidth-30*(windowWidth/750)*2
   const imagesSize=(statusWidth-5*(windowWidth/750))/2
   this.setData({
     imagesSize:imagesSize
   })
-},
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.initImageSize();
   },
 
   /**

@@ -112,17 +112,7 @@ page {
 }
 
 
-.menu-warp {
-  background: #fff;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 20rpx;
-  box-shadow: 0 0 20rpx rgba(0, 0, 0, 0.1);
-  margin: 30rpx 30rpx;
-  font-size: 32rpx;
-  line-height: 40rpx;
-  padding: 30rpx 40rpx;
-  position: relative;
-}
+
 
 .menu .icon {
   display: inline-block;
@@ -143,14 +133,14 @@ page {
 }
 
 .btm {
-  margin: 0rpx 10rpx 20rpx;
+  margin: 50rpx auto;
   border-radius: 20rpx;
   position: relative;
   font-size: 38rpx;
   text-align: center;
-  line-height: 33rpx;
-  padding: 20rpx 3rpx;
-  width: 30%;
+  line-height: 43rpx;
+  padding: 25rpx 3rpx;
+  width: 40%;
   background-color:#0F6A7B; 
   color:white
 }

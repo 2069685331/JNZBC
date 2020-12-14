@@ -55,6 +55,12 @@
     "navigationBarTitleText": "暨南针",
     "navigationBarTextStyle": "white"
   },
+  
+  "useExtendedLib": {
+    "kbone": true,
+    "weui": true
+  },
   "style": "v2",
   "sitemapLocation": "sitemap.json"
+  
 }

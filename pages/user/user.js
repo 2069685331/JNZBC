@@ -5,12 +5,27 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userinfo:{},
-    logoUrl:"/icon/logo.png",  //头像
-    motto:"暨南针不戳！",  //简介
-    follow_num:'13',  //我关注的数量
-    follower_num:'15',  //关注我的数量
-    status_num:'5'  //动态数量
+    userinfo:{},  //用户的微信信息（用户登录后会自动写入）
+
+    userData:{  //服务器上用户的信息（从服务器获取）
+      userid:"",
+      nickname:"TESTNAME",   //昵称
+      avatar:"",  //头像
+      motto:"暨南针不戳！",  //简介
+      followNum:'13',  //我关注的数量
+      followerNum:'15',  //关注我的数量
+      statusNum:'5'  //动态数量
+    },
+
+    unloginData:{   //未登录的用户信息
+      logoUrl:"/icon/logo.png",  //头像
+      motto:"暨南针不戳！",  //简介
+      follow_num:'0',  //我关注的数量
+      follower_num:'0',  //关注我的数量
+      status_num:'0'  //动态数量
+    }
+    
+    
   },
 
   /**
