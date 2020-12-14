@@ -1,108 +1,10 @@
 .container{
-    padding-bottom: 50rpx;
-    background:#f2f2f2;
-
-    .status-group{
-
-        width: 100%;
-        background: #fff;
-        padding: 30rpx;
-        .user-group{
-            display: flex;
-            .avatar{
-                width: 80rpx;
-                height: 80rpx;
-                display: flex;
-                image{
-                    display: flex;
-                    width: 100%;
-                    height: 100%;
-                    border-radius: 7%;
-                }    
-            }
-            .right-info{
-                flex: 1;
-                margin-left: 20rpx;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                .username{
-                    font-size:35rpx;
-
-                }
-                .time{
-                    font-size:24rpx;
-                    color: #656565;
-
-                }
-            }
-        }
-        .status-content-group{
-            padding-top: 20rpx;
-            .content{
-                
-                .conts {
-                    
-                    text-align: justify;
-                    font-size: 35rpx;
-                    line-height: 45rpx;
-                }
-            }              
-                
-                
-            .image-list-group{
-                display:flex;
-                padding-top: 20rpx;
-                flex-wrap: wrap;
-                justify-content: space-between;
-                image{
-                    margin-bottom: 5rpx;
-                }
-            }
-                    
-        }
-
-    }
-
-
-    .status-handle{
-        display: flex;
-        padding: 30rpx;
-        font-size: 30rpx;
-        background-color: #fff;
-        width:100%;
-        margin-bottom: 30rpx;
-        .comment-group{
-            border-right: 1px solid #909090;
-        }
-        navigator{
-            display: flex;
-            flex: 1;
-            justify-content: center;
-            align-items: center;
-            image{
-                width: 40rpx;
-                height: 40rpx;
-                margin-right: 20rpx;
-            }
-        }
-        view{
-            display: flex;
-            flex: 1;
-            justify-content: center;
-            align-items: center;
-            image{
-                width: 40rpx;
-                height: 40rpx;
-                margin-right: 20rpx;
-            }
-        }
-    }
-    
+    background: #f2f2f2;
     .comment-area-container{
         width: 100%;
         background: #f2f2f2;
         flex-wrap: nowrap;
+        margin-bottom: 50rpx;
             .single-comment{
                 background: #fff;
                 padding: 30rpx;
@@ -130,7 +32,6 @@
                     flex-direction: column;
                     justify-content: space-between;
                     padding-bottom: 30rpx;
-                    border-bottom: 1px solid #c2c2c2;
                     .comment-username{
                         font-size:35rpx;
                         padding-bottom: 5rpx;
@@ -180,7 +81,78 @@
             }
         
     }
-    
+
+    .reply-area-container{
+        width: 100%;
+        background: #f2f2f2;
+        flex-wrap: nowrap;
+        margin-bottom: 30rpx;
+            .single-reply{
+                background: #fff;
+                padding: 30rpx;
+                padding-bottom: 10rpx;
+                box-sizing: border-box;
+                display: flex;
+                .left-part{
+                    display:flex;
+                    width: 80rpx;
+                    .reply-avatar{
+                        width:100%;
+                        height: 80rpx;
+                        display: flex;
+                        image{
+                            display: flex;
+                            width: 100%;
+                            height: 100%;
+                            border-radius: 7%;
+                        }
+                    }
+                }
+                .right-part{
+                    flex: 1;
+                    padding-left: 20rpx;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    padding-bottom: 30rpx;
+                    border-bottom: 1px solid #c2c2c2;
+                    .reply-username{
+                        font-size:35rpx;
+                        padding-bottom: 5rpx;
+                    }
+                    .reply-time{
+                        font-size:24rpx;
+                        color: #656565;
+                        padding-bottom: 10rpx;
+                    }
+                    .replypart{
+                        display:flex;
+                        padding-bottom: 20rpx;
+                        .reply-text{
+                            text-align: justify;
+                            font-size: 33rpx;
+                            line-height: 35rpx;
+                        }
+                    }
+                    .function-list{
+                        display:flex;
+                        justify-content: flex-end;
+                        padding-top: 10rpx;
+                        .delete-reply{
+                            font-size:30rpx;
+                            color:var(--themecolor);
+                            margin-right: 50rpx;
+                        }
+                    }
+                }
+            }
+        
+    }
+
+
+
+
+
+
     .commentInputView{
         width: 100%;
         background-color: #fff;
@@ -190,7 +162,6 @@
         align-items: flex-end;
         justify-content: space-between;
         box-sizing: border-box;
-
         .commentInput{
             width:100%;
             min-height: 40rpx;
@@ -202,7 +173,6 @@
             align-items: flex-end;
             justify-content: space-between;
             box-sizing: border-box;
-
             .input{
                 background: var(--inputbgc);
                 border-radius: 8rpx;
@@ -218,7 +188,6 @@
                 color: #333333;
                 display:flex;
               }
-
               .send{
                 width: 100rpx;
                 color:var(--themecolor);
@@ -233,5 +202,4 @@
               }
           }
       }     
-     
 }

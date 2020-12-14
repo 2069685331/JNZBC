@@ -15,7 +15,10 @@ Page({
   },
   //用于页面防抖
    TimeId:-1,
-  
+   //获取内容相关接口及参数
+   QueryParams:{
+    advicequery:"https://api-hmugo-web.itheima.net/api/public/v1/goods/qsearch",//搜索内容建议链接
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -45,7 +48,7 @@ Page({
       })
       //重置时间计数器
       clearTimeout(this.TimeId);
-      //1s后发送请求
+      //0.6s后发送请求
       this.TimeId=setTimeout(()=>{
         //获取相关数据
         this.qsearch(value);
@@ -62,14 +65,14 @@ Page({
       //不合法
       return;
     }
-    wx.redirectTo({   //关闭当前页面，跳转到应用内的某个页面（最多打开5个页面，之后按钮就没有响应的）后续可以使用wx.navigateBack 可以返回;
+    wx.redirectTo({   //关闭当前页面，跳转到应用内的某个页面;
       url:"/pages/searchindex/searchindex?value="+value
     })
   },
 
   //发送请求，获取搜索建议数据
   qsearch:function(query){
-    request({url:"https://api-hmugo-web.itheima.net/api/public/v1/goods/qsearch",data:{query}})
+    request({url:this.QueryParams.advicequery,data:{query}})
     .then(result=>{
           console.log(result)
           this.setData({

@@ -1,9 +1,5 @@
 //Page Object
 const db=wx.cloud.database();
-Page({
-  data: {
-    // status:[
-    //   {
     //     //动态id
     //     statusid:1,
     //     //头像
@@ -22,41 +18,44 @@ Page({
     //     likenum:53,
     //     //本用户是否点赞过
     //     collected:0
-    //   },
-    //   {
-    //      //动态id
-    //     statusid:2,
-    //     //头像
-    //     avatar:"/dongtai/user2.jpg",
-    //     //用户名
-    //     userName:'Depp',
-    //     //日期
-    //     sendTime:'2020/11/11 11:11:11',
-    //     //文本
-    //     content:"1998",
-    //     //图片
-    //     imgArr:[
-    //       "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1604499631080&di=d857331ea96b03c3f2440491cb60e0f4&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201708%2F16%2F20170816131622_fVYmk.thumb.700_0.jpeg",
-    //       "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1604826933589&di=8e10305e8e9a85bf3618765a4a613a08&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201805%2F30%2F20180530172421_kdKcu.jpeg",
-    //       "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3580164859,3776785180&fm=26&gp=0.jpg",
-    //       "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=485066500,410625334&fm=26&gp=0.jpg"
-    //   ],
-    //   //评论
-    //   commentnum:76,
-    //   //点赞数
-    //   likenum:54,
-    //   //本用户是否点赞过
-    //   collected:1
-    
-    // }
-  // ]
+//导入用来发送请求的方法（路径一定要补全）
+import{request} from "../../request/index.js"
+Page({
+  data: {
+    status:[],
+    //确定多图时图片宽度
+    imagesSize:0,
 
   },
+
+//向端口请求动态送给端口的数据(相关页面请求以及触底加页与下拉刷新都可以参照category.js)
   QueryParams:{
-    
+    query:"",//链接
+    //cid:"",//注意，此处没有分区号，因为首页可以看到任何类型的分区内容
+    pagenum:0,//页码
+    pagesize:10//页长度
   },
-  
-// 更改点赞状态
+//总页数
+totalPages:0,
+
+//获取动态列表数据
+getStatusList:function(){
+  wx.cloud.callFunction({
+    name:"getpost",
+    data:this.QueryParams
+  }).then(result=>{
+    console.log(result)
+    this.setData({
+      //将原status数据与新请求的数据拼接在一起
+      status:[...this.data.status,...result.result.status]
+    });
+  })
+},
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+// 更改点赞状态(未实现)
 onCollectionTap: function(event) {
   // 获取当前点击下标
   var index = event.currentTarget.dataset.index;
@@ -73,11 +72,12 @@ onCollectionTap: function(event) {
         message[i].collected = parseInt(message[i].collected) + 1
         message[i].likenum = parseInt(message[i].likenum) + 1
         console.log('like');
+        console.log(message[i])
         //后端：上传数据postid,调用云函数like点赞
         wx.cloud.callFunction({
-          name:"like",
+          name:"likeadd",
           data:{
-            statusid:message[i].statusid
+            statusid:message[i]._id
           },
           success:res=>{
             console.log(res);
@@ -91,11 +91,13 @@ onCollectionTap: function(event) {
         message[i].likenum = parseInt(message[i].likenum) - 1
         console.log('quitlike');
         
+        console.log(message[i]);
+
         //后端：上传数据postid,调用云函数lickcancel取消点赞
         wx.cloud.callFunction({
         name:"likecancel",
         data:{
-          statusid:message[i].statusid
+          statusid:message[i]._id
         },
         success:res=>{
           console.log(res);
@@ -114,42 +116,43 @@ onCollectionTap: function(event) {
 
   /////////////
 },
-
- //触底返回10条数据功能
- getLimit(sp=0){
-    this.setData({
-      page:sp
-    })
-    //limit内是限制条数
-    //sort里面实现对发送时间降序排序（从大到小），实现显示最新数据
-    db.collection("posts").limit(3).skip(sp*3).get().then(res=>{
-      console.log(res);
-      this.setData({
-        status:res.data
-      })
-    })
- },
-
- //一打开页面时调用getLimit()函数
-//  onLoad:function(){
-//    console.log("yes");
-//    this.getLimit();
-//  },
-
-//options(Object)
-//一开始加载页面展示3条
+//照着cateindex.js实现页面初次加载、触底、下拉刷新
 onLoad: function(options) {
   this.initImageSize();
-  this.getLimit();
+  this.getStatusList();
 },
- //上拉触底调用getlimit()函数
- onPullDownRefresh:function(){
-   var page=this.data.page;
-   page++
-   console.log(page)
-   this.getLimit(page);
- },
+//页面触底事件
+onReachBottom: function() {
+  if(this.QueryParams.pagenum>=this.totalPages)
+  {
+    wx.showToast({
+      title: '没有更多内容啦',
+      image:'/icon/reachbottom.png'
+    });
+  }
+  else
+  {
+    //请求页码+1
+    this.QueryParams.pagenum++
+    //请求页面
+    this.getStatusList();
+    //console.log("还有下一页");
+  }
+},
 
+//下拉刷新事件
+onPullDownRefresh: function(){
+  //重置status数组
+  this.setData({
+    status:[]
+  });
+  //重置页码
+  this.QueryParams.pagenum=0;
+  //重新发送请求
+  this.getStatusList();
+  //完成请求，关闭下拉刷新界面
+  wx.stopPullDownRefresh();
+},
 
 //图片预览函数
 handlePreviewImg:function(e){
@@ -164,18 +167,6 @@ fail: function(res) {},
 complete: function(res) {},
 }) 
 },
-//文本折叠函数
-textFold: function(e) {
-console.log(e)
-const index=e.currentTarget.dataset.index
-console.log(index)
-const item=e.currentTarget.dataset.item
-var isF=item.isF
-this.setData({
-  [`status[${index}].isF`]:!item.isF
-})
-},
-
 
 //动态图片宽度预处理函数
 initImageSize:function(){
@@ -187,30 +178,6 @@ this.setData({
 })
 },
 
-onReady: function() {
-  
-},
-onShow: function() {
-  
-},
-onHide: function() {
 
-},
-onUnload: function() {
 
-},
-
-onReachBottom: function() {
-
-},
-onShareAppMessage: function() {
-
-},
-onPageScroll: function() {
-
-},
-//item(index,pagePath,text)
-onTabItemTap:function(item) {
-
-}
 });

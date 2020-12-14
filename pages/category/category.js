@@ -14,7 +14,10 @@ Page({
     
 
   },
-  cates:[],
+  QueryParams:{
+    swiperquery:"https://api-hmugo-web.itheima.net/api/public/v1/home/swiperdata",//轮播图片链接
+    catequery:"https://api-hmugo-web.itheima.net/api/public/v1/categories",//分区图片+分区信息链接
+  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -54,14 +57,14 @@ Page({
    //   complete: ()=>{}
    // }); 
    //轮播图加载函数
-   request({url:"https://api-hmugo-web.itheima.net/api/public/v1/home/swiperdata"})
+   request({url:this.QueryParams.swiperquery})
    .then(result=>{
      this.setData({
       swiperList:result.data.message
      })
    });
    //分区加载函数
-   request({url:"https://api-hmugo-web.itheima.net/api/public/v1/categories"})
+   request({url:this.QueryParams.catequery})
    .then(result=>{
     
       this.cates=result.data.message

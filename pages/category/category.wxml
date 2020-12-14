@@ -4,7 +4,7 @@
   <swiper autoplay="{{true}}" indicator-dots="{{true}}" circular="{{true}}">   
     <swiper-item wx:for="{{swiperList}}"
     wx:key="goode_id">
-      <navigator class="" target="" url="" hover-class="navigator-hover" open-type="navigate">
+      <navigator class="" target="" url="/pages/statusdetail/statusdetail" hover-class="navigator-hover" open-type="navigate">
         <image mode="widthFix" src="{{item.image_src}}">
         </image>
       </navigator>
@@ -14,6 +14,7 @@
   <!--轮播图-->
   
   <!--分区-->
+  <!-- 这里面的数据后期拿到表后需要修改 -->
 <view class="cates-container" hover-class="none" hover-stop-propagation="false">
   <view class="right-content">
       <view class="goods-group"wx:for="{{catesList}}" wx:for-index="index1" wx:for-item="item1">
@@ -26,7 +27,6 @@
           <navigator  wx:for="{{item1.children}}" wx:for-index="index2" wx:for-item="item2" wx:key="cat_id" url="/pages/cateindex/cateindex?cid={{item2.cat_id}}">
             <image mode="widthFix"class="" src="{{item2.cat_icon}}"> </image>
             <view class="goods-name">{{item2.cat_name}}</view>
-            
           </navigator>
         </view>
       </view>

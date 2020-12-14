@@ -5,18 +5,16 @@
     <view class="status-group" >
         <view class="user-group">
             <!-- 头像 -->
-            <navigator class="avatar" target="" url="../userindex/userindex" hover-class="navigator-hover" open-type="navigate">
+            <navigator class="avatar" target="" url="../userindex/userindex?userId={{status.userId}}" hover-class="navigator-hover" open-type="navigate">
                 <image class="" src="{{status.avatar}}"  lazy-load="false" binderror="" bindload="">
                 </image>
             </navigator>
-           
-           
             <!-- 头像 -->
 
             <view class="right-info">
                 <!-- 用户名 -->
                 <view class="username">
-                <navigator class="" target="" url="../userindex/userindex" hover-class="navigator-hover" open-type="navigate">
+                <navigator class="" target="" url="../userindex/userindex?userId={{status.userId}}" hover-class="navigator-hover" open-type="navigate">
                   {{status.userName}}  
                 </navigator>
                     </view>
@@ -46,11 +44,11 @@
              </view>
         </view>
     </view>
-    <!-- 悬浮的评论框 -->
-   
+
+    <!--评论 -->
     <view class="status-handle">
            <!-- 评论 -->
-           <view   class="comment-group" bindtap='focusButn'>
+           <view   class="comment-group" bindtap='focusButn' data-statusid='{{status.statusid}}'>
                <image class="" src="/dongtai/comment.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">   
                </image>{{status.commentnum}}
            </view>
@@ -64,25 +62,57 @@
 
     <!-- 评论区 -->
     <view class="comment-area-container">
-        <view class="comment-area"
-            wx:for="{{comments}}"
-            wx:for-index="index3"
-            wx:for-item="item3">
-            <view class="single-comment">
-                <view class="comment-user-info">
+        <view class="single-comment" 
+        wx:for="{{comments}}"
+        wx:for-index="index1"
+        wx:for-item="item1">                    
+            <view class="left-part">
+                    <!-- 头像 -->
+                     <navigator class="comment-avatar" target="" url="../userindex/userindex?userId={{item1.userId}}" hover-class="navigator-hover" open-type="navigate">
+                         <image class="" src="{{item1.avatar}}"  lazy-load="false" binderror="" bindload="">
+                         </image>
+                     </navigator>
+                     <!-- 头像 -->
+                </view>
+                <view class="right-part">
                     <!-- 用户名 -->
                     <view class="comment-username">
-                        <navigator class="" target="" url="../userindex/userindex" hover-class="navigator-hover" open-type="navigate">
-                          {{item3.userName}}  
+                        <navigator class="" target="" url="../userindex/userindex?userId={{item1.userId}}" hover-class="navigator-hover" open-type="navigate">
+                          {{item1.userName}}  
                         </navigator>
                     </view>
                     <!-- 用户名 -->
+
                     <!-- 日期 -->
-                    <view class="comment-time">{{item3.sendTime}}</view>
+                    <view class="comment-time">{{item1.sendTime}}</view>
                     <!-- 日期 -->
+                    
+                    <!-- 评论内容 -->
+                    <view class="commentpart">
+                        <text class="comment-text" user-select="{{true}}" decode="{{true}}">{{item1.commentText}}</text> 
+                    </view>
+                    <!-- 评论内容 -->
+
+                    <!-- 评论的回复 -->
+                    <view class="comment-reply" wx:if="{{item1.replyNum>0}}">
+                        <navigator class="reply" target="" url="/pages/commentreply/commentreply?statusid={{status.statusid}}&commentId={{item1.commentId}}" hover-class="navigator-hover" open-type="navigate">
+                        查看{{item1.replyNum}}条回复
+                        </navigator>
+                    </view>
+                    <!-- 评论的回复 -->
+                     
+                    <view class="function-list">
+                        <!-- 评论的评论按钮 -->
+                        <view   class="comment-group" bindtap='focusCommentButn' data-statusid='{{status.statusid}}' data-commentId='{{item1.commentId}}'>回复</view>
+                        <!-- 评论的评论按钮 -->
+
+                        <!-- 删除 -->
+                        <view class="delete-comment" bindtap="deleteComment" wx:if="{{myinfo.myUserId==item1.userId}}">删除</view>
+                        <!-- 删除 -->
+                    </view>
                 </view>
-            </view>
         </view>
+    
     </view>
     <!-- 弹出评论输入框 -->
     <view class='commentInputView'>
@@ -91,8 +121,21 @@
             auto-focus="{{true}}" cursor-spacing="{{20}}" 
             auto-height="{{true}}" value="{{value}}" 
             bindfocus="inputFocus" focus='{{focusInput}}' 
-            bindblur="inputBlur"></textarea>
+            bindblur="inputBlur" bindinput="getComment"
+            enableNative="{{false}}"></textarea>
             <view class='send'bindtap="sendComment">发送</view>
+        </view>
+    </view>
+    
+    <!-- 弹出回复评论的输入框 -->
+    <view class='commentInputView'>
+        <view  class='commentInput' wx:if='{{commentIsInput}}'>
+            <textarea class='input' show-confirm-bar="{{false}}" 
+            auto-focus="{{true}}" cursor-spacing="{{20}}" 
+            auto-height="{{true}}" value="{{value}}" 
+            bindfocus="commentInputFocus" focus='{{commentFoucusInput}}' 
+            bindblur="commentInputBlur" bindinput="getReply"></textarea>
+            <view class='send'bindtap="sendReply">发送</view>
         </view>
     </view>
 </view>

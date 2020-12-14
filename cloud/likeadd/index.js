@@ -10,22 +10,29 @@ const _ = db.command
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
   //传入帖子id
-  var postid=event.statusid
+  console.log(event)
+  var postid=await event.statusid
+  console.log(postid)
 
   //修改帖子集合的likenum字段,自增1
-  // db.collection("posts").where({
-  //   _id:postid,
-  // }).update({
-  //   data:{
-  //     likenum:_.inc(1)
-  //   }
-  // })
+  db.collection("posts").where({
+    _id:event.statusid,
+  }).update({
+    data:{
+      likenum:_.inc(1)
+    }
+  })
   
   //增加点赞记录
   return await db.collection("likes").add({
-    postId:postid,              //设置帖子id
+    data:{
+    postId:event.statusid,              //设置帖子id
     userId: wxContext.OPENID,     //设置点赞者id
     isA: false,
-    LikeTime: db.serverTime(),    //入数据库时间
+    LikeTime: db.serverDate()    //入数据库时间
+    },
+    success:res=>{
+      console.log(res);
+    }
   })
 }
