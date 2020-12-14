@@ -43,11 +43,14 @@ Page({
       sizeType: ['original', 'compressed'], // original 原图，compressed 压缩图，默认二者都有
       sourceType: ['album', 'camera'], // album 从相册选图，camera 使用相机，默认二者都有
       success: function (res) {
-        var imgAddr = res.tempFilePaths;
-        //将获得的图片的本地连接存在form.imgAdrr中
-        that.setData({
-          ['form.imgAddr']:imgAddr[0]
-        });
+        var src = res.tempFilePaths;
+        wx.redirectTo({  //跳转到裁剪页面中
+          url: `../upload/upload?src=${src}`
+        })
+        // //将获得的图片的本地连接存在form.imgAdrr中
+        // that.setData({
+        //   ['form.imgAddr']:imgAddr[0]
+        // });
         /*that.uploadimg({
           url: "http://www.test.com//test-api/wechat/applet/api/uploadUserAvatar", //这里是你图片上传的接口
           path: imgArr, //这里是选取的图片的地址数组
@@ -149,14 +152,19 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let { avatar } = options
+    if (avatar) {
+      this.setData({
+        ['form.imgAddr']: avatar
+      })
+    }
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+   
   },
 
   /**

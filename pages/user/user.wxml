@@ -3,7 +3,7 @@
     <!-- 如果用户已登录，获取其信息 -->
     <view wx:if="{{userinfo}}">  
       <view class="user-info">
-        <image class="avatar" mode='aspectFill' src='{{userData}}'></image>
+        <image class="avatar" mode='aspectFill' src='{{userData.avatar}}'></image>
         <view class="right-info">
           <view class="nickname">{{userData.nickname}}</view>
           <view class="motto">
@@ -27,7 +27,7 @@
       <view class="user-info">
         <image class="avatar" mode='aspectFill' src='{{unloginData.logoUrl}}'></image>
         <view class="right-info">
-          <view class="btm">
+          <view class="login-btm">
             <navigator url="/pages/login/login">登录</navigator>
           </view>
           <view class="motto">

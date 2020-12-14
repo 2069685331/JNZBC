@@ -1,4 +1,11 @@
 //app.js
+import GlobalConfig from './config/index'
+
+const globalConfig = new GlobalConfig()
+
+globalConfig.init()
+
+
 App({
     //onLaunch,onShow: options(path,query,scene,shareTicket,referrerInfo(appId,extraData))
     onLaunch: function(options) {
@@ -20,5 +27,7 @@ App({
     onPageNotFound: function(options) {
 
     },
+    globalData: {
+        config: globalConfig
+    },
 });
-  

@@ -10,7 +10,7 @@ Page({
     userData:{  //服务器上用户的信息（从服务器获取）
       userid:"",
       nickname:"TESTNAME",   //昵称
-      avatar:"",  //头像
+      avatar:"/dongtai/user1.jpg",  //头像
       motto:"暨南针不戳！",  //简介
       followNum:'13',  //我关注的数量
       followerNum:'15',  //关注我的数量

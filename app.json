@@ -18,7 +18,8 @@
     "pages/searchindex/searchindex",
     "pages/editor/editor",
     "pages/test/test",
-    "pages/commentreply/commentreply"
+    "pages/commentreply/commentreply",
+    "pages/upload/upload"
   ],
   "tabBar": {
     "color": "#515151",

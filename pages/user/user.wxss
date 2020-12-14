@@ -132,6 +132,20 @@ page {
   top: 30rpx;
 }
 
+.login-btm {
+  margin: 0rpx 10rpx 20rpx; 
+  border-radius: 20rpx; 
+  position: relative; 
+  font-size: 38rpx; 
+  text-align: center; 
+  line-height: 33rpx; 
+  padding: 20rpx 3rpx; 
+  width: 30%; 
+  background-color:#0F6A7B;  
+  color:white 
+}
+
+
 .btm {
   margin: 50rpx auto;
   border-radius: 20rpx;
