@@ -8,16 +8,14 @@
    <view class='img-add'>
       <view class='img-box'>
        <view class='img-list'>
-         <view hidden="{{form.imgArr.length==0}}" wx:for="{{form.imgArr}}" wx:key="index"
-            wx:for-index="index1"
-            wx:for-item="item1">
+         <view hidden="{{form.imgAddr.length==0}}">
            <view class='img-item'>
-             <image src='{{item1}}' bindlongpress="deleteImgage" data-index='{{index1}}' mode="aspectFill"></image>
+             <image src='{{form.imgAddr}}' bindlongpress="deleteImgage" data-index='{{index1}}' mode="aspectFill"></image>
            </view>
          </view>
          <view class='chooseimg' bindtap='uploadDetailImage'>
            <!-- 此处图片应为用户当前头像 -->
-           <image src="/icon/addphoto.png" class="choose-item"></image>
+           <image src="{{}}" class="choose-item"></image>
          </view>
       </view>
       <view class='tips'><text >选择新的头像吧~\n（长按对应的图片即可删除）</text></view>

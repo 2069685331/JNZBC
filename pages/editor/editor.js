@@ -6,7 +6,7 @@ Page({
    */
   data: {
     form:{
-      imgArr: [], //上传的结果图片集合
+      imgAddr: "", //上传的结果图片集合
       nickname:"",
       motto:"",
     },
@@ -28,28 +28,25 @@ Page({
   uploadDetailImage: function (e) { //这里是选取图片的方法
     var that = this;
     var pics = [];
-    var imgArr = that.data.form.imgArr;
+    // var img = that.data.form.img;
     //判断图片集合的长度，大于等于规定长度4，不可以再添加
-    if (imgArr.length >= that.data.properties.count.value) {
-      wx.showToast({
-        image:'/icon/reachbottom.png',
-        title: '最多选择' + that.data.properties.count.value + '张！',
-      })
-      return;
-    }
+    // if (imgArr.length >= that.data.properties.count.value) {
+    //   wx.showToast({
+    //     image:'/icon/reachbottom.png',
+    //     title: '最多选择' + that.data.properties.count.value + '张！',
+    //   })
+    //   return;
+    // }
     //调用图片选择函数
     wx.chooseImage({
-      count: that.data.properties.count.value-imgArr.length, // 最多可以选择的图片张数，默认4
+      // count: that.data.properties.count.value-imgAddr.length, // 最多可以选择的图片张数，默认4
       sizeType: ['original', 'compressed'], // original 原图，compressed 压缩图，默认二者都有
       sourceType: ['album', 'camera'], // album 从相册选图，camera 使用相机，默认二者都有
       success: function (res) {
-        var imgs = res.tempFilePaths;
-        for (var i = 0; i < imgs.length; i++) {
-          imgArr.push(imgs[i])
-        }
-        //将获得的图片的本地连接存在form.imgArr中
+        var imgAddr = res.tempFilePaths;
+        //将获得的图片的本地连接存在form.imgAdrr中
         that.setData({
-          ['form.imgArr']:imgArr
+          ['form.imgAddr']:imgAddr[0]
         });
         /*that.uploadimg({
           url: "http://www.test.com//test-api/wechat/applet/api/uploadUserAvatar", //这里是你图片上传的接口
@@ -112,12 +109,12 @@ Page({
   },*/
   // 对选取的不满意图片进行删除
   deleteImgage: function (e) {
-    var imgArr = this.data.form.imgArr;
+    var imgAddr = this.data.form.imgAddr;
     var index = e.currentTarget.dataset.index;
     console.log(index);
-    imgArr.splice(index, 1);
+    // imgArr.splice(index, 1);
     this.setData({
-     ['form.imgArr']: imgArr
+     ['form.imgAddr']: ""
     });
    },
   
