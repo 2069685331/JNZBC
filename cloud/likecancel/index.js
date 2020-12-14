@@ -21,7 +21,7 @@ exports.main = async (event, context) => {
     }
   })
   
-  //增加点赞记录
+  //取消点赞记录
   return await db.collection("likes").where({
     postId:postid,
     userId:wxContext.OPENID

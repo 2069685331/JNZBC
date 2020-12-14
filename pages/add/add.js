@@ -9,7 +9,8 @@ Page({
        userId:"1",//用户id
        content:"",//动态文本
        imgArr: [], //上传的结果图片集合
-       cid:"0"//分区号
+       cid:"0",//分区号
+      //  sendTime:"" //上传时间
      },
     
      properties: {
@@ -184,6 +185,14 @@ Page({
     //检测代码用，后期可删除
     console.log("打包发送下列信息")
     console.log(this.data.status)
+
+    //设置时间格式如同'2020/11/11 11:11:21'
+    // let newdate= new Date()
+    // let dateStr= newdate.getFullYear() + '/' + (newdate.getMonth() + 1) + '/' + newdate.getDate() + ' ' + newdate.getHours() + ':' + (newdate.getMinutes() < 10 ? '0' + newdate.getMinutes() : newdate.getMinutes() ) + ':' + ( newdate.getSeconds() < 10 ? '0' + newdate.getSeconds() : newdate.getSeconds() )
+   
+    this.setData({
+      ['status.sendTime']: dateStr
+    }) 
 
     //调用云函数
     wx.cloud.callFunction({

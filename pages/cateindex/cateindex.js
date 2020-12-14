@@ -31,13 +31,16 @@ getStatusList:function(){
     data:this.QueryParams
   }).then(result=>{
     console.log(result)
-    const total=result.data;
-    this.totalPages=Math.ceil(total/this.QueryParams.pagesize);
+    console.log(result.result.status)
+    //没懂totalpage的意义何在，注释掉了
+    // const total=result.data;
+    // this.totalPages=Math.ceil(total/this.QueryParams.pagesize);
     this.setData({
       //将原status数据与新请求的数据拼接在一起
-      status:[...this.data.status,...result.data.message.goods]
+      status:[...this.data.status,...result.result.status]
     });
   })
+  console.log(this.date.status)
 },
 
 //页面触底事件
@@ -65,7 +68,7 @@ onPullDownRefresh: function(){
     status:[]
   });
   //重置页码
-  this.QueryParams.pagenum=1;
+  this.QueryParams.pagenum=0;
   //重新发送请求
   this.getStatusList();
   //完成请求，关闭下拉刷新界面

@@ -17,7 +17,7 @@ exports.main = async (event, context) => {
     likenum:0,
     commentnum:0,
     cid:event.status.cid,
-    sendTime: db.serverDate()    //入数据库时间
+    sendTime: event.status.sendTime    //发帖时间
   },
   success:res=>{
     console.log(res);
