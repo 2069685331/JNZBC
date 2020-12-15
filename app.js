@@ -28,6 +28,7 @@ App({
 
     },
     globalData: {
+        userinfo:[],
         config: globalConfig
     },
 });
