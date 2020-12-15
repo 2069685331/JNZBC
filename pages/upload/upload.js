@@ -51,7 +51,7 @@ Page({
         //   current: '', // 当前显示图片的 http 链接
         //   urls: [path] // 需要预览的图片 http 链接列表
         // })
-        wx.redirectTo({
+        wx.redirectTo({  //携带裁剪后图片的链接回到编辑页面
           url: '../editor/editor?avatar=' + path
         })
       }
