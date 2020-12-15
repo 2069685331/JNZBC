@@ -47,7 +47,9 @@ Page({
    */
   onShow: function () {
     const userinfo=wx.getStorageSync("userinfo");
-    this.setData({userinfo});
+    this.setData({
+      userinfo:userinfo
+    });
   },
 
   /**
