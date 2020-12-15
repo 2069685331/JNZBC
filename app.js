@@ -27,7 +27,15 @@ App({
     onPageNotFound: function(options) {
 
     },
+<<<<<<< Updated upstream
     globalData: {
         config: globalConfig
     },
 });
+=======
+    globalData:{
+        userinfo:[]
+    }
+});
+  
+>>>>>>> Stashed changes

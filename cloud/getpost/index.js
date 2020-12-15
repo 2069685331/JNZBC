@@ -16,10 +16,10 @@ exports.main = async (event, context) => {
 
   //limit内是限制条数
   //sort里面实现对发送时间降序排序（从大到小），实现显示最新数据
-  const oristatus=await db.collection("posts").limit(pagesize).skip(pagesize*pagenum).get()
+  const oristatus=await db.collection("posts").aggregate().sort({sendTime:-1}).limit(pagesize).skip(pagesize*pagenum).end()
   console.log(oristatus)
   //用于处理动态
-  var status=await oristatus.data
+  var status=await oristatus.list
   console.log(status)
 
   //遍历item，修改时间和counted
