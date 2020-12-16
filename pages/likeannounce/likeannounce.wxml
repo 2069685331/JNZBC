@@ -26,14 +26,14 @@
                         
                         <!-- 评论内容 -->
                         <view class="commentpart">
-                            赞了这条动态
+                            <text class="comment-text" user-select="{{true}}" decode="{{true}}">点赞了该动态</text> 
                         </view>
                         <!-- 评论内容 -->
 
                         <!-- 评论的回复 -->
                         <view class="comment-reply" wx:if="{{item1.replyNum>0}}">
-                            <navigator class="reply" target="" url="/pages/commentreply/commentreply?statusid={{status.statusid}}&commentId={{item1.commentId}}" hover-class="navigator-hover" open-type="navigate">
-                            查看{{item1.replyNum}}条回复
+                            <navigator class="reply" target="" url="/pages/statusdetail/statusdetail?statusid={{status.statusid}}" hover-class="navigator-hover" open-type="navigate">
+                            查看该动态
                             </navigator>
                         </view>
                         <!-- 评论的回复 -->

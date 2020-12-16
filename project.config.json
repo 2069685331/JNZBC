@@ -63,7 +63,32 @@
       "list": []
     },
     "miniprogram": {
-      "list": []
+      "list": [
+        {
+          "name": "关注通知",
+          "pathName": "pages/followannounce/followannounce",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "评论通知",
+          "pathName": "pages/commentannounce/commentannouce",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "官方通知",
+          "pathName": "pages/office/office",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "点赞通知",
+          "pathName": "pages/likeannounce/likeannounce",
+          "query": "",
+          "scene": null
+        }
+      ]
     }
   }
 }
