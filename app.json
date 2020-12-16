@@ -19,7 +19,12 @@
     "pages/editor/editor",
     "pages/test/test",
     "pages/commentreply/commentreply",
-    "pages/upload/upload"
+    "pages/upload/upload",
+    "pages/annoucement/annoucement",
+    "pages/office/office",
+    "pages/commentannounce/commentannouce",
+    "pages/followannounce/followannounce",
+    "pages/likeannounce/likeannounce"
   ],
   "tabBar": {
     "color": "#515151",

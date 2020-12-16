@@ -8,9 +8,9 @@
    <view class='img-add'>
       <view class='img-box'>
        <view class='img-list'>
-         <view hidden="{{form.imgAddr.length==0}}">
+         <view hidden="{{form.avatar.length==0}}">
            <view class='img-item'>
-             <image src='{{form.imgAddr}}' bindlongpress="deleteImgage" data-index='{{index1}}' mode="aspectFill"></image>
+             <image src='{{form.avatar}}' bindlongpress="deleteImgage" data-index='{{index1}}' mode="aspectFill"></image>
            </view>
          </view>
          <view class='chooseimg' bindtap='uploadDetailImage'>
