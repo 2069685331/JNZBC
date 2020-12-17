@@ -134,6 +134,15 @@ Page({
   //提交表单
   submitForm: function(e){
     console.log(this.data.form)  //此内容为要提交的表单内容
+
+    //调用后端接口editor
+    wx.cloud.callFunction({
+      name:"editor",
+      data:this.data.form
+    }).then(result=>{
+      console.log(result)
+    })
+
     wx.switchTab({
       url: '/pages/user/user'
     })
