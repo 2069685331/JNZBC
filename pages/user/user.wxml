@@ -5,7 +5,7 @@
       <view class="user-info">
         <image class="avatar" mode='aspectFill' src='{{userData.avatar}}'></image>
         <view class="right-info">
-          <view class="nickname">{{userData.nickname}}</view>
+          <view class="nickname">{{userData.userName}}</view>
           <view class="motto">
             简介：{{userData.motto}}
           </view>

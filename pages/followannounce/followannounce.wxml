@@ -1,0 +1,41 @@
+<view wx:for="{{comments}}"
+      wx:for-index="index1"
+      wx:for-item="item1">
+    <view class="wrap" >
+        <view class="single-annoucement" >                    
+                <view class="left-part">
+                        <!-- 头像 -->
+                        <navigator class="comment-avatar" target="" url="../userindex/userindex?userId={{item1.userId}}" hover-class="navigator-hover" open-type="navigate">
+                            <image class="" src="{{item1.avatar}}"  lazy-load="false" binderror="" bindload="">
+                            </image>
+                        </navigator>
+                        <!-- 头像 -->
+                    </view>
+                    <view class="right-part">
+                        <!-- 日期 -->
+                        <view class="comment-time">{{item1.sendTime}}</view>
+                        <!-- 日期 -->
+                        <!-- 用户名 -->
+                        <view class="comment-username">
+                            <navigator class="username" target="" url="../userindex/userindex?userId={{item1.userId}}" hover-class="navigator-hover" open-type="navigate">
+                            {{item1.userName}}  
+                            </navigator>
+                            <!-- 评论内容 -->
+                        <view class="commentpart">
+                            关注了你
+                        </view>
+                        <!-- 评论内容 -->
+                        </view>
+                        <!-- 用户名 -->
+
+                        
+                        
+                        
+                        
+                    </view>
+                    
+                        
+                    
+        </view>
+    </view>
+</view>

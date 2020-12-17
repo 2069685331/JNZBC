@@ -1,0 +1,48 @@
+<view wx:for="{{comments}}"
+      wx:for-index="index1"
+      wx:for-item="item1">
+    <view class="wrap" >
+        <view class="single-annoucement" >                    
+                <view class="left-part">
+                        <!-- 头像 -->
+                        <navigator class="comment-avatar" target="" url="../userindex/userindex?userId={{item1.userId}}" hover-class="navigator-hover" open-type="navigate">
+                            <image class="" src="{{item1.avatar}}"  lazy-load="false" binderror="" bindload="">
+                            </image>
+                        </navigator>
+                        <!-- 头像 -->
+                    </view>
+                    <view class="right-part">
+                        <!-- 用户名 -->
+                        <view class="comment-username">
+                            <navigator class="" target="" url="../userindex/userindex?userId={{item1.userId}}" hover-class="navigator-hover" open-type="navigate">
+                            {{item1.userName}}  
+                            </navigator>
+                        </view>
+                        <!-- 用户名 -->
+
+                        <!-- 日期 -->
+                        <view class="comment-time">{{item1.sendTime}}</view>
+                        <!-- 日期 -->
+                        
+                        <!-- 评论内容 -->
+                        <view class="commentpart">
+                            <text class="comment-text" user-select="{{true}}" decode="{{true}}">{{item1.commentText}}</text> 
+                        </view>
+                        <!-- 评论内容 -->
+
+                        <!-- 评论的回复 -->
+                        <view class="comment-reply" wx:if="{{item1.replyNum>0}}">
+                            <navigator class="reply" target="" url="/pages/commentreply/commentreply?statusid={{status.statusid}}&commentId={{item1.commentId}}" hover-class="navigator-hover" open-type="navigate">
+                            查看{{item1.replyNum}}条回复
+                            </navigator>
+                        </view>
+                        <!-- 评论的回复 -->
+                        
+                        
+                    </view>
+                    
+                        
+                    
+        </view>
+    </view>
+</view>

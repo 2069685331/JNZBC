@@ -6,20 +6,10 @@ Page({
    */
   data: {
     form:{
-      imgAddr: "", //上传的结果图片集合
-      nickname:"",
+      avatar: "", //上传的结果图片集合
+      userName:"",
       motto:"",
     },
-    properties: {
-      count: { //最多选择图片的张数，默认9张
-        type: Number,
-        value: 1
-       },
-      uploadUrl: { //图片上传的服务器路径
-        type: String,
-        value: ''
-      },
-    }
   },
 
   
@@ -112,23 +102,23 @@ Page({
   },*/
   // 对选取的不满意图片进行删除
   deleteImgage: function (e) {
-    var imgAddr = this.data.form.imgAddr;
+    var avatar = this.data.form.avatar;
     var index = e.currentTarget.dataset.index;
     console.log(index);
     // imgArr.splice(index, 1);
     this.setData({
-     ['form.imgAddr']: ""
+     ['form.avatar']: ""
     });
    },
   
   // 获取昵称
   getNickname: function(e){
     console.log(e.detail.value)
-    var nickname=e.detail.value
+    var userName=e.detail.value
     this.setData({
-      ['form.nickname']: nickname
+      ['form.userName']: userName
     }) 
-    console.log(this.data.form.nickname)
+    console.log(this.data.form.userName)
   },
   
   // 获取个性签名
@@ -144,6 +134,15 @@ Page({
   //提交表单
   submitForm: function(e){
     console.log(this.data.form)  //此内容为要提交的表单内容
+
+    //调用后端接口editor
+    wx.cloud.callFunction({
+      name:"editor",
+      data:this.data.form
+    }).then(result=>{
+      console.log(result)
+    })
+
     wx.switchTab({
       url: '/pages/user/user'
     })
@@ -155,7 +154,7 @@ Page({
     let { avatar } = options
     if (avatar) {
       this.setData({
-        ['form.imgAddr']: avatar
+        ['form.avatar']: avatar
       })
     }
   },
