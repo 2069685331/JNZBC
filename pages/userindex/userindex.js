@@ -5,7 +5,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userData:{  //该主页的用户信息（从服务器获取）
+    haveFollowed:true,  //该用户是否已关注（从服务器获取）
+    userinfo:{  //服务器上用户的信息（从服务器获取）
+      userId:"",
+      userName:"TESTNAME",   //昵称
+      avatar:"/dongtai/user1.jpg",  //头像
+      motto:"暨南针不戳！",  //简介
+      followNum:'13',  //我关注的数量
+      followerNum:'15',  //关注我的数量
+      statusNum:'5'  //动态数量
+    },
+    targetinfo:{  //该主页的用户信息（从服务器获取）
+      userId:"",
       avatar:"/dongtai/user1.jpg",  //头像
       userName:'Leonardo',  //用户名
       motto:"暨南针不戳！",  //简介
@@ -49,6 +60,35 @@ Page({
     ]
   },
 
+//初始化关注按钮文字
+initFollowBtn:function(e){
+  let page = this;
+  page.data.haveFollowed ? page.setData({
+    followText: '已关注',
+    btnColor: 'background-color:#0F6A7B;'
+  }) : page.setData({
+    followText: '关注',
+    btnColor: 'background-color:#1596AF;'
+  })
+},
+
+//关注处理函数
+handleFollow:function(e){
+  // let page = this;
+  // page.setData({
+  //   followStatus:!followStatus
+  // })
+  this.data.haveFollowed = !this.data.haveFollowed
+  this.data.haveFollowed ? this.setData({
+    followText: '已关注',
+    btnColor: 'background-color:#0F6A7B;'
+  }) : this.setData({
+    followText: '关注',
+    btnColor: 'background-color:#1596AF;'
+  })
+  //向服务传输关注发起者的id(数据库中为followId）：this.userinfo.userId，被关注者的id（数据库中为userId）：this.target.userId
+  },
+
 //图片预览函数
 handlePreviewImg:function(e){
   console.log(e)
@@ -78,6 +118,7 @@ handlePreviewImg:function(e){
    */
   onLoad: function (options) {
     this.initImageSize();
+    this.initFollowBtn();
   },
 
   /**

@@ -64,6 +64,32 @@ page {
   color: #999;
 }
 
+.follow-wrap{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.follow-btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10rpx;
+  position: relative;
+  margin-top: 112rpx;
+  margin-right: 65rpx !important;
+  font-size: 35rpx;
+  text-align: center;
+  letter-spacing:2rpx;
+  line-height: 35rpx;
+  padding: 0rpx 2rpx;
+  width: 130rpx !important;
+  height: 60rpx;
+  background-color:#0F6A7B; 
+  color:white
+}
+
+
 
 .article-info {
   overflow: hidden;

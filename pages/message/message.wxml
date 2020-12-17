@@ -2,7 +2,7 @@
 wx:for="{{messageList}}"
 wx:for-index="index1"
 wx:for-item="item1">
-  <navigator class="avatar-warp" url="{{item1.url}}">
+  <navigator class="avatar-warp" url="{{item1.url}}?userId={{userId}}">
     <view class="user-info">
       <image class="avatar" mode='aspectFill' src='{{item1.icon}}'></image>
       <view class="right-info">

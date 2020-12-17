@@ -5,9 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userinfo:{},  //用户的微信信息（用户登录后会自动写入）
+    WXuserinfo:{},  //用户的微信信息（用户登录后会自动写入）
 
-    userData:{  //服务器上用户的信息（从服务器获取）
+    userinfo:{  //服务器上用户的信息（从服务器获取）
       userid:"",
       userName:"TESTNAME",   //昵称
       avatar:"/dongtai/user1.jpg",  //头像
@@ -46,9 +46,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    const userinfo=wx.getStorageSync("userinfo");
+    const WXuserinfo=wx.getStorageSync("WXuserinfo");
     this.setData({
-      userinfo:userinfo
+      WXuserinfo:WXuserinfo
     });
   },
 

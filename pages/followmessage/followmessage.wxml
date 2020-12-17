@@ -1,4 +1,4 @@
-<view wx:for="{{comments}}"
+<view wx:for="{{followMsg}}"
       wx:for-index="index1"
       wx:for-item="item1">
     <view class="wrap" >
@@ -12,26 +12,20 @@
                         <!-- 头像 -->
                     </view>
                     <view class="right-part">
+                        <!-- 日期 -->
+                        <view class="comment-time">{{item1.followTime}}</view>
+                        <!-- 日期 -->
                         <!-- 用户名 -->
                         <view class="comment-username">
-                            暨南针不戳
-                        </view>
-                        <!-- 用户名 -->
-
-                        <!-- 日期 -->
-                        <view class="comment-time">{{item1.sendTime}}</view>
-                        <!-- 日期 -->
-                        
-                        <!-- 通知内容 -->
+                            <navigator class="username" target="" url="../userindex/userindex?userId={{item1.userId}}" hover-class="navigator-hover" open-type="navigate">
+                            {{item1.userName}}  
+                            </navigator>
+                            <!-- 评论内容 -->
                         <view class="commentpart">
-                            <text class="comment-text" user-select="{{true}}" decode="{{true}}">{{item1.commentText}}</text> 
+                            关注了你
                         </view>
-                        <!-- 通知内容 -->
-                        
+                        </view>
                     </view>
-                    
-                        
-                    
         </view>
     </view>
 </view>

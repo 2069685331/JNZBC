@@ -48,7 +48,7 @@ page{
     padding-left: 20rpx;
     flex-direction: column;
     justify-content: space-between;
-    padding-bottom: 30rpx;
+    padding-bottom: 20rpx;
     margin-top: 20rpx;
   }
   .right-part .comment-username {

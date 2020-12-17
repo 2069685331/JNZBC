@@ -126,7 +126,7 @@ onReachBottom: function() {
   if(this.QueryParams.pagenum>=this.totalPages)
   {
     wx.showToast({
-      title: '没有更多内容啦',
+      title: '没有更多消息啦',
       image:'/icon/reachbottom.png'
     });
   }

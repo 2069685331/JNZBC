@@ -1,13 +1,13 @@
 <view>
   <view class="avatar-warp">
     <!-- 如果用户已登录，获取其信息 -->
-    <view wx:if="{{userinfo}}">  
+    <view wx:if="{{WXuserinfo}}">  
       <view class="user-info">
-        <image class="avatar" mode='aspectFill' src='{{userData.avatar}}'></image>
+        <image class="avatar" mode='aspectFill' src='{{userinfo.avatar}}'></image>
         <view class="right-info">
-          <view class="nickname">{{userData.userName}}</view>
+          <view class="nickname">{{userinfo.userName}}</view>
           <view class="motto">
-            简介：{{userData.motto}}
+            简介：{{userinfo.motto}}
           </view>
         </view>
       </view>
@@ -15,11 +15,11 @@
       <view class="article-info">
       <!-- 一下navigator点击后均会触发事件携带userid向服务器请求数据 -->
         <navigator url="../follows/follows" class="article-item">
-          <text class="num">{{userData.followNum}}</text>关注</navigator>
+          <text class="num">{{userinfo.followNum}}</text>关注</navigator>
         <navigator url="../followers/followers" class="article-item">
-          <text class="num">{{userData.followerNum}}</text>关注我的</navigator>
+          <text class="num">{{userinfo.followerNum}}</text>关注我的</navigator>
         <navigator url="../userindex/userindex" class="article-item">
-          <text class="num">{{userData.statusNum}}</text>动态</navigator>
+          <text class="num">{{userinfo.statusNum}}</text>动态</navigator>
       </view>
     </view>
     <!-- 用户未登录，显示登录按钮 -->
@@ -55,7 +55,7 @@
     </navigator>
   </view>
   
-  <view wx:if="{{userinfo}}">  
+  <view wx:if="{{WXuserinfo}}">  
     <navigator url="../editor/editor" class="btm" style='width:80%;margin-top:20px;margin-bottom:20px; background-color:#0F6A7B; color:white'>编辑我的资料</navigator>
   </view>
   
