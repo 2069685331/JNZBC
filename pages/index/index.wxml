@@ -76,7 +76,7 @@ wx:for-item="item1">
         </view>
         <view class="status-handle">
             <!-- 评论 -->
-            <navigator class="comment-group" url="/pages/statusdetail/statusdetail?statusid={{item1.statusid}}">
+            <navigator class="comment-group" url="/pages/statusdetail/statusdetail?statusid={{item1.statusid}}&scrollId=handleGroup">
                 <image class="" src="/dongtai/comment.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">   
                 </image>{{item1.commentnum}}
             </navigator>

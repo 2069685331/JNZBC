@@ -116,6 +116,10 @@ Page({
   //用于弹出回复框
   commentFoucusInput:false,
   commentIsInput:false,
+
+  //设置锚点
+  scrollId:"",
+  windowHeight:""
   },
   QueryParams:{
     query:"",//链接
@@ -131,6 +135,10 @@ onLoad: function(options) {
   this.getMyInfo();
   //借助QueryParams获取页面
   this.getStatusDetail();
+  //设置锚点
+  this.setData({
+    scrollId:options.scrollId
+  })
 },
 //获取初始化页面(未实现)
 getStatusDetail:function(){
@@ -316,6 +324,11 @@ complete: function(res) {},
 //动态图片宽度预处理函数
 initImageSize:function(){
 const windowWidth=wx.getSystemInfoSync().windowWidth;
+var windowHeight=wx.getSystemInfoSync().windowHeight;
+this.setData({
+  windowHeight:windowHeight
+})
+console.log(this.data.windowHeight)
 const statusWidth=windowWidth-30*(windowWidth/750)*2
 const imagesSize=(statusWidth-5*(windowWidth/750))/2
 this.setData({

@@ -20,9 +20,9 @@ Page({
     unloginData:{   //未登录的用户信息
       logoUrl:"/icon/logo.png",  //头像
       motto:"暨南针不戳！",  //简介
-      follow_num:'0',  //我关注的数量
-      follower_num:'0',  //关注我的数量
-      status_num:'0'  //动态数量
+      followNum:'0',  //我关注的数量
+      followerNum:'0',  //关注我的数量
+      statusNum:'0'  //动态数量
     }
     
     
