@@ -1,8 +1,7 @@
 <!--pages/statusdetail/statusdetail.wxml-->
-
-<view class="container">
+<scroll-view class="container" style="height:{{windowHeight+'px'}}" scroll-y="true" scroll-into-view="{{scrollId}}">
     <!--用户动态-->
-    <view class="status-group" >
+    <view class="status-group" id="statusGroup" >
         <view class="user-group">
             <!-- 头像 -->
             <navigator class="avatar" target="" url="../userindex/userindex?userId={{status.userId}}" hover-class="navigator-hover" open-type="navigate">
@@ -46,7 +45,7 @@
     </view>
 
     <!--评论 -->
-    <view class="status-handle">
+    <view class="status-handle" id="handleGroup">
            <!-- 评论 -->
            <view   class="comment-group" bindtap='focusButn' data-statusid='{{status.statusid}}'>
                <image class="" src="/dongtai/comment.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">   
@@ -138,4 +137,4 @@
             <view class='send'bindtap="sendReply">发送</view>
         </view>
     </view>
-</view>
+</scroll-view>

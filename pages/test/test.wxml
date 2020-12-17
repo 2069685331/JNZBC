@@ -1,15 +1,6 @@
-<view bindtap='isfouce'><navigator>{{textareaVal.length != 0?textareaVal:'请输入文本'}}</navigator></view> 
+<!-- index.wxml -->
 
-
-<view wx:if="{{!hiddenmodalput}}" title="" class='textareaModal'>
-    <view class='shadow' bindtap="cancel"></view>
-    <view>
-      <view>
-         <textarea placeholder='请输入文本' value='{{textareaVal}}' fixed='true' bindinput='textarea'></textarea>   
-        <view class='modalBtn clearfix'>
-          <navigator class='fl' bindtap='cancel'>取消</navigator>
-          <navigator class='fr' bindtap="confirm">确定</navigator>
-        </view>
-      </view>
-    </view>
-</view>
+<view class="btn"  bindtap="jump" data-detail="detail0" > 跳到 detail0 锚点位置 </view>
+<view class="btn"  bindtap="jump" data-detail="detail1" > 跳到 detail1 锚点位置</view>
+<view class="btn"  bindtap="jump" data-detail="detail2" > 跳到 detail2 锚点位置 </view>
+<view class="btn"  bindtap="jump" data-detail="detail3" > 跳到 detail3 锚点位置 </view>
