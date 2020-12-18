@@ -30,7 +30,7 @@ Page({
 
 //向端口请求动态送给端口的数据(相关页面请求以及触底加页与下拉刷新都可以参照category.js)
   QueryParams:{
-    query:"",//链接
+    listType:0,//请求首页数据
     //cid:"",//注意，此处没有分区号，因为首页可以看到任何类型的分区内容
     pagenum:0,//页码
     pagesize:10//页长度
@@ -45,9 +45,13 @@ getStatusList:function(){
     data:this.QueryParams
   }).then(result=>{
     console.log(result)
+    const total=result.result.list.length;
+    console.log(total)
+    this.totalPages=Math.ceil(total/this.QueryParams.pagesize);
+    console.log(this.totalPages)
     this.setData({
       //将原status数据与新请求的数据拼接在一起
-      status:[...this.data.status,...result.result.status]
+      status:[...this.data.status,...result.result.list]
     });
   })
 },
@@ -123,20 +127,21 @@ onLoad: function(options) {
 },
 //页面触底事件
 onReachBottom: function() {
-  if(this.QueryParams.pagenum>=this.totalPages)
+  if(this.totalPages==0)
   {
     wx.showToast({
       title: '没有更多内容啦',
       image:'/icon/reachbottom.png'
     });
   }
-  else
+  else if(this.totalPages == 1)
   {
     //请求页码+1
     this.QueryParams.pagenum++
+    console.log(this.QueryParams.pagenum)
     //请求页面
     this.getStatusList();
-    //console.log("还有下一页");
+    console.log("还有下一页");
   }
 },
 
