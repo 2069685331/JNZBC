@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    userId:"",
     form:{
       avatar: "", //上传的结果图片集合
       userName:"",

@@ -8,7 +8,7 @@ Page({
     WXuserinfo:{},  //用户的微信信息（用户登录后会自动写入）
 
     userinfo:{  //服务器上用户的信息（从服务器获取）
-      userid:"",
+      userId:"1",
       userName:"TESTNAME",   //昵称
       avatar:"/dongtai/user1.jpg",  //头像
       motto:"暨南针不戳！",  //简介

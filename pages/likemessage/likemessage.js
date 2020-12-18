@@ -8,6 +8,8 @@ Page({
       {
         //点赞Id
         liketId:'01',
+        //用户Id
+        userId:"01",
         //用户名
         userName:'XXX',
         //头像
@@ -16,14 +18,14 @@ Page({
         statusId:"",
         //点赞时间
         likeTime:'2020/11/11 11:11:11',
-        //用户id
-        userId:'01',
         //评论内容
         commentText:'这是评论',
       },
       {
         //点赞Id
         liketId:'02',
+        //用户Id
+        userId:"02",
         //用户名
         userName:'XXX',
         //头像
@@ -32,14 +34,14 @@ Page({
         statusId:"",
         //点赞时间
         likeTime:'2020/11/11 11:11:11',
-        //用户id
-        userId:'02',
         //评论内容
         commentText:'这是评论',
       },
       {
        //点赞Id
         liketId:'03',
+        //用户Id
+        userId:"03",
         //用户名
         userName:'XXX',
         //头像
@@ -48,14 +50,14 @@ Page({
         statusId:"",
         //点赞时间
         likeTime:'2020/11/11 11:11:11',
-        //用户id
-        userId:'03',
         //评论内容
         commentText:'这是评论',
       },
       {
         //点赞Id
         liketId:'04',
+        //用户Id
+        userId:"04",
         //用户名
         userName:'XXX',
         //头像
@@ -64,14 +66,14 @@ Page({
         statusId:"",
         //点赞时间
         likeTime:'2020/11/11 11:11:11',
-        //用户id
-        userId:'04',
         //评论内容
         commentText:'这是评论',
       },
       {
-        //点赞Id
+         //点赞Id
         liketId:'05',
+        //用户Id
+        userId:"05",
         //用户名
         userName:'XXX',
         //头像
@@ -80,8 +82,6 @@ Page({
         statusId:"",
         //点赞时间
         likeTime:'2020/11/11 11:11:11',
-        //用户id
-        userId:'05',
         //评论内容
         commentText:'这是评论',
       },

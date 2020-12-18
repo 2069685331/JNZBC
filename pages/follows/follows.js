@@ -7,11 +7,13 @@ Page({
   data: {
     follows:[
       {
+        userId:"1",
         userName:'Leonardo',
         avatar:"/dongtai/user1.jpg",
         motto:"暨南针不戳！"
       },
       {
+        userId:"2",
         userName:'Depp',
         avatar:"/dongtai/user2.jpg",
         motto:"暨南针不错！"

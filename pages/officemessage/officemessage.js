@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    userId:"",
     officeMsg:[
       {
         //通知Id
@@ -57,7 +58,7 @@ Page({
       url: '请求地址',
       data: {
         "key": "officeMsg",  //请求的新officeMsg
-        "userId": userId,  //用户id
+        "userId": this.data.userId,  //用户id
         "pageNum": that.data.pagenum, //从数据里获取当前页数
         "pageSize": 10, //每页显示条数
       },

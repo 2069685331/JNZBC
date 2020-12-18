@@ -2,7 +2,7 @@
 wx:for="{{followers}}"
 wx:for-index="index1"
 wx:for-item="item1">
-  <navigator url="../userindex/userindex" class="user-info">
+  <navigator url="../userindex/userindex?userId={{item1.userId}}" class="user-info">
     <image class="avatar" mode='aspectFill' src='{{item1.avatar}}'></image>
     <view class="right-info">
       <view class="nickname">{{item1.userName}}</view>

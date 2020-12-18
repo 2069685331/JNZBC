@@ -2,28 +2,29 @@
   <!-- 用户资料框 -->
   <view class="avatar-warp">
     <view class="user-info">
-      <image class="avatar" mode='aspectFill' src='{{targetinfo.avatar}}'></image>
+      <image class="avatar" mode='aspectFill' src='{{targetInfo.avatar}}'></image>
       <view class="user-right-info">
-        <view class="nickname">{{targetinfo.userName}}</view>
+        <view class="nickname">{{targetInfo.userName}}</view>
         <view class="motto">
-          简介：{{targetinfo.motto}}
+          简介：{{targetInfo.motto}}
         </view>
         
       </view>
-      <!-- 关注按钮 -->
-      <view class="follow-wrap">
+      <!-- 关注按钮(userinfo.userId与targetinfo.userId相同则不显示) -->
+      <view class="follow-wrap" wx:if="{{userId!=targetInfo.userId}}">
         <button class="follow-btn" style='{{btnColor}}' bindtap="handleFollow">{{followText}}</button>
       </view>
+      <!-- 关注按钮 -->
     </view>
       
   
     <view class="article-info">
       <navigator url="../follows/follows" class="article-item">
-        <text class="num">{{targetinfo.followNum}}</text>关注</navigator>
+        <text class="num">{{targetInfo.followNum}}</text>关注</navigator>
       <navigator url="../followers/followers" class="article-item">
-        <text class="num">{{targetinfo.followerNum}}</text>关注者</navigator>
+        <text class="num">{{targetInfo.followerNum}}</text>关注者</navigator>
       <view class="article-item">
-        <text class="num">{{targetinfo.statusNum}}</text>动态</view>
+        <text class="num">{{targetInfo.statusNum}}</text>动态</view>
     </view>
   </view>
 
