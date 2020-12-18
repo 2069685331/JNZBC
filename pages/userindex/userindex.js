@@ -7,49 +7,23 @@ Page({
   data: {
     haveFollowed:true,  //该用户是否已关注（从服务器获取）
     userId:"1",//当前用户的信息（由参数设置）
-    targetInfo:{  //该主页的用户信息（从服务器获取）
-      userId:"2",
-      avatar:"/dongtai/user1.jpg",  //头像
-      userName:'Leonardo',  //用户名
-      motto:"暨南针不戳！",  //简介
-      followNum:'13',  //我关注的数量
-      followerNum:'15',  //关注我的数量
-      statusNum:'5',  //动态数量
-      },
-    status:[
-      {
-        //头像
-        avatar:"/dongtai/user1.jpg",
-        //用户名
-        userName:'Leonardo',
-        //日期
-        time:'2020/11/11 11:11:11',
-        //文本
-        content:"The Revenant was the product of the tireless efforts of an unbelievable cast and crew. First off, to my brother in this endeavor, Mr. Tom Hardy. Tom, your talent on screen can only be surpassed by your friendship off screen… thank you for creating a transcendent cinematic experience. Thank you to everybody at Fox and New Regency…my entire team. I have to thank everyone from the very onset of my career… To my parents, none of this would be possible without you. And to my friends, I love you dearly, you know who you are.And lastly I just want to say this: Making ‘The Revenant’ was about man's relationship to the natural world. A world that we collectively felt in 2015 as the hottest year in recorded history. Our production needed to move to the southern tip of this planet just to be able to find snow. Climate change is real, it is happening right now. It is the most urgent threat facing our entire species, and we need to work collectively together and stop procrastinating. We need to support leaders around the world who do not speak for the big polluters, but who speak for all of humanity, for the indigenous people of the world, for the billions and billions of underprivileged people out there who would be most affected by this. For our children’s children, and for those people out there whose voices have been drowned out by the politics of greed. I thank you all for this amazing award tonight. Let us not take this planet for granted. I do not take tonight for granted. Thank you so very much.",
-        //是否折叠文本 true:折叠 false：展开 null：短文本，不显示折叠展开按钮
-        isF:true,
-        //图片,，支持0~4张图片
-        imgArr:[]
-      },
-      {
-        //头像
-        avatar:"/dongtai/user2.jpg",
-        //用户名
-        userName:'Depp',
-        //日期
-        time:'2020/11/11 11:11:11',
-        //文本
-        content:"1998",
-        //是否折叠文本 true:折叠 false：展开 null：短文本，不显示折叠展开按钮
-        isF:null,
-        //图片
-        imgArr:[
-          "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1604499631080&di=d857331ea96b03c3f2440491cb60e0f4&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201708%2F16%2F20170816131622_fVYmk.thumb.700_0.jpeg",
-          "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1604826933589&di=8e10305e8e9a85bf3618765a4a613a08&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201805%2F30%2F20180530172421_kdKcu.jpeg",
-          "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3580164859,3776785180&fm=26&gp=0.jpg",
-          "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=485066500,410625334&fm=26&gp=0.jpg"
-      ]}
-    ]
+    // targetInfo:{  //该主页的用户信息（从服务器获取）
+    //   userId:"2",
+    //   avatar:"/dongtai/user1.jpg",  //头像
+    //   userName:'Leonardo',  //用户名
+    //   motto:"暨南针不戳！",  //简介
+    //   followNum:'13',  //我关注的数量
+    //   followerNum:'15',  //关注我的数量
+    //   statusNum:'5',  //动态数量
+    //   },
+    status:[]
+  },
+  //向端口请求动态送给端口的数据(相关页面请求以及触底加页与下拉刷新都可以参照category.js)
+  QueryParams:{
+    listType:2,//请求我的主页数据
+    //cid:"",//注意，此处没有分区号，因为首页可以看到任何类型的分区内容
+    pagenum:0,//页码
+    pagesize:10//页长度
   },
 
 //初始化关注按钮文字
@@ -177,7 +151,26 @@ handlePreviewImg:function(e){
     this.getInfo();  //向后端请求该主页的用户信息及haveFollowed信息
     this.initImageSize();  //图片宽度处理
     this.initFollowBtn();  //初始化关注按钮
-    
+    wx.cloud.callFunction({
+      name:"getpost",
+      data:this.QueryParams
+    }).then(result=>{
+      console.log(result)
+      this.setData({
+        //将原status数据与新请求的数据拼接在一起
+        status:result.result.status
+      });
+    })
+    //调用login接口获取数据
+    wx.cloud.callFunction({
+      name:"login",
+    }).then(result=>{
+      console.log(result)
+      this.setData({
+        //将原status数据与新请求的数据拼接在一起
+        status:result
+      });
+    })
   },
 
   /**
