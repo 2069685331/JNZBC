@@ -28,7 +28,7 @@ App({
 
     },
     globalData: {
-        userinfo:[],
+        userdata:[],
         config: globalConfig
     },
 });

@@ -14,15 +14,18 @@ exports.main = async (event, context) => {
   //如果有则返回登陆数据，无则返回匿名用户
   if(flag.total==1)
   {
-    return await db.collection("user").where({
-      userId:wxContext.OPENID
+      const userinfo =await db.collection("user").where({
+      userId:userId
       }).get();
+      //{username,userinfo,}
+      return userinfo.data[0]
   }
   //无则返回匿名用户信息
   else if(flag.total==0)
   {
-    return {data:{
-      userName:"匿名用户"
-    }}
+    return {
+      userName:"匿名用户",
+      avatar:""
+    }
   }
 }

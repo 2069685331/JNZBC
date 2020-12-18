@@ -24,9 +24,6 @@ exports.main = async (event, context) => {
         userName:event.userName,
         avatar:event.avatar,
         motto:event.motto,
-        followNum:0,
-        followerNum:0,
-        statusNum:0
       },
       success:res=>{
         console.log(res);
