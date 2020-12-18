@@ -47,7 +47,7 @@ getStatusList:function(){
     console.log(result)
     const total=result.result.list.length;
     console.log(total)
-    this.totalPages=Math.ceil(total/this.QueryParams.pagesize);
+    this.totalPages=Math.floor(total/this.QueryParams.pagesize);
     console.log(this.totalPages)
     this.setData({
       //将原status数据与新请求的数据拼接在一起
