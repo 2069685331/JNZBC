@@ -20,10 +20,11 @@ Page({
   },
   //向端口请求动态送给端口的数据(相关页面请求以及触底加页与下拉刷新都可以参照category.js)
   QueryParams:{
-    listType:2,//请求我的主页数据
+    listType:3,//请求他人主页数据
     //cid:"",//注意，此处没有分区号，因为首页可以看到任何类型的分区内容
     pagenum:0,//页码
-    pagesize:10//页长度
+    pagesize:10,//页长度
+    userId:""
   },
 
 //初始化关注按钮文字
@@ -115,6 +116,7 @@ handlePreviewImg:function(e){
     this.setData({
       userId:userId
     })
+    this.QueryParams.userId=userId
   },
 
   //向后端请求该主页的用户信息及haveFollowed信息
@@ -151,16 +153,7 @@ handlePreviewImg:function(e){
     this.getInfo();  //向后端请求该主页的用户信息及haveFollowed信息
     this.initImageSize();  //图片宽度处理
     this.initFollowBtn();  //初始化关注按钮
-    wx.cloud.callFunction({
-      name:"getpost",
-      data:this.QueryParams
-    }).then(result=>{
-      console.log(result)
-      this.setData({
-        //将原status数据与新请求的数据拼接在一起
-        status:result.result.status
-      });
-    })
+    this.getStatusList();
     //调用login接口获取数据
     wx.cloud.callFunction({
       name:"login",
@@ -172,7 +165,55 @@ handlePreviewImg:function(e){
       });
     })
   },
-
+//获取动态列表数据
+getStatusList:function(){
+  wx.cloud.callFunction({
+    name:"getpost",
+    data:this.QueryParams
+  }).then(result=>{
+    console.log(result)
+    const total=result.result.list.length;
+    console.log(total)
+    this.totalPages=Math.floor(total/this.QueryParams.pagesize);
+    console.log(this.totalPages)
+    this.setData({
+      //将原status数据与新请求的数据拼接在一起
+      status:[...this.data.status,...result.result.list]
+    });
+  })
+},
+//下拉刷新事件
+onPullDownRefresh: function(){
+  //重置status数组
+  this.setData({
+    status:[]
+  });
+  //重置页码
+  this.QueryParams.pagenum=0;
+  //重新发送请求
+  this.getStatusList();
+  //完成请求，关闭下拉刷新界面
+  wx.stopPullDownRefresh();
+},
+//页面触底事件
+onReachBottom: function() {
+  if(this.totalPages==0)
+  {
+    wx.showToast({
+      title: '没有更多消息啦',
+      image:'/icon/reachbottom.png'
+    });
+  }
+  else if(this.totalPages == 1)
+  {
+    //请求页码+1
+    this.QueryParams.pagenum++
+    console.log(this.QueryParams.pagenum)
+    //请求页面
+    this.getStatusList();
+    console.log("还有下一页");
+  }
+},
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -201,19 +242,7 @@ handlePreviewImg:function(e){
 
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
+ 
 
   /**
    * 用户点击右上角分享
