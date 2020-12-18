@@ -108,6 +108,7 @@ handlePreviewImg:function(e){
     this.setData({
       [targetId]:e.userId
     })
+    this.QueryParams.userId=e.userId
   },
 
   //从全局变量获取userId
@@ -116,7 +117,6 @@ handlePreviewImg:function(e){
     this.setData({
       userId:userId
     })
-    this.QueryParams.userId=userId
   },
 
   //向后端请求该主页的用户信息及haveFollowed信息
@@ -154,16 +154,7 @@ handlePreviewImg:function(e){
     this.initImageSize();  //图片宽度处理
     this.initFollowBtn();  //初始化关注按钮
     this.getStatusList();
-    //调用login接口获取数据
-    wx.cloud.callFunction({
-      name:"login",
-    }).then(result=>{
-      console.log(result)
-      this.setData({
-        //将原status数据与新请求的数据拼接在一起
-        status:result
-      });
-    })
+    
   },
 //获取动态列表数据
 getStatusList:function(){
