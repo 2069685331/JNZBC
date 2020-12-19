@@ -15,19 +15,19 @@
    </view>
 
       <view class="page-section">
-      <view class="weui-cells__title">新的昵称(留空则不修改)</view>
+      <view class="weui-cells__title">新的昵称(长度小于10)</view>
       <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell weui-cell_input">
-          <input class="weui-input" maxlength="10" bindinput="getNickname" placeholder="最大长度为10" />
+          <input class="weui-input" maxlength="10" bindinput="getNickname" value="{{userInfo.userName}}" />
         </view>
       </view>
     </view>
 
         <view class="page-section">
-        <view class="weui-cells__title">新的个性签名（留空则不修改）</view>
+        <view class="weui-cells__title">新的个性签名(长度小于20)</view>
         <view class="weui-cells weui-cells_after-title">
           <view class="weui-cell weui-cell_input">
-            <input class="weui-input" maxlength="20" bindinput="getMotto" placeholder="最大长度为20" />
+            <input class="weui-input" maxlength="20" bindinput="getMotto" value="{{userInfo.motto}}" />
           </view>
         </view>
       </view>
