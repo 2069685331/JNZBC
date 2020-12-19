@@ -11,7 +11,7 @@ Page({
       userId:"1",
       userName:"TESTNAME",   //昵称
       avatar:"/dongtai/user1.jpg",  //头像
-      motto:"暨南针不戳！",  //简介
+      motto:"暨南针不戳暨南针不戳暨南针不戳暨南针不戳！",  //简介
       followNum:'13',  //我关注的数量
       followerNum:'15',  //关注我的数量
       statusNum:'5'  //动态数量
