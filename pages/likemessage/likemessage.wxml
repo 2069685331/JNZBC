@@ -1,4 +1,4 @@
-<view wx:for="{{comments}}"
+<view wx:for="{{likeMsg}}"
       wx:for-index="index1"
       wx:for-item="item1">
     <view class="wrap" >
@@ -19,24 +19,22 @@
                             </navigator>
                         </view>
                         <!-- 用户名 -->
-
                         <!-- 日期 -->
-                        <view class="comment-time">{{item1.sendTime}}</view>
+                        <view class="comment-time">{{item1.likeTime}}</view>
                         <!-- 日期 -->
                         
-                        <!-- 评论内容 -->
+                        <!-- 通知内容 -->
                         <view class="commentpart">
-                            <text class="comment-text" user-select="{{true}}" decode="{{true}}">{{item1.commentText}}</text> 
+                            <text class="comment-text" user-select="{{true}}" decode="{{true}}">点赞了该动态</text> 
                         </view>
-                        <!-- 评论内容 -->
-
-                        <!-- 评论的回复 -->
-                        <view class="comment-reply" wx:if="{{item1.replyNum>0}}">
-                            <navigator class="reply" target="" url="/pages/commentreply/commentreply?statusid={{status.statusid}}&commentId={{item1.commentId}}" hover-class="navigator-hover" open-type="navigate">
-                            查看{{item1.replyNum}}条回复
+                        <!-- 通知内容 -->
+                        <!-- 评论的动态 -->
+                        <view class="comment-reply">
+                            <navigator class="reply" target="" url="/pages/statusdetail/statusdetail?statusid={{item1.statusId}}" hover-class="navigator-hover" open-type="navigate">
+                            查看该动态
                             </navigator>
                         </view>
-                        <!-- 评论的回复 -->
+                        <!-- 评论的动态 -->
                         
                         
                     </view>

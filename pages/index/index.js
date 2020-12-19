@@ -1,5 +1,5 @@
 //Page Object
-const db=wx.cloud.database();
+
     //     //动态id
     //     statusid:1,
     //     //头像
@@ -19,7 +19,7 @@ const db=wx.cloud.database();
     //     //本用户是否点赞过
     //     collected:0
 //导入用来发送请求的方法（路径一定要补全）
-import{request} from "../../request/index.js"
+//import{request} from "../../request/index.js"
 Page({
   data: {
     status:[],
@@ -59,7 +59,7 @@ getStatusList:function(){
 
 
 
-// 更改点赞状态(未实现)
+// 更改点赞状态
 onCollectionTap: function(event) {
   // 获取当前点击下标
   var index = event.currentTarget.dataset.index;
@@ -69,11 +69,11 @@ onCollectionTap: function(event) {
   for (let i in message) { //遍历列表数据
     if (i == index) { //根据下标找到目标
       var collectStatus = false
-      if (message[i].collected == 0) { 
+      if (message[i].collected == false) { 
         //前端：界面修改
         //如果是没点赞+1
         collectStatus = true
-        message[i].collected = parseInt(message[i].collected) + 1
+        message[i].collected = true
         message[i].likenum = parseInt(message[i].likenum) + 1
         console.log('like');
         console.log(message[i])
@@ -91,7 +91,7 @@ onCollectionTap: function(event) {
       } else {
         //前端：修改界面
         collectStatus = false
-        message[i].collected = parseInt(message[i].collected) - 1
+        message[i].collected = false
         message[i].likenum = parseInt(message[i].likenum) - 1
         console.log('quitlike');
         
@@ -115,10 +115,6 @@ onCollectionTap: function(event) {
   this.setData({
     status: message
   })
-  //向后端返回点赞数据（还没实现）
-  //////////////
-
-  /////////////
 },
 //照着cateindex.js实现页面初次加载、触底、下拉刷新
 onLoad: function(options) {
@@ -130,7 +126,7 @@ onReachBottom: function() {
   if(this.totalPages==0)
   {
     wx.showToast({
-      title: '没有更多内容啦',
+      title: '没有更多消息啦',
       image:'/icon/reachbottom.png'
     });
   }

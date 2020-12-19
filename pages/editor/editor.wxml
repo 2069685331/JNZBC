@@ -6,20 +6,12 @@
     <!-- 图片添加区 -->
     
    <view class='img-add'>
-      <view class='img-box'>
-       <view class='img-list'>
-         <view hidden="{{form.avatar.length==0}}">
-           <view class='img-item'>
-             <image src='{{form.avatar}}' bindlongpress="deleteImgage" data-index='{{index1}}' mode="aspectFill"></image>
-           </view>
-         </view>
-         <view class='chooseimg' bindtap='uploadDetailImage'>
-           <image src="/icon/addphoto.png" class="choose-item"></image>
-         </view>
-         
-      </view>
-      <view class='tips'><text >选择新的头像吧~\n（长按对应的图片即可删除，留空则不修改）</text></view>
-      </view>
+      <view class="container flex">
+    <view>
+        <image src="{{form.avatar}}" class="avatar" bindtap="upload"></image>
+    </view>
+    </view>
+      <view class='tips'><text >选择新的头像吧~\n</text></view>
    </view>
 
       <view class="page-section">
