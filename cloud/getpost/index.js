@@ -48,7 +48,7 @@ exports.main = async (event, context) => {
     break;
   }
   
-  console.log(await oristatus.end())
+
 
   const $=db.command.aggregate
   //结合user表处理动态
@@ -81,7 +81,6 @@ exports.main = async (event, context) => {
       timezone:'Asia/Shanghai'
     })
   })
-  console.log(await oristatus2.end())
   
   
   //结合user表处理动态
@@ -111,6 +110,6 @@ exports.main = async (event, context) => {
   }).end()
   
   console.log(status)
-  return await status;
+  return await {status};
 
 }
