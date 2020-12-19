@@ -37,17 +37,17 @@ exports.main = async (event, context) => {
   //查询发帖总数
   let statusNum= await db.collection("posts").where({
     userId:userId
-  }).count()
+  }).count().total
 
   console.log(statusNum)
   //查询关注总数
   let followNum=await db.collection("interests").where({
     followerId:userId
-  }).count()
+  }).count().total
   //查询被关注总数
-  let followerNum=await db.collection("interests").where({
+  let followerNum=await db.collection("posts").where({
     userId:userId
-  }).count()
+  }).count().total
   
   //如果请求为他人主页，要查询是否关注
   var haveFollowed=null
@@ -56,15 +56,15 @@ exports.main = async (event, context) => {
     haveFollowed= await db.collection("interests").where({
       userId:wxContext.OPENID,
       followerId:userId
-    }).count()
+    }).count().total
   }
-  userinfo['statusNum']=await statusNum.total
-  userinfo['followNum']=await followNum.total
-  userinfo['followerNum']=await followerNum.total
+  userinfo['statusNum']=await statusNum
+  userinfo['followNum']=await followNum
+  userinfo['followerNum']=await followerNum
 
   console.log(userinfo)
   return await {data:{
     userinfo:userinfo,
-    haveFollowed:haveFollowed.total
+    haveFollowed:haveFollowed
   }}
 }

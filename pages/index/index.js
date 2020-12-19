@@ -1,5 +1,4 @@
 //Page Object
-
     //     //动态id
     //     statusid:1,
     //     //头像
@@ -45,13 +44,13 @@ getStatusList:function(){
     data:this.QueryParams
   }).then(result=>{
     console.log(result)
-    const total=result.result.list.length;
+    const total=result.result.status.length;
     console.log(total)
     this.totalPages=Math.floor(total/this.QueryParams.pagesize);
     console.log(this.totalPages)
     this.setData({
       //将原status数据与新请求的数据拼接在一起
-      status:[...this.data.status,...result.result.list]
+      status:[...this.data.status,...result.result.status]
     });
   })
 },
