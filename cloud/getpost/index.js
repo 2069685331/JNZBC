@@ -110,6 +110,6 @@ exports.main = async (event, context) => {
   }).end()
   
   console.log(status)
-  return await {status};
+  return await status;
 
 }
