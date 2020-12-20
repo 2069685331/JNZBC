@@ -9,7 +9,7 @@ Page({
 
 //向端口请求动态送给端口的数据
   QueryParams:{
-    query:"",//链接
+    listType:1, //请求分区的信息
     cid:"",//分类号
     pagenum:0,//页码
     pagesize:10//页长度
@@ -21,6 +21,7 @@ totalPages:0,
 //options(Object)
 onLoad: function(options) {
   this.QueryParams.cid=options.cid;
+  console.log(this.QueryParams.cid=options.cid)
   this.initImageSize();
   this.getStatusList();
 },
@@ -32,13 +33,13 @@ getStatusList:function(){
     data:this.QueryParams
   }).then(result=>{
     console.log(result)
-    console.log(result.result.status)
-    //没懂totalpage的意义何在，注释掉了
-    const total=result.data;
-    this.totalPages=Math.ceil(total/this.QueryParams.pagesize);
+    const total=result.result.status.list.length;
+    console.log(total)
+    this.totalPages=Math.floor(total/this.QueryParams.pagesize);
+    console.log(this.totalPages)
     this.setData({
       //将原status数据与新请求的数据拼接在一起
-      status:[...this.data.status,...result.result.status]
+      status:[...this.data.status,...result.result.status.list]
     });
   })
   console.log(this.date.status)
@@ -46,22 +47,24 @@ getStatusList:function(){
 
 //页面触底事件
 onReachBottom: function() {
-  if(this.QueryParams.pagenum>=this.totalPages)
+  if(this.totalPages==0)
   {
     wx.showToast({
-      title: '没有更多内容啦',
+      title: '没有更多消息啦',
       image:'/icon/reachbottom.png'
     });
   }
-  else
+  else if(this.totalPages == 1)
   {
     //请求页码+1
     this.QueryParams.pagenum++
+    console.log(this.QueryParams.pagenum)
     //请求页面
     this.getStatusList();
-    //console.log("还有下一页");
+    console.log("还有下一页");
   }
 },
+
 //下拉刷新事件
 onPullDownRefresh: function(){
   //重置status数组
@@ -75,10 +78,6 @@ onPullDownRefresh: function(){
   //完成请求，关闭下拉刷新界面
   wx.stopPullDownRefresh();
 },
-
-
-
-
 
 //图片预览函数
 handlePreviewImg:function(e){
@@ -115,10 +114,6 @@ this.setData({
   imagesSize:imagesSize
 })
 },
-
-
-
-
 
 onReady: function() {
   

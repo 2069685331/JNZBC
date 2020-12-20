@@ -13,6 +13,17 @@ exports.main = async (event, context) => {
     userId:wxContext.OPENID, //请求者的id
     }).count();
 
+  //查询是否重名
+  const name =await db.collection("user").where({
+      userId:event.userName, //请求者的username
+      }).count();
+  if(name.total == 0)
+  {
+    //有重名现象
+    return{
+      data:{nameConfict:true}
+    }
+  }
   console.log(flag)
   //如果无则插入，有则修改
   if(await flag.total==0)

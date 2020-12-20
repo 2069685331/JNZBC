@@ -5,7 +5,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userId:"",
+    userId:"123",
+    userInfo:{  //服务器上用户的信息（从服务器获取）
+      userId:"1",
+      userName:"TESTNAME",   //昵称
+      avatar:"/dongtai/user1.jpg",  //头像
+      motto:"暨南针不戳暨南针不戳暨南针不戳暨南针不戳！",  //简介
+    },
     form:{
       avatar: "", //上传的结果图片集合
       userName:"",
@@ -26,6 +32,14 @@ Page({
           url: `../upload/upload?src=${src}`
         })
       }
+    })
+  },
+
+  //将form.avatar设为原头像
+  setAvartar: function(e){
+    var avatar=this.userInfo.avatar
+    this.setData({
+      ['form.avatar']: avatar,
     })
   },
   
