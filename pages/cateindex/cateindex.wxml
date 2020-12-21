@@ -6,41 +6,47 @@
         <!--用户动态-->
         <view class="status-group">
             <view class="user-group">
-                <!-- 头像 -->
+                 <!-- 头像 -->
                 <navigator class="avatar" target="" url="../userindex/userindex?userId={{item1.userId}}" hover-class="navigator-hover" open-type="navigate">
-                    <image class="" src="{{item1.goods_small_logo}}"  lazy-load="false" binderror="" bindload="">
+                    <image class="" src="{{item1.avatar}}"  lazy-load="false" binderror="" bindload="">
                     </image>
                 </navigator>
-
-
                 <!-- 头像 -->
-
-                <view class="right-info">
+                 <view class="right-info">
                     <!-- 用户名 -->
                     <view class="username">
-                    <navigator class="" target="" url="../userindex/userindex?userId={{item1.userId}}" hover-class="navigator-hover" open-type="navigate">
-                      {{item1.goods_id}}  
-                    </navigator>
-                        </view>
+                        <navigator class="" target="" url="../userindex/userindex?userId={{item1.userId}}" hover-class="navigator-hover" open-type="navigate">
+                          {{item1.userName}}  
+                        </navigator>
+                    </view>
                     <!-- 用户名 -->
                     <!-- 日期 -->
-                    <view class="time">2020</view>
+                    <view class="time">{{item1.sendTime}}</view>
                     <!-- 日期 -->
-                </view>  
+                </view> 
             </view>
 
             <view class="status-content-group">
-                <!-- 文本部分 -->
-                <view class="content">
-                    <text class="{{item1.isF?'hide':'conts'}}" selectable="{{true}}" decode="{{true}}">{{item1.goods_name}}
-                    </text> 
-
-                </view>
+            <!-- 文本部分 -->
+            <navigator class="content" url="/pages/statusdetail/statusdetail?statusid={{item1.statusid}}">
+                <text class="conts" selectable="{{true}}" decode="{{true}}">{{item1.content}}
+                </text> 
+            </navigator>
                  <!-- 图片部分 -->
-                 <!-- 只允许1~4张图片 这部分有修改 后续需要重新写-->
-                 <view class="image-list-group"    style='width:100%'>
-                     <image class="" src='{{item1.goods_big_logo}}' data-index='{{index1}}' data-item='{{item1.imgArr}}' mode="aspectFill" 
-                     style='width:100%;max-height:500rpx'></image>  
+                 <!-- 只允许1~4张图片 -->
+                 <view class="image-list-group"   wx:if="{{item1.imgArr.length==1}}" style='width:100%'>
+                     <image wx:for='{{item1.imgArr}}' 
+                     wx:for-index="index2"
+                     wx:for-item="item2"
+                     class="" src='{{item2}}' data-index='{{index2}}' data-item='{{item1.imgArr}}' mode="aspectFill" 
+                     style='width:100%;max-height:500rpx' bindtap='handlePreviewImg'></image>  
+                 </view>
+                  <view class="image-list-group"   wx:elif="{{item1.imgArr.length>1}}" style='width:100%'>
+                     <image wx:for='{{item1.imgArr}}' 
+                     wx:for-index="index2"
+                     wx:for-item="item2"
+                    class="" src='{{item2}}' data-index='{{index2}}' data-item='{{item1.imgArr}}' mode="aspectFill"
+                     style='width:{{imagesSize}}px;height:{{imagesSize}}px' bindtap='handlePreviewImg'></image>  
                  </view>
             </view>
             <view class="status-handle">
