@@ -34,9 +34,17 @@ Page({
   },
 
 //向服务器请求likeMsg
-getLikeMsg:function(userId){
+getLikeMsg:function(){
   //这里需要向后端请求数据
-  
+  wx.cloud.callFunction({
+    name:"getlike",
+  }).then(result=>{
+    console.log(result)
+    this.setData({
+      //将原status数据与新请求的数据拼接在一起
+      likeMsg: result.result.list, //设置targetInfo
+    });
+  }) 
 },
 
   /**
@@ -45,7 +53,7 @@ getLikeMsg:function(userId){
   onLoad: function (options) {
     var userId = options;
     ////options为传入的userId，使用userId向服务器请求点赞通知followMsglikeMsg
-    this.getLikeMsg(userId);
+    this.getLikeMsg();
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
