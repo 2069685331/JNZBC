@@ -3,23 +3,25 @@
     <!-- 如果用户已登录，获取其信息 -->
     <view wx:if="{{userinfo}}">  
       <view class="user-info">
-        <image class="avatar" mode='aspectFill' src='{{userData.avatar}}'></image>
+
+        <image class="avatar" mode='aspectFill' src='{{WXuserinfo.avatar}}'></image>
         <view class="right-info">
-          <view class="nickname">{{userData.userName}}</view>
+          <view class="nickname">{{WXuserinfo.userName}}</view>
           <view class="motto">
-            简介：{{userData.motto}}
+            简介：{{WXuserinfo.motto}}
           </view>
         </view>
       </view>
       <!-- 关注/被关注/动态信息 -->
       <view class="article-info">
       <!-- 一下navigator点击后均会触发事件携带userid向服务器请求数据 -->
-        <navigator url="../follows/follows" class="article-item">
-          <text class="num">{{userData.followNum}}</text>关注</navigator>
-        <navigator url="../followers/followers" class="article-item">
-          <text class="num">{{userData.followerNum}}</text>关注我的</navigator>
-        <navigator url="../userindex/userindex" class="article-item">
-          <text class="num">{{userData.statusNum}}</text>动态</navigator>
+
+        <navigator url="../follows/follows?userId={{WXuserinfo.userId}}" class="article-item">
+          <text class="num">{{WXuserinfo.followNum}}</text>关注</navigator>
+        <navigator url="../followers/followers?userId={{WXuserinfo.userId}}" class="article-item">
+          <text class="num">{{WXuserinfo.followerNum}}</text>关注我的</navigator>
+        <navigator url="../userindex/userindex?userId={{WXuserinfo.userId}}" class="article-item">
+          <text class="num">{{WXuserinfo.statusNum}}</text>动态</navigator>
       </view>
     </view>
     <!-- 用户未登录，显示登录按钮 -->

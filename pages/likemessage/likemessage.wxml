@@ -20,7 +20,7 @@
                         </view>
                         <!-- 用户名 -->
                         <!-- 日期 -->
-                        <view class="comment-time">{{item1.likeTime}}</view>
+                        <view class="comment-time">{{item1.sendTime}}</view>
                         <!-- 日期 -->
                         
                         <!-- 通知内容 -->

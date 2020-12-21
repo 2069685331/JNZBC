@@ -14,10 +14,11 @@ exports.main = async (event, context) => {
     }).count();
 
   //查询是否重名
-  const name =await db.collection("user").where({
-      userId:event.userName, //请求者的username
-      }).count();
-  if(name.total == 0)
+  let name =await db.collection("user").where({
+      userName:event.userName, //请求者的username
+      }).get();
+  console.log(name)
+  if(name.data.length !=0 && name.data[0].userId != wxContext.OPENID)
   {
     //有重名现象
     return{

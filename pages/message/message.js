@@ -43,7 +43,30 @@ Page({
   },
   setIsUnread:function(){
     //这里需要向后端请求该主页的用户信息及haveFollowed信息
-    var that = this;
+    wx.cloud.callFunction({
+      name:"messageinfo",
+      data:{
+      },
+      success:res=>{
+        console.log(res);
+        var isUnread=res.result.data
+        this.setData({
+          //把messageList里面的isUnread项都与isUnread数组里面的值一对一对应地修改
+          'messageList[0].isUnread':isUnread[0],
+          'messageList[1].isUnread':isUnread[1],
+          'messageList[2].isUnread':isUnread[2],
+          'messageList[3].isUnread':isUnread[3],
+
+          'messageList[0].unreadNum':isUnread[0],
+          'messageList[1].unreadNum':isUnread[1],
+          'messageList[2].unreadNum':isUnread[2],
+          'messageList[3].unreadNum':isUnread[3]
+
+        })
+        
+      }
+    })
+    /*
     wx.request({
       url: '请求地址',
       data: {
@@ -66,13 +89,14 @@ Page({
       fail: function (err) { },//请求失败
       complete: function () { }//请求完成后执行的函数
     })
+    */
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     //从全局变量获取userId
-    this.setUserId();
+    //this.setUserId();
     //向服务器请求isUnread查看是否有未读通知
     this.setIsUnread();
   },
@@ -109,14 +133,14 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.setIsUnread();
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    
   },
 
   /**

@@ -209,7 +209,7 @@ handlePreviewImg:function(e){
   setUserId:function(){
     var userId = getApp().globalData.userInfo.userId
     this.setData({
-      userId:userId
+      Id:userId
     })
   },
 
@@ -223,6 +223,7 @@ handlePreviewImg:function(e){
       this.setData({
         //将原status数据与新请求的数据拼接在一起
         targetInfo: result.result.data.userinfo, //设置targetInfo
+        userId:result.result.data.requestId, //设置访问页面者的id
         haveFollowed: result.result.data.haveFollowed //设置haveFollowed
       });
       console.log(this.data.haveFollowed)
@@ -257,7 +258,7 @@ handlePreviewImg:function(e){
    */
   onLoad: function (options) {
     console.log(options);
-    this.setUserId();  //从全局变量获取UserId并写入 //后端备注：这个不太好，建议后端直接读取，前端传入参数
+    //this.setUserId();  //从全局变量获取UserId并写入 
     this.setTargetId(options); //从url传入的参数中设置targetInfo中userId的值
     this.getuserInfo();  //向后端请求该主页的用户信息及haveFollowed信息
     console.log(this.data.haveFollowed)
