@@ -44,7 +44,7 @@ getStatusList:function(){
     data:this.QueryParams
   }).then(result=>{
     console.log(result)
-    const total=result.result.status.list.length;
+    const total=result.result.status.length;
     //console.log(total)
     this.totalPages=Math.floor(total/this.QueryParams.pagesize);
     console.log(this.totalPages)
