@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 Page({
   data: {
       hiddenmodalput: true,   // 控制弹窗显示隐藏
@@ -18,6 +19,8 @@ Page({
       })
   }
 =======
+=======
+>>>>>>> main
 // index.js
 Page({
     data: {},
@@ -30,5 +33,8 @@ Page({
           url: '/pages/testtest/testtest?detail=' + detail,  // 通过url传到跳转页面
         })
     },
+<<<<<<< HEAD
+>>>>>>> main
+=======
 >>>>>>> main
 })

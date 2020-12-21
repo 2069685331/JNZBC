@@ -10,6 +10,7 @@
                 <navigator class="avatar" target="" url="../userindex/userindex?userId={{item1.userId}}" hover-class="navigator-hover" open-type="navigate">
                     <image class="" src="{{item1.goods_small_logo}}"  lazy-load="false" binderror="" bindload="">
                     </image>
+<<<<<<< HEAD
                 </navigator>
 
 
@@ -59,6 +60,54 @@
                     </image>Like
                 </view>
             </view>
+=======
+                </navigator>
+
+
+                <!-- 头像 -->
+
+                <view class="right-info">
+                    <!-- 用户名 -->
+                    <view class="username">
+                    <navigator class="" target="" url="../userindex/userindex?userId={{item1.userId}}" hover-class="navigator-hover" open-type="navigate">
+                      {{item1.goods_id}}  
+                    </navigator>
+                        </view>
+                    <!-- 用户名 -->
+                    <!-- 日期 -->
+                    <view class="time">2020</view>
+                    <!-- 日期 -->
+                </view>  
+            </view>
+
+            <view class="status-content-group">
+                <!-- 文本部分 -->
+                <view class="content">
+                    <text class="{{item1.isF?'hide':'conts'}}" selectable="{{true}}" decode="{{true}}">{{item1.goods_name}}
+                    </text> 
+
+                </view>
+                 <!-- 图片部分 -->
+                 <!-- 只允许1~4张图片 这部分有修改 后续需要重新写-->
+                 <view class="image-list-group"    style='width:100%'>
+                     <image class="" src='{{item1.goods_big_logo}}' data-index='{{index1}}' data-item='{{item1.imgArr}}' mode="aspectFill" 
+                     style='width:100%;max-height:500rpx'></image>  
+                 </view>
+            </view>
+            <view class="status-handle">
+                <!-- 评论 -->
+                <navigator class="comment-group" url="/pages/statusdetail/statusdetail?statusid={{item1.statusid}}&scrollId=handleGroup">
+                    <image class="" src="/dongtai/comment.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">   
+                    </image>{{item1.commentnum}}
+                </navigator>
+                <!-- like -->
+                <view class="praise-group" hover-class="none" hover-stop-propagation="false" bindtap="onCollectionTap" data-index='{{index1}}'>
+                    <image class="" src="{{item1.collected?'/dongtai/haslike.png':'/dongtai/like.png'}}" mode="widthFix" lazy-load="false" binderror="" bindload="">
+
+                    </image>{{item1.likenum}}
+                </view>
+            </view>
+>>>>>>> main
         </view>
 
     </view>
