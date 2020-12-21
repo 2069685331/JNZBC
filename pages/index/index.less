@@ -1,13 +1,14 @@
 .toptabswrap{
     display:flex;
     width:100%;
-    height:95rpx;
+    height:80rpx;
     .toptabs{
         display:flex;
         padding: 10rpx;
         background-color:var(--searchouter) ;
         position: fixed;
         width:100%;
+        padding-bottom: 0;
         .searchtab{
             display: flex;
             width:90%;
@@ -24,6 +25,7 @@
             align-items: center;
             navigator{
                 width:100%;
+                display:flex;
                 justify-content: center;
                 align-items: center;
                 image{
@@ -32,8 +34,6 @@
                     margin-top: 8rpx;
                 }
             }
-            display: flex;
-            flex:1
         
         }
     }
@@ -91,23 +91,13 @@
                     line-height: 45rpx;
                     /*关键属性（必须有的）  */
                     display: -webkit-box;
-                }
-                .hide {
-                    text-align: justify;
-                    font-size: 35rpx;
-                    /*关键属性（必须有的）  */
-                    display: -webkit-box;
                     /*规定子元素的排列方向 */
                     -webkit-box-orient: vertical;
                     /*限制文本显示的行数  */
-                    -webkit-line-clamp: 2;
+                    -webkit-line-clamp: 5;
                     /*实现多余的文字隐藏并用省略号来代表被隐藏的文字  */
                     overflow: hidden;
                     //text-overflow: ellipsis;
-                }
-                .iffold{
-                    font-size: 35rpx;
-                    color: #0f6a7b;
                 }
             }              
                 
@@ -130,6 +120,17 @@
             font-size: 30rpx;
             .comment-group{
                 border-right: 1px solid #909090;
+            }
+            navigator{
+                display: flex;
+                flex: 1;
+                justify-content: center;
+                align-items: center;
+                image{
+                    width: 40rpx;
+                    height: 40rpx;
+                    margin-right: 20rpx;
+                }
             }
             view{
                 display: flex;

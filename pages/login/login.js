@@ -1,66 +1,29 @@
 // pages/login/login.js
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    userId:"",
+    newFlag:"true",   //第一次登录为true，否则为false
+    canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
+  handleGetUserInfo(e){
+    // console.log(e);
 
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+    const {userInfo}=e.detail;
+    wx.setStorageSync("userinfo", userInfo);
+    //这里需要接收服务器发送的newFlag与userId，直接声明变量接收或写入data中
+    if(newFlag){   //第一次登录则跳到编辑资料页面
+      wx.navigateTo({
+        url: '../editor/editor?userId=' + userId
+      });
+    }
+    else{   //非第一次登录：跳到上一次页面
+      wx.navigateBack({
+        delta: 1
+      });
+    }
+    
+    
+      
   }
 })

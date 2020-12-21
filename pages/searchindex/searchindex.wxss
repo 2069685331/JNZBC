@@ -1,0 +1,191 @@
+page {
+  background-color: #fff;
+}
+.search-container {
+  height: 75rpx;
+  display: flex;
+  padding: 20rpx;
+  padding-bottom: 0;
+}
+.search-container .search-input {
+  background-color: var(--searchinter);
+  flex: 1;
+  border-radius: 35rpx;
+  height: 100%;
+  font-size: 30rpx;
+  padding-left: 30rpx;
+}
+.search-container .search-btn {
+  width: 110rpx;
+  height: 100%;
+  font-size: 30rpx;
+  color: var(--themecolor);
+  background-color: var(--searchouter);
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.search-result-container {
+  margin-top: 30rpx;
+}
+.search-result-container .search-item {
+  border-bottom: 1px solid var(--searchinter);
+  font-size: 30rpx;
+  padding: 15rpx 60rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.result-container .result-tab {
+  background-color: #fff;
+  display: flex;
+}
+.result-container .result-tab .tab-item {
+  height: 100%;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 15rpx;
+  padding-bottom: 15rpx;
+}
+.result-container .result-tab .active {
+  color: var(--themecolor);
+  border-bottom: 10rpx solid var(--themecolor);
+}
+.result-container .status-container .status-group {
+  width: 100%;
+  margin-bottom: 30rpx;
+  background: #fff;
+  padding: 30rpx;
+  box-sizing: border-box;
+}
+.result-container .status-container .status-group .user-group {
+  display: flex;
+}
+.result-container .status-container .status-group .user-group .avatar {
+  width: 80rpx;
+  height: 80rpx;
+  display: flex;
+}
+.result-container .status-container .status-group .user-group .avatar image {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  border-radius: 7%;
+}
+.result-container .status-container .status-group .user-group .right-info {
+  flex: 1;
+  margin-left: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.result-container .status-container .status-group .user-group .right-info .username {
+  font-size: 35rpx;
+}
+.result-container .status-container .status-group .user-group .right-info .time {
+  font-size: 24rpx;
+  color: #656565;
+}
+.result-container .status-container .status-group .status-content-group {
+  padding-top: 20rpx;
+}
+.result-container .status-container .status-group .status-content-group .content .conts {
+  text-align: justify;
+  font-size: 35rpx;
+  line-height: 45rpx;
+  /*关键属性（必须有的）  */
+  display: -webkit-box;
+  /*规定子元素的排列方向 */
+  -webkit-box-orient: vertical;
+  /*限制文本显示的行数  */
+  -webkit-line-clamp: 5;
+  /*实现多余的文字隐藏并用省略号来代表被隐藏的文字  */
+  overflow: hidden;
+}
+.result-container .status-container .status-group .status-content-group .image-list-group {
+  display: flex;
+  padding-top: 20rpx;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.result-container .status-container .status-group .status-content-group .image-list-group image {
+  margin-bottom: 5rpx;
+}
+.result-container .status-container .status-group .status-handle {
+  display: flex;
+  padding-top: 30rpx;
+  font-size: 30rpx;
+}
+.result-container .status-container .status-group .status-handle .comment-group {
+  border-right: 1px solid #909090;
+}
+.result-container .status-container .status-group .status-handle navigator {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+.result-container .status-container .status-group .status-handle navigator image {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 20rpx;
+}
+.result-container .status-container .status-group .status-handle view {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+.result-container .status-container .status-group .status-handle view image {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 20rpx;
+}
+.result-container .user-container {
+  margin: 30rpx 30rpx 0;
+  background: rgba(255, 255, 255, 0.99);
+  border-radius: 20rpx;
+  box-shadow: 0 0 20rpx rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 2;
+}
+.result-container .user-container .user-info {
+  display: flex;
+}
+.result-container .user-container .user-info .avatar {
+  display: flex;
+  width: 110rpx;
+  height: 110rpx;
+  border-radius: 7%;
+  margin-left: 40rpx;
+  position: relative;
+  top: 33rpx;
+}
+.result-container .user-container .user-info .right-info {
+  flex: 1;
+  margin-top: 30rpx;
+  margin-left: 50rpx;
+  margin-bottom: 30rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.result-container .user-container .user-info .right-info .nickname {
+  /* text-align: center; */
+  font-size: 43rpx;
+  font-weight: bold;
+  padding-top: 5rpx;
+  padding-bottom: 10rpx;
+  display: flex;
+  color: #222;
+  /* position: relative; */
+}
+.result-container .user-container .user-info .right-info .motto {
+  /* text-align: center; */
+  font-size: 28rpx;
+  line-height: 40rpx;
+  color: #999;
+}

@@ -1,13 +1,10 @@
-<view class="search">
-    <view class="search-container">
-        <view class="search-left">
-            <image class="search-image" src="/images/index/search.png" />
-            <input class="search-input"  placeholder="请输入你喜欢的商品" bindinput='watchSearch'/>
-        </view>
-        <view class="search-btn" data-keywords="{{keywords}}" bindtap="go_to_search_result">搜索</view>
-    </view>
+<view class="search-container">
+    <input class="search-input"  placeholder="{{searchValue}}" bindinput="handleInput" bindconfirm="handleConfirm"/>
+    <navigator url="../index/index" class="search-btn" open-type="switchTab" >取消</navigator>
 </view>
-<view class="history">
+<!-- wx：if的效果是如果hasInput为false，则显示历史纪录 -->
+<!-- 如果后端实现了历史纪录与热门搜索则换成wx:if="{{!hasInput}}" -->
+<view class="history" wx:if="{{false}}">
     <view class="history-title">
         <view class="history-title-left">搜索历史</view>
         <view class="history-title-right" bindtap="clearSearchHistory">清除历史</view>
@@ -20,7 +17,9 @@
         </block>
     </view>
 </view>
-<view class="hot">
+<!-- wx：if的效果是如果hasInput为false，则显示热门搜索 -->
+<!-- 如果后端实现了历史纪录与热门搜索则换成wx:if="{{!hasInput}}" -->
+<view class="hot" wx:if="{{false}}">
     <view class="hot-title">热门搜索</view>
     <view class="hot-content">
          <block wx:if="{{index_data.hot != false}}">
@@ -30,4 +29,8 @@
         </block>
     </view>
 </view>
-
+<!--  wx：if的效果是如果hasInput为true，则显示搜索结果-->
+<view class="search-contain" wx:if="{{hasInput}}">
+    <navigator class="search-item" 
+    wx:for="{{advice}}" target="" url="/pages/statusdetail/statusdetail?statusid={{item.statusid}}" hover-class="navigator-hover" open-type="navigate">{{item.goods_name}}</navigator>
+</view>

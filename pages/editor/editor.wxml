@@ -1,0 +1,46 @@
+<!--WXML示例代码-->
+<mp-form-page title="表单结构" subtitle="展示表单页面的信息结构样式, 分别由头部区域/控件区域/提示区域/操作区域和底部信息区域组成。">
+    <!-- <mp-form id="form" rules="{{rules}}" models="{{formData}}">
+    </mp-form> -->
+    
+    <!-- 图片添加区 -->
+    
+   <view class='img-add'>
+      <view class='img-box'>
+       <view class='img-list'>
+         <view hidden="{{form.avatar.length==0}}">
+           <view class='img-item'>
+             <image src='{{form.avatar}}' bindlongpress="deleteImgage" data-index='{{index1}}' mode="aspectFill"></image>
+           </view>
+         </view>
+         <view class='chooseimg' bindtap='uploadDetailImage'>
+           <image src="/icon/addphoto.png" class="choose-item"></image>
+         </view>
+         
+      </view>
+      <view class='tips'><text >选择新的头像吧~\n（长按对应的图片即可删除，留空则不修改）</text></view>
+      </view>
+   </view>
+
+      <view class="page-section">
+      <view class="weui-cells__title">新的昵称(留空则不修改)</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input class="weui-input" maxlength="10" bindinput="getNickname" placeholder="最大长度为10" />
+        </view>
+      </view>
+    </view>
+
+        <view class="page-section">
+        <view class="weui-cells__title">新的个性签名（留空则不修改）</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input class="weui-input" maxlength="10" bindinput="getMotto" placeholder="最大长度为10" />
+          </view>
+        </view>
+      </view>
+        
+    <view slot="button">
+        <button class="submit_btn" bindtap="submitForm">提交</button>
+    </view>
+</mp-form-page>

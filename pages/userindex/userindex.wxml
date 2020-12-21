@@ -2,11 +2,11 @@
   <!-- 用户资料框 -->
   <view class="avatar-warp">
     <view class="user-info">
-      <image class="avatar" mode='aspectFill' src='{{avatar}}'></image>
+      <image class="avatar" mode='aspectFill' src='{{userData.avatar}}'></image>
       <view class="user-right-info">
-        <view class="nickname">{{userName}}</view>
+        <view class="nickname">{{userData.userName}}</view>
         <view class="motto">
-          简介：{{motto}}
+          简介：{{userData.motto}}
         </view>
       </view>
     </view>
@@ -14,20 +14,20 @@
   
     <view class="article-info">
       <navigator url="../follows/follows" class="article-item">
-        <text class="num">{{follow_num}}</text>我针对的</navigator>
+        <text class="num">{{userData.followNum}}</text>我针对的</navigator>
       <navigator url="../followers/followers" class="article-item">
-        <text class="num">{{follower_num}}</text>针对我的</navigator>
+        <text class="num">{{userData.followerNum}}</text>针对我的</navigator>
       <view class="article-item">
-        <text class="num">{{status_num}}</text>动态</view>
+        <text class="num">{{userData.statusNum}}</text>动态</view>
     </view>
   </view>
-  <!-- 动态展示 -->
-  <view class="container" 
+
+<view class="container" 
 wx:for="{{status}}"
 wx:for-index="index1"
 wx:for-item="item1">
     <!--用户动态-->
-    <view class="status-group">
+    <view class="status-group" >
         <view class="user-group">
             <!-- 头像 -->
             <navigator class="avatar" target="" url="../userindex/userindex" hover-class="navigator-hover" open-type="navigate">
@@ -47,20 +47,17 @@ wx:for-item="item1">
                     </view>
                 <!-- 用户名 -->
                 <!-- 日期 -->
-                <view class="time">{{item1.time}}</view>
+                <view class="time">{{item1.sendTime}}</view>
                 <!-- 日期 -->
             </view>  
         </view>
 
         <view class="status-content-group">
             <!-- 文本部分 -->
-            <view class="content">
-                <text class="{{item1.isF?'hide':'conts'}}" selectable="{{true}}" decode="{{true}}">{{item1.content}}
-                </text>
-                <text class="iffold" bindtap='textFold' wx:if="{{item1.isF!= null}}" data-item="{{item1}}" data-index="{{index1}}">{{item1.isF ? '展开' : '收起'}}  
+            <navigator class="content" url="/pages/statusdetail/statusdetail?statusid={{item1._id}}">
+                <text class="conts" selectable="{{true}}" decode="{{true}}">{{item1.content}}
                 </text> 
-                
-            </view>
+            </navigator>
              <!-- 图片部分 -->
              <!-- 只允许1~4张图片 -->
              <view class="image-list-group"   wx:if="{{item1.imgArr.length==1}}" style='width:100%'>
@@ -80,19 +77,19 @@ wx:for-item="item1">
         </view>
         <view class="status-handle">
             <!-- 评论 -->
-            <view class="comment-group">
-                <image class="" src="/dongtai/comment.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
-                    
-                </image>评论
-            </view>
+            <navigator class="comment-group" url="/pages/statusdetail/statusdetail?statusid={{item1._id}}">
+                <image class="" src="/dongtai/comment.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">   
+                </image>{{item1.commentnum}}
+            </navigator>
             <!-- like -->
-            <view class="praise-group" hover-class="none" hover-stop-propagation="false">
-                <image class="" src="/dongtai/like.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
+            <view class="praise-group" hover-class="none" hover-stop-propagation="false" bindtap="onCollectionTap" data-index='{{index1}}'>
+                <image class="" src="{{item1.collected?'/dongtai/haslike.png':'/dongtai/like.png'}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
                     
-                </image>Like
+                </image>{{item1.likenum}}
             </view>
         </view>
     </view>
     
 </view>
+    
 </view>

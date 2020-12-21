@@ -1,36 +1,62 @@
 <view>
   <view class="avatar-warp">
-    <view class="user-info">
-      <image class="avatar" mode='aspectFill' src='{{avatar}}'></image>
-      <view class="right-info">
-        <view class="nickname">{{userName}}</view>
-        <view class="motto">
-          简介：{{motto}}
+    <!-- 如果用户已登录，获取其信息 -->
+    <view wx:if="{{userinfo}}">  
+      <view class="user-info">
+        <image class="avatar" mode='aspectFill' src='{{userData.avatar}}'></image>
+        <view class="right-info">
+          <view class="nickname">{{userData.userName}}</view>
+          <view class="motto">
+            简介：{{userData.motto}}
+          </view>
         </view>
       </view>
+      <!-- 关注/被关注/动态信息 -->
+      <view class="article-info">
+      <!-- 一下navigator点击后均会触发事件携带userid向服务器请求数据 -->
+        <navigator url="../follows/follows" class="article-item">
+          <text class="num">{{userData.followNum}}</text>关注</navigator>
+        <navigator url="../followers/followers" class="article-item">
+          <text class="num">{{userData.followerNum}}</text>关注我的</navigator>
+        <navigator url="../userindex/userindex" class="article-item">
+          <text class="num">{{userData.statusNum}}</text>动态</navigator>
+      </view>
     </view>
+    <!-- 用户未登录，显示登录按钮 -->
+    <view wx:else>
+      <view class="user-info">
+        <image class="avatar" mode='aspectFill' src='{{unloginData.logoUrl}}'></image>
+        <view class="right-info">
+          <view class="login-btm">
+            <navigator url="/pages/login/login">登录</navigator>
+          </view>
+          <view class="motto">
+            赶快登录吧！
+          </view>
+        </view>
+      </view>
       
-  
-    <view class="article-info">
-      <navigator url="../follows/follows" class="article-item">
-        <text class="num">{{follow_num}}</text>关注</navigator>
-      <navigator url="../followers/followers" class="article-item">
-        <text class="num">{{follower_num}}</text>关注我的</navigator>
-      <view class="article-item">
-        <text class="num">{{status_num}}</text>动态</view>
-      
+      <!-- 关注/被关注/动态信息 -->
+      <view class="article-info">
+        <view url="../follows/follows" class="article-item">
+          <text class="num">0</text>关注</view>
+        <view class="article-item">
+          <text class="num">0</text>关注我的</view>
+        <view class="article-item">
+          <text class="num">0</text>动态</view>
+      </view>
     </view>
   </view>
+
   <view class="menu">
-    
     <navigator url="">
       <image class="icon" src="../../icon/about.png"></image>
       关于我们
     </navigator>
   </view>
   
-  
-  <button type="default" bindtap="calling" style='width:80%;margin-top:20px;margin-bottom:20px; background-color:#0F6A7B; color:white'>编辑我的资料</button>
-  
+  <view wx:if="{{userinfo}}">  
+    <navigator url="../editor/editor" class="btm" style='width:80%;margin-top:20px;margin-bottom:20px; background-color:#0F6A7B; color:white'>编辑我的资料</navigator>
+  </view>
   
 </view>

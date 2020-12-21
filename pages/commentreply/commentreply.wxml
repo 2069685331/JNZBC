@@ -1,0 +1,102 @@
+<!--pages/commentreply/commentreply.wxml-->
+<view class="container">
+    <!-- 评论 -->
+    <view class="comment-area-container">
+        <view class="single-comment" >                  
+            <view class="left-part">
+                    <!-- 头像 -->
+                     <navigator class="comment-avatar" target="" url="../userindex/userindex?userId={{comment.userId}}" hover-class="navigator-hover" open-type="navigate">
+                         <image class="" src="{{comment.avatar}}"  lazy-load="false" binderror="" bindload="">
+                         </image>
+                     </navigator>
+                     <!-- 头像 -->
+                </view>
+                <view class="right-part">
+                    <!-- 用户名 -->
+                    <view class="comment-username">
+                        <navigator class="" target="" url="../userindex/userindex?userId={{comment.userId}}" hover-class="navigator-hover" open-type="navigate">
+                          {{comment.userName}}  
+                        </navigator>
+                    </view>
+                    <!-- 用户名 -->
+
+                    <!-- 日期 -->
+                    <view class="comment-time">{{comment.sendTime}}</view>
+                    <!-- 日期 -->
+                    
+                    <!-- 评论内容 -->
+                    <view class="commentpart">
+                        <text class="comment-text" user-select="{{true}}" decode="{{true}}">{{comment.commentText}}</text> 
+                    </view>
+                    <!-- 评论内容 -->
+ 
+                    <view class="function-list">
+                        <!-- 评论的评论按钮 -->
+                         <view   class="comment-group" bindtap='focusCommentButn' data-statusid='{{comment.postId}}' data-commentId='{{comment._id}}'>回复</view>
+                        <!-- 评论的评论按钮 -->
+
+                        <!-- 删除 -->
+                        <view class="delete-comment" bindtap="deleteComment" data-commentId='{{comment._id}}' wx:if="{{myinfo.myUserId==comment.userId}}">删除</view>
+                        <!-- 删除 -->
+                    </view>
+                </view>
+        </view>
+    
+    </view>
+
+    <!-- 回复列表 -->
+    <view class="reply-area-container">
+        <view class="single-reply" 
+        wx:for="{{reply}}"
+        wx:for-index="index1"
+        wx:for-item="item1">                    
+            <view class="left-part">
+                    <!-- 头像 -->
+                     <navigator class="reply-avatar" target="" url="../userindex/userindex?userId={{item1.userId}}" hover-class="navigator-hover" open-type="navigate">
+                         <image class="" src="{{item1.avatar}}"  lazy-load="false" binderror="" bindload="">
+                         </image>
+                     </navigator>
+                     <!-- 头像 -->
+                </view>
+                <view class="right-part">
+                    <!-- 用户名 -->
+                    <view class="reply-username">
+                        <navigator class="" target="" url="../userindex/userindex?userId={{item1.userId}}" hover-class="navigator-hover" open-type="navigate">
+                          {{item1.userName}}  
+                        </navigator>
+                    </view>
+                    <!-- 用户名 -->
+
+                    <!-- 日期 -->
+                    <view class="reply-time">{{item1.sendTime}}</view>
+                    <!-- 日期 -->
+                    
+                    <!-- 评论内容 -->
+                    <view class="replypart">
+                        <text class="reply-text" user-select="{{true}}" decode="{{true}}">{{item1.reply}}</text> 
+                    </view>
+                    <!-- 评论内容 -->
+                     
+                    <view class="function-list">
+                        <!-- 删除 -->
+                        <view class="delete-reply" bindtap="deleteReply" data-commentId='{{item1._id}}' wx:if="{{myinfo.myUserId==item1.myUserId}}">删除</view>
+                        <!-- 删除 -->
+                    </view>
+                </view>
+        </view>
+    
+    </view>
+    
+
+    <!-- 弹出回复评论的输入框 -->
+    <view class='commentInputView'>
+        <view  class='commentInput' wx:if='{{commentIsInput}}'>
+            <textarea class='input' show-confirm-bar="{{false}}" 
+            auto-focus="{{true}}" cursor-spacing="{{20}}" 
+            auto-height="{{true}}" value="{{value}}" 
+            bindfocus="commentInputFocus" focus='{{commentFoucusInput}}' 
+            bindblur="commentInputBlur" bindinput="getReply"></textarea>
+            <view class='send'bindtap="sendReply">发送</view>
+        </view>
+    </view>
+</view>

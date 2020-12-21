@@ -5,12 +5,27 @@ Page({
    * 页面的初始数据
    */
   data: {
-    avatar:"/dongtai/user1.jpg",  //头像
-    userName:'Leonardo',  //用户名
-    motto:"暨南针不戳！",  //简介
-    follow_num:'13',  //我关注的数量
-    follower_num:'15',  //关注我的数量
-    status_num:'5'  //动态数量
+    userinfo:{},  //用户的微信信息（用户登录后会自动写入）
+
+    userData:{  //服务器上用户的信息（从服务器获取）
+      userId:"",
+      userName:"TESTNAME",   //昵称
+      avatar:"/dongtai/user1.jpg",  //头像
+      motto:"暨南针不戳！",  //简介
+      followNum:'13',  //我关注的数量
+      followerNum:'15',  //关注我的数量
+      statusNum:'5'  //动态数量
+    },
+
+    unloginData:{   //未登录的用户信息
+      logoUrl:"/icon/logo.png",  //头像
+      motto:"暨南针不戳！",  //简介
+      followNum:'0',  //我关注的数量
+      followerNum:'0',  //关注我的数量
+      statusNum:'0'  //动态数量
+    }
+    
+    
   },
 
   /**
@@ -31,7 +46,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    const userinfo=wx.getStorageSync("userinfo");
+    this.setData({
+      userinfo:userinfo
+    });
   },
 
   /**

@@ -1,0 +1,73 @@
+/* pages/editor/editor.wxss */
+page {
+  background: #f3f3f3;
+}
+
+.img-add {
+    width: 100%;
+    background-color: #fff;
+  }
+  .img-add .img-box {
+    width: 92%;
+    margin: auto;
+    padding-top: 20rpx;
+  }
+  .img-add .img-box .img-list {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .img-add .img-box .img-list view .img-item {
+    width: 30%;
+    text-align: left;
+    margin-right: 20rpx;
+    margin-bottom: 10rpx;
+  }
+  .img-add .img-box .img-list view .img-item image {
+    width: 205rpx;
+    height: 205rpx;
+  }
+  .img-add .img-box .img-list .chooseimg {
+    background-color: #fff;
+  }
+  .img-add .img-box .img-list .chooseimg .choose-item {
+    float: left;
+    position: relative;
+    margin-right: 9rpx;
+    margin-bottom: 9rpx;
+    width: 205rpx;
+    height: 205rpx;
+    border: 1px solid #d9d9d9;
+  }
+  .img-add .img-box .tips {
+    color: #888888;
+    font-size: 35rpx;
+    padding-bottom: 20rpx;
+  }
+
+
+  .page-section{
+    margin-bottom: 20rpx;
+  }
+
+  .submit_btn{
+    
+    margin: 50rpx auto;
+    border-radius: 10rpx;
+    position: relative;
+    font-size: 38rpx;
+    text-align: center;
+    line-height: 43rpx;
+    padding: 25rpx 3rpx;
+    width: 40%;
+    background-color:#0F6A7B; 
+    color:white
+    
+  }
+
+  .tips{
+    font-size: 35rpx;
+  }

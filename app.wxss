@@ -11,11 +11,13 @@ page,view,text,swiper,swiper-item,image,navigator{
 page{
 
     /*搜索框外层颜色*/
-    --searchouter:#0f6a7b;
+    --searchouter:#fff;
     /*搜索框内层颜色*/
     --searchinter :#e1e1e1;
     /*搜索框字体颜色*/
     --searchfont:#606060;
+    /* 输入框背景颜色 */
+    --inputbgc:#f7f7f7;
     /* 主题颜色 */
     --themecolor:#0f6a7b;
 }

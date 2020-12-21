@@ -11,29 +11,37 @@ Page({
   QueryParams:{
     query:"",//链接
     cid:"",//分类号
-    pagenum:1,//页码
+    pagenum:0,//页码
     pagesize:10//页长度
   },
 
 //总页数
-totalPages:1,
+totalPages:0,
 
 //options(Object)
 onLoad: function(options) {
   this.QueryParams.cid=options.cid;
+  this.initImageSize();
   this.getStatusList();
 },
 //获取动态列表数据
 getStatusList:function(){
-  request({url:"https://api-hmugo-web.itheima.net/api/public/v1/goods/search",data:this.QueryParams})
-  .then(result=>{
-    const total=result.data.message.total;
-    this.totalPages=Math.ceil(total/this.QueryParams.pagesize);
+  // request({url:"https://api-hmugo-web.itheima.net/api/public/v1/goods/search",data:this.QueryParams})
+  wx.cloud.callFunction({
+    name:"getpost",
+    data:this.QueryParams
+  }).then(result=>{
+    console.log(result)
+    console.log(result.result.status)
+    //没懂totalpage的意义何在，注释掉了
+    // const total=result.data;
+    // this.totalPages=Math.ceil(total/this.QueryParams.pagesize);
     this.setData({
       //将原status数据与新请求的数据拼接在一起
-      status:[...this.data.status,...result.data.message.goods]
+      status:[...this.data.status,...result.result.status]
     });
   })
+  console.log(this.date.status)
 },
 
 //页面触底事件
@@ -61,7 +69,7 @@ onPullDownRefresh: function(){
     status:[]
   });
   //重置页码
-  this.QueryParams.pagenum=1;
+  this.QueryParams.pagenum=0;
   //重新发送请求
   this.getStatusList();
   //完成请求，关闭下拉刷新界面

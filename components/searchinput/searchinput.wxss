@@ -11,6 +11,6 @@
   align-items: center;
   background-color: var(--searchinter);
   border-radius: 35rpx;
+  font-size: 30rpx;
   color: var(--searchfont);
-  font-size: 25rpx;
 }
