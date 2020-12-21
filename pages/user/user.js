@@ -27,12 +27,32 @@ Page({
     
     
   },
+    //向端口请求用户首页信息，送给端口的数据
+    LoginParams:{
+      listType:0,//请求自己主页数据
+      userId:""
+    },
 
+//向后端请求该主页的用户信息及haveFollowed信息
+getuserInfo:function(){
+  wx.cloud.callFunction({
+    name:"login",
+    data:this.LoginParams
+  }).then(result=>{
+    console.log(result)
+    this.setData({
+      //将原status数据与新请求的数据拼接在一起
+      WXuserinfo: result.result.data.userinfo, //设置targetInfo
+    });
+    getApp().globalData.userInfo=result.result.data.userinfo
+    console.log(getApp().globalData.userInfo)
+  }) 
+},
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+     
   },
 
   /**
@@ -46,10 +66,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    const WXuserinfo=wx.getStorageSync("WXuserinfo");
-    this.setData({
-      WXuserinfo:WXuserinfo
-    });
+    this.getuserInfo()
   },
 
   /**

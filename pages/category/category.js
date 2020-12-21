@@ -56,6 +56,16 @@ Page({
    //   fail: ()=>{},
    //   complete: ()=>{}
    // }); 
+   wx.cloud.callFunction({
+    name:'cate',
+    data:{},
+    success:res=>{
+      console.log(res);
+      this.setData({
+        catesList:res.result.data
+      })
+    }
+  })
    //轮播图加载函数
    request({url:this.QueryParams.swiperquery})
    .then(result=>{
@@ -64,16 +74,18 @@ Page({
      })
    });
    //分区加载函数
-   request({url:this.QueryParams.catequery})
-   .then(result=>{
+   //调用云函数
+   
+  //  request({url:this.QueryParams.catequery})
+  //  .then(result=>{
     
-      this.cates=result.data.message
-      //构造catelist
-      let catesList=this.cates[0].children
-      this.setData({
-        catesList
-      })
-  })
+  //     this.cates=result.data.message
+  //     //构造catelist
+  //     let catesList=this.cates[0].children
+  //     this.setData({
+  //       catesList
+  //     })
+  // })
   },
 
   /**
