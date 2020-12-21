@@ -33,14 +33,13 @@ getStatusList:function(){
   }).then(result=>{
     console.log(result)
 
-    console.log(result.result.status)
-    //没懂totalpage的意义何在，注释掉了
-    // const total=result.data;
-    // this.totalPages=Math.ceil(total/this.QueryParams.pagesize);
+    const total=result.result.status.length;
+    console.log(total)
+    this.totalPages=Math.floor(total/this.QueryParams.pagesize);
+    console.log(this.totalPages)
     this.setData({
       //将原status数据与新请求的数据拼接在一起
       status:[...this.data.status,...result.result.status]
-
     });
   })
   console.log(this.date.status)
