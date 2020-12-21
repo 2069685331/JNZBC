@@ -27,6 +27,7 @@ exports.main = async (event, context) => {
   return await db.collection("likes").add({
     data:{
     postId:event.statusid,              //设置帖子id
+    likeId:event.userId,         //设置被点赞者id
     userId: wxContext.OPENID,     //设置点赞者id
     isA: false,
     sendTime: db.serverDate()    //入数据库时间

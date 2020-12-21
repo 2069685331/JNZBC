@@ -10,8 +10,8 @@ exports.main = async (event, context) => {
 
   return await db.collection("interests").add({
     data:{
-    followId:event.userId,              //设置帖子id
-    userId: wxContext.OPENID,     //设置点赞者id
+    followId:event.userId,              //设置被关注id
+    userId: wxContext.OPENID,     //设置关注者id
     isA: false,
     sendTime: db.serverDate()    //入数据库时间
     },

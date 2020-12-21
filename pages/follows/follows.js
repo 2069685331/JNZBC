@@ -6,26 +6,34 @@ Page({
    */
   data: {
     follows:[
-      {
-        userId:"1",
-        userName:'Leonardo',
-        avatar:"/dongtai/user1.jpg",
-        motto:"暨南针不戳！"
-      },
-      {
-        userId:"2",
-        userName:'Depp',
-        avatar:"/dongtai/user2.jpg",
-        motto:"暨南针不错！"
-      }
+      // {
+      //   userId:"1",
+      //   userName:'Leonardo',
+      //   avatar:"/dongtai/user1.jpg",
+      //   motto:"暨南针不戳！"
+      // },
     ]
   },
 
+  getfollow:function(){
+    wx.cloud.callFunction({
+      name:"getfollow",
+      data:{
+        listType:0 //获取我关注的用户
+      }
+    }).then(result=>{
+      console.log(result)
+      this.setData({
+        //将原status数据与新请求的数据拼接在一起
+        follows: result.result.list, //设置targetInfo
+      });
+    }) 
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getfollow()
   },
 
   /**
