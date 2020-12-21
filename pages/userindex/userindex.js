@@ -115,53 +115,204 @@ initImageSize:function(){
   onLoad: function (options) {
     this.initImageSize();
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  //向端口请求用户首页信息，送给端口的数据
+  LoginParams:{
+    listType:1,//请求他人主页数据
+    userId:""
   },
+//初始化关注按钮文字
+initFollowBtn:function(){
+  console.log(this.data.haveFollowed)
+  this.data.haveFollowed ? this.setData({
+    followText: '已关注',
+    btnColor: 'background-color:#0F6A7B;'
+  }) : this.setData({
+    followText: '关注',
+    btnColor: 'background-color:#1596AF;'
+  })
+},
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+//关注处理函数
+handleFollow:function(){
+  var userId=this.data.targetInfo['userId']
+  console.log(userId)
+  //已关注为1，就变成0；未关注为0，就变成1
+  this.data.haveFollowed = this.data.haveFollowed? 0 :1
+  //前端处理
+  this.data.haveFollowed ? this.setData({
+    followText: '已关注',
+    btnColor: 'background-color:#0F6A7B;'
+    //向服务传输关注发起者的id(数据库中为followId）：this.userId，被关注者的id（数据库中为userId）：this.targetInfo.userId
+  }) : this.setData({
+    followText: '关注',
+    btnColor: 'background-color:#1596AF;'
+    //向服务传输关注取消发起者的id(数据库中为followId）：this.userId，被关注者的id（数据库中为userId）：this.targetInfo.userId
+  })
+  //后端处理
+  if(this.data.haveFollowed ==0)
+  {
+    //取消关注
+    wx.cloud.callFunction({
+      name:"followcancel",
+      data:{userId}
+    }).then(result=>{
+      console.log(result)
+    })
   }
+  else if(this.data.haveFollowed ==1)
+  {
+    //点击关注
+    wx.cloud.callFunction({
+      name:"followadd",
+      data:{userId}
+    }).then(result=>{
+      console.log(result)
+    })
+  }
+  },
+
+//图片预览函数
+handlePreviewImg:function(e){
+  console.log(e)
+  var index = e.currentTarget.dataset.index;
+  var item = e.currentTarget.dataset.item;
+  wx.previewImage({
+  current: item[index],     //当前图片地址
+  urls: item,               //所有要预览的图片的地址集合
+  success: function(res) {},
+  fail: function(res) {},
+  complete: function(res) {},
+  }) 
+  },
+  
+  //动态图片宽度预处理函数
+  initImageSize:function(){
+  const windowWidth=wx.getSystemInfoSync().windowWidth;
+  const statusWidth=windowWidth-30*(windowWidth/750)*2
+  const imagesSize=(statusWidth-5*(windowWidth/750))/2
+  this.setData({
+    imagesSize:imagesSize
+  })
+  },
+
+  //从url传入的参数中设置targetInfo中userId的值
+  setTargetId:function(e){
+    var targetId = 'targetInfo.userId';
+    this.setData({
+      [targetId]:e.userId
+    })
+    this.QueryParams.userId=e.userId
+    this.LoginParams.userId=e.userId
+  },
+
+  //从全局变量获取userId
+  setUserId:function(){
+    var userId = getApp().globalData.userInfo.userId
+    this.setData({
+      userId:userId
+    })
+  },
+
+  //向后端请求该主页的用户信息及haveFollowed信息
+  getuserInfo:function(){
+    wx.cloud.callFunction({
+      name:"login",
+      data:this.LoginParams
+    }).then(result=>{
+      console.log(result)
+      this.setData({
+        //将原status数据与新请求的数据拼接在一起
+        targetInfo: result.result.data.userinfo, //设置targetInfo
+        haveFollowed: result.result.data.haveFollowed //设置haveFollowed
+      });
+      console.log(this.data.haveFollowed)
+      this.initFollowBtn();  //初始化关注按钮
+    })
+    /*
+    wx.request({
+      url: '请求地址',
+      data: {
+        "key": "targetId",  //请求的新officeMsg
+        "userId": that.data.targetInfo.userId,  //主页用户id
+        "pageNum": that.data.pagenum, //从数据里获取当前页数
+        "pageSize": 10, //每页显示条数
+      },
+      method: "POST",
+      success: function (res) {
+        var targetInfo = res.data.targetInfo; //从此次请求返回的数据中获取targetInfo
+        var haveFollowed = res.data.haveFollowed; //从此次请求返回的数据中获取haveFollowed
+        that.setData({
+          officeMsg: targetInfo, //设置targetInfo
+          haveFollowed: haveFollowed //设置haveFollowed
+        })
+      },
+      fail: function (err) { },//请求失败
+      complete: function () { }//请求完成后执行的函数
+    })
+    */
+   
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    console.log(options);
+    this.setUserId();  //从全局变量获取UserId并写入 //后端备注：这个不太好，建议后端直接读取，前端传入参数
+    this.setTargetId(options); //从url传入的参数中设置targetInfo中userId的值
+    this.getuserInfo();  //向后端请求该主页的用户信息及haveFollowed信息
+    console.log(this.data.haveFollowed)
+    this.initImageSize();  //图片宽度处理
+    console.log(this.data.haveFollowed)
+    this.getStatusList();
+    
+  },
+//获取动态列表数据
+getStatusList:function(){
+  wx.cloud.callFunction({
+    name:"getpost",
+    data:this.QueryParams
+  }).then(result=>{
+    console.log(result)
+    const total=result.result.list.length;
+    console.log(total)
+    this.totalPages=Math.floor(total/this.QueryParams.pagesize);
+    console.log(this.totalPages)
+    this.setData({
+      //将原status数据与新请求的数据拼接在一起
+      status:[...this.data.status,...result.result.list]
+    });
+  })
+},
+//下拉刷新事件
+onPullDownRefresh: function(){
+  //重置status数组
+  this.setData({
+    status:[]
+  });
+  //重置页码
+  this.QueryParams.pagenum=0;
+  //重新发送请求
+  this.getStatusList();
+  //完成请求，关闭下拉刷新界面
+  wx.stopPullDownRefresh();
+},
+//页面触底事件
+onReachBottom: function() {
+  if(this.totalPages==0)
+  {
+    wx.showToast({
+      title: '没有更多消息啦',
+      image:'/icon/reachbottom.png'
+    });
+  }
+  else if(this.totalPages == 1)
+  {
+    //请求页码+1
+    this.QueryParams.pagenum++
+    console.log(this.QueryParams.pagenum)
+    //请求页面
+    this.getStatusList();
+    console.log("还有下一页");
+  }
+}
 })

@@ -9,7 +9,7 @@ Page({
 
 //向端口请求动态送给端口的数据
   QueryParams:{
-    query:"",//链接
+    listType:1, //请求分区的信息
     cid:"",//分类号
     pagenum:0,//页码
     pagesize:10//页长度
@@ -46,22 +46,24 @@ getStatusList:function(){
 
 //页面触底事件
 onReachBottom: function() {
-  if(this.QueryParams.pagenum>=this.totalPages)
+  if(this.totalPages==0)
   {
     wx.showToast({
-      title: '没有更多内容啦',
+      title: '没有更多消息啦',
       image:'/icon/reachbottom.png'
     });
   }
-  else
+  else if(this.totalPages == 1)
   {
     //请求页码+1
     this.QueryParams.pagenum++
+    console.log(this.QueryParams.pagenum)
     //请求页面
     this.getStatusList();
-    //console.log("还有下一页");
+    console.log("还有下一页");
   }
 },
+
 //下拉刷新事件
 onPullDownRefresh: function(){
   //重置status数组
@@ -75,10 +77,6 @@ onPullDownRefresh: function(){
   //完成请求，关闭下拉刷新界面
   wx.stopPullDownRefresh();
 },
-
-
-
-
 
 //图片预览函数
 handlePreviewImg:function(e){
@@ -115,10 +113,6 @@ this.setData({
   imagesSize:imagesSize
 })
 },
-
-
-
-
 
 onReady: function() {
   

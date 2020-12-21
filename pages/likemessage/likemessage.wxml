@@ -1,0 +1,46 @@
+<view wx:for="{{likeMsg}}"
+      wx:for-index="index1"
+      wx:for-item="item1">
+    <view class="wrap" >
+        <view class="single-annoucement" >                    
+                <view class="left-part">
+                        <!-- 头像 -->
+                        <navigator class="comment-avatar" target="" url="../userindex/userindex?userId={{item1.userId}}" hover-class="navigator-hover" open-type="navigate">
+                            <image class="" src="{{item1.avatar}}"  lazy-load="false" binderror="" bindload="">
+                            </image>
+                        </navigator>
+                        <!-- 头像 -->
+                    </view>
+                    <view class="right-part">
+                        <!-- 用户名 -->
+                        <view class="comment-username">
+                            <navigator class="" target="" url="../userindex/userindex?userId={{item1.userId}}" hover-class="navigator-hover" open-type="navigate">
+                            {{item1.userName}}  
+                            </navigator>
+                        </view>
+                        <!-- 用户名 -->
+                        <!-- 日期 -->
+                        <view class="comment-time">{{item1.likeTime}}</view>
+                        <!-- 日期 -->
+                        
+                        <!-- 通知内容 -->
+                        <view class="commentpart">
+                            <text class="comment-text" user-select="{{true}}" decode="{{true}}">点赞了该动态</text> 
+                        </view>
+                        <!-- 通知内容 -->
+                        <!-- 评论的动态 -->
+                        <view class="comment-reply">
+                            <navigator class="reply" target="" url="/pages/statusdetail/statusdetail?statusid={{item1.statusId}}" hover-class="navigator-hover" open-type="navigate">
+                            查看该动态
+                            </navigator>
+                        </view>
+                        <!-- 评论的动态 -->
+                        
+                        
+                    </view>
+                    
+                        
+                    
+        </view>
+    </view>
+</view>

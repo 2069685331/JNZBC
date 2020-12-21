@@ -60,13 +60,23 @@
     color: #999;
   }
 
-.reddot {
+  .reddot {
+    display:block;
+    background:rgb(216, 0, 0);
+    border-radius:50%;
+    width:40rpx;
+    height:40rpx;
+    top:43rpx;
+    right:60rpx;
+    position:absolute;
+    }
+
+  .unread-Num {
+  position:relative;
+  color:white;
 	display:block;
-	background:rgb(216, 0, 0);
-	border-radius:50%;
-	width:30rpx;
-	height:30rpx;
-	top:43rpx;
-	right:60rpx;
-	position:absolute;
+	font-size: 35rpx;
+	top:-7rpx;
+	left:10rpx;
+	
     }

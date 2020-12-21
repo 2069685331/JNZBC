@@ -117,6 +117,17 @@
 .container .status-group .status-handle .comment-group {
   border-right: 1px solid #909090;
 }
+.container .status-group .status-handle navigator {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+.container .status-group .status-handle navigator image {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 20rpx;
+}
 .container .status-group .status-handle view {
   display: flex;
   flex: 1;

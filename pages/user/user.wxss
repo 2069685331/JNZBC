@@ -22,6 +22,7 @@ page {
 
 .user-info{
   display: flex;
+  margin-bottom: 10rpx;
 }
 
 .avatar-warp .avatar {
@@ -37,9 +38,9 @@ page {
 
 .right-info{
   flex: 1;
-  margin-top: 65rpx;
+  margin-top: 38rpx;
   margin-left: 50rpx;
-  margin-bottom: 40rpx;
+  padding-right: 10rpx;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -47,7 +48,7 @@ page {
 
 .nickname {
   /* text-align: center; */
-  font-size: 54rpx;
+  font-size: 43rpx;
   font-weight: bold;
   padding-bottom:20rpx;
   display: flex;
@@ -58,7 +59,7 @@ page {
 
 .motto {
   /* text-align: center; */
-  
+  /* padding-right: 10rpx; */
   font-size: 28rpx;
   line-height: 40rpx;
   color: #999;

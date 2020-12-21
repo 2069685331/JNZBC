@@ -1,0 +1,38 @@
+<view wx:for="{{officeMsg}}"
+      wx:for-index="index1"
+      wx:for-item="item1">
+    <view class="container" >
+        <view class="status-group" >
+        <view class="user-group">
+            <!-- 头像 -->
+            <navigator class="avatar" target="" url="../userindex/userindex?userId={{item1.userId}}" hover-class="navigator-hover" open-type="navigate">
+                <image class="" src="../../icon/logo.png"  lazy-load="false" binderror="" bindload="">
+                </image>
+            </navigator>
+           
+           
+            <!-- 头像 -->
+
+            <view class="right-info">
+                <!-- 用户名 -->
+                <view class="username">
+                    暨南针小助手
+                </view>
+                <!-- 用户名 -->
+                <!-- 日期 -->
+                <view class="time">{{item1.sendTime}}</view>
+                <!-- 日期 -->
+            </view>  
+        </view>
+
+        <view class="status-content-group">
+            <!-- 文本部分 -->
+            <navigator class="content" url="/pages/statusdetail/statusdetail?statusid={{item1.statusid}}">
+                <text class="conts" selectable="{{true}}" decode="{{true}}">{{item1.msgText}}
+                </text> 
+            </navigator>
+        </view>
+        
+    </view>
+    </view>
+</view>

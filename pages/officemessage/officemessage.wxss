@@ -1,0 +1,105 @@
+page{
+    background-color: #f0f0f0;
+}
+
+  .container {
+    margin: 23rpx 23rpx 0;
+    background: rgba(255, 255, 255, 0.99);
+    border-radius: 20rpx;
+    box-shadow: 0 0 20rpx rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 2;
+  }
+
+  .container .status-group {
+    /* width: 100%; */
+    margin-bottom: 30rpx;
+    /* background: #fff; */
+    padding: 30rpx;
+    /* box-sizing: border-box; */
+  }
+  .container .status-group .user-group {
+    display: flex;
+  }
+  .container .status-group .user-group .avatar {
+    width: 80rpx;
+    height: 80rpx;
+    display: flex;
+  }
+  .container .status-group .user-group .avatar image {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    border-radius: 7%;
+  }
+  .container .status-group .user-group .right-info {
+    flex: 1;
+    margin-left: 20rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .container .status-group .user-group .right-info .username {
+    font-size: 35rpx;
+  }
+  .container .status-group .user-group .right-info .time {
+    font-size: 24rpx;
+    color: #656565;
+  }
+  .container .status-group .status-content-group {
+    padding-top: 20rpx;
+    color:#2c2c2c;
+  }
+  .container .status-group .status-content-group .content .conts {
+    text-align: justify;
+    font-size: 35rpx;
+    line-height: 45rpx;
+    /*关键属性（必须有的）  */
+    display: -webkit-box;
+    /* 规定子元素的排列方向 */
+    /* -webkit-box-orient: vertical; */
+    /*限制文本显示的行数  */
+    /* -webkit-line-clamp: 5; */
+    /*实现多余的文字隐藏并用省略号来代表被隐藏的文字  */
+    /* overflow: hidden; */ 
+  }
+  .container .status-group .status-content-group .image-list-group {
+    display: flex;
+    padding-top: 20rpx;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .container .status-group .status-content-group .image-list-group image {
+    margin-bottom: 5rpx;
+  }
+  .container .status-group .status-handle {
+    display: flex;
+    padding-top: 30rpx;
+    font-size: 30rpx;
+  }
+  .container .status-group .status-handle .comment-group {
+    border-right: 1px solid #909090;
+  }
+  .container .status-group .status-handle navigator {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+  }
+  .container .status-group .status-handle navigator image {
+    width: 40rpx;
+    height: 40rpx;
+    margin-right: 20rpx;
+  }
+  .container .status-group .status-handle view {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+  }
+  .container .status-group .status-handle view image {
+    width: 40rpx;
+    height: 40rpx;
+    margin-right: 20rpx;
+  }
+  
