@@ -19,7 +19,7 @@ exports.main = async (event, context) => {
     console.log(newdate)
     //格式2020/11/10 12:20:30
     temp[i].sendTime=newdate.getFullYear() + '/' + (newdate.getMonth() + 1) + '/' + newdate.getDate() + ' ' + newdate.getHours() + ':' + (newdate.getMinutes() < 10 ? '0' + newdate.getMinutes() : newdate.getMinutes() ) + ':' + ( newdate.getSeconds() < 10 ? '0' + newdate.getSeconds() : newdate.getSeconds() )
-    const udate = await db.collection('user').where({userId:temp[i].userId}).get();
+    const udate = await db.collection('user').where({userId:temp[i].myUserId}).get();
     var temp2 =await udate.data[0];
     console.log(temp2)
     var avatar1 = await temp2.avatar;
