@@ -32,18 +32,16 @@ exports.main = async (event, context) => {
     console.log(newdate)
     //格式2020/11/10 12:20:30
     status[i].sendTime=newdate.getFullYear() + '/' + (newdate.getMonth() + 1) + '/' + newdate.getDate() + ' ' + newdate.getHours() + ':' + (newdate.getMinutes() < 10 ? '0' + newdate.getMinutes() : newdate.getMinutes() ) + ':' + ( newdate.getSeconds() < 10 ? '0' + newdate.getSeconds() : newdate.getSeconds() )
-
+     const udate = await db.collection('user').where({userId:status[i].userId}).get();
+    var temp2 =await udate.data[0];
+    console.log(temp2)
+    var avatar1 = await temp2.avatar;
+    var userName1 = await temp2.userName;
+    status[i].avatar=avatar1;
+    status[i].userName = userName1;
     console.log(status[i])
 
-    //处理collected
-    //查询点赞记录，如果存在帖子id和请求者id一致的记录，说明用户点赞
-    // const collected =await db.collection("likes").where({
-    //  userId:wxContext.OPENID, //请求者的id
-    //  postId:status[i]._id   //帖子id
-    //  }).count();
-     
-    // status[i]['collected']=collected.total;
-    // console.log(status[i])
+    
   }
     console.log(status)
     return await {status};

@@ -8,7 +8,7 @@
 <!--  wx：if的效果是如果hasInput为true，则显示搜索结果-->
 <view class="search-result-container" wx:if="{{hasInput}}">
     <navigator class="search-item" 
-    wx:for="{{advice}}" target="" url="/pages/statusdetail/statusdetail?statusid={{item.goods_id}}"  hover-class="navigator-hover" open-type="navigate">{{item.goods_name}}</navigator>
+    wx:for="{{advice}}" target="" url="/pages/statusdetail/statusdetail?statusid={{item._id}}"  hover-class="navigator-hover" open-type="navigate">{{item.goods_name}}</navigator>
 </view>
 
 <!-- wx：if的效果是如果hasInput为false，则显示当前结果页面 -->
@@ -55,7 +55,7 @@
 
             <view class="status-content-group">
                 <!-- 文本部分 -->
-                <navigator class="content" url="/pages/statusdetail/statusdetail?statusid={{item1.statusid}}">
+                <navigator class="content" url="/pages/statusdetail/statusdetail?statusid={{item1._id}}">
                     <text class="conts" selectable="{{true}}" decode="{{true}}">{{item1.content}}
                     </text> 
                 </navigator>
@@ -78,7 +78,7 @@
             </view>
             <view class="status-handle">
                 <!-- 评论 -->
-                <navigator class="comment-group" url="/pages/statusdetail/statusdetail?statusid={{item1.statusid}}">
+                <navigator class="comment-group" url="/pages/statusdetail/statusdetail?statusid={{item1._id}}">
                     <image class="" src="/dongtai/comment.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">   
                     </image>{{item1.commentnum}}
                 </navigator>

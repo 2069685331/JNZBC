@@ -13,11 +13,6 @@ exports.main = async (event, context) => {
     userId:wxContext.OPENID, //请求者的id
     }).count();
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> main
   //查询是否重名
   const name =await db.collection("user").where({
       userId:event.userName, //请求者的username
@@ -29,10 +24,7 @@ exports.main = async (event, context) => {
       data:{nameConfict:true}
     }
   }
-<<<<<<< HEAD
->>>>>>> main
-=======
->>>>>>> main
+
   console.log(flag)
   //如果无则插入，有则修改
   if(await flag.total==0)
@@ -44,15 +36,10 @@ exports.main = async (event, context) => {
         userName:event.userName,
         avatar:event.avatar,
         motto:event.motto,
-<<<<<<< HEAD
-<<<<<<< HEAD
+
         followNum:0,
         followerNum:0,
         statusNum:0
-=======
->>>>>>> main
-=======
->>>>>>> main
       },
       success:res=>{
         console.log(res);

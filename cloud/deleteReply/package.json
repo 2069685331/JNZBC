@@ -1,5 +1,5 @@
 {
-  "name": "login",
+  "name": "deleteReply",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,8 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-
-    "save": "^2.4.0",
-    "wx-server-sdk": "^2.3.2"
+    "wx-server-sdk": "~2.3.2"
   }
 }

@@ -6,29 +6,7 @@
     <!-- 图片添加区 -->
     
    <view class='img-add'>
-<<<<<<< HEAD
-      <view class='img-box'>
-       <view class='img-list'>
-         <view hidden="{{form.avatar.length==0}}">
-           <view class='img-item'>
-             <image src='{{form.avatar}}' bindlongpress="deleteImgage" data-index='{{index1}}' mode="aspectFill"></image>
-           </view>
-         </view>
-         <view class='chooseimg' bindtap='uploadDetailImage'>
-           <image src="/icon/addphoto.png" class="choose-item"></image>
-         </view>
-         
-      </view>
-      <view class='tips'><text >选择新的头像吧~\n（长按对应的图片即可删除，留空则不修改）</text></view>
-      </view>
-   </view>
 
-      <view class="page-section">
-      <view class="weui-cells__title">新的昵称(留空则不修改)</view>
-      <view class="weui-cells weui-cells_after-title">
-        <view class="weui-cell weui-cell_input">
-          <input class="weui-input" maxlength="10" bindinput="getNickname" placeholder="最大长度为10" />
-=======
       <view class="container flex">
     <view>
         <image src="{{form.avatar}}" class="avatar" bindtap="upload"></image>
@@ -42,23 +20,16 @@
       <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell weui-cell_input">
           <input class="weui-input" maxlength="10" bindinput="getNickname" value="{{userInfo.userName}}" />
->>>>>>> main
         </view>
       </view>
     </view>
 
         <view class="page-section">
-<<<<<<< HEAD
-        <view class="weui-cells__title">新的个性签名（留空则不修改）</view>
-        <view class="weui-cells weui-cells_after-title">
-          <view class="weui-cell weui-cell_input">
-            <input class="weui-input" maxlength="10" bindinput="getMotto" placeholder="最大长度为10" />
-=======
+
         <view class="weui-cells__title">新的个性签名(长度小于20)</view>
         <view class="weui-cells weui-cells_after-title">
           <view class="weui-cell weui-cell_input">
             <input class="weui-input" maxlength="20" bindinput="getMotto" value="{{userInfo.motto}}" />
->>>>>>> main
           </view>
         </view>
       </view>

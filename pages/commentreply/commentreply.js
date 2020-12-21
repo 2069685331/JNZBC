@@ -6,7 +6,7 @@ Page({
    */
   data: {
       comment:{
-        reply:[],
+        //reply:[],
       },
     // comment:{
     //     //用户Id
@@ -188,8 +188,9 @@ Page({
   },
   //删除评论(已实现)
   deleteComment:function(e){
-    var commentId=e.currentTarget.dataset.commentid; 
-    console.log(e)
+    var commentId=this.data.comment._id 
+    var statusId=this.data.comment.postId
+    console.log(commentId)
     wx.showModal({
       title: '提示',
       content: '确定删除这条评论及该评论下所有内容吗',
@@ -199,7 +200,8 @@ Page({
           wx.cloud.callFunction({ 
             name:'deleteComment', 
             data:{ 
-              commentId:commentId 
+              commentId:commentId,
+              statusId:statusId  
             }, 
             success:res=>{ 
               console.log(res); 
@@ -216,6 +218,8 @@ Page({
   deleteReply:function(e){
     console.log(e)
     var commentId=e.currentTarget.dataset.commentid; 
+    var statusId=this.data.comment._id;
+    console.log(this.data)
     wx.showModal({
       title: '提示',
       content: '确定删除这条回复吗',
@@ -224,9 +228,10 @@ Page({
           console.log('用户点击确定')
           //用户点击确定后，需要向后端传输数据（未实现
           wx.cloud.callFunction({ 
-            name:'deleteComment', 
+            name:'deleteReply', 
             data:{ 
-              commentId:commentId 
+              commentId:commentId,
+              statusId:statusId 
             }, 
             success:res=>{ 
               console.log(res); 

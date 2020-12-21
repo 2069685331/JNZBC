@@ -1,4 +1,4 @@
-// pages/editor/editor.js
+// pages/annoucement/annoucement.js
 Page({
 
   /**

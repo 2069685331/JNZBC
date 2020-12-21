@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 <view bindtap='isfouce'><navigator>{{textareaVal.length != 0?textareaVal:'请输入文本'}}</navigator></view> 
 
 
@@ -15,17 +14,17 @@
       </view>
     </view>
 </view>
-=======
-=======
->>>>>>> main
+
 <!-- index.wxml -->
 
 <view class="btn"  bindtap="jump" data-detail="detail0" > 跳到 detail0 锚点位置 </view>
 <view class="btn"  bindtap="jump" data-detail="detail1" > 跳到 detail1 锚点位置</view>
 <view class="btn"  bindtap="jump" data-detail="detail2" > 跳到 detail2 锚点位置 </view>
-<<<<<<< HEAD
+
 <view class="btn"  bindtap="jump" data-detail="detail3" > 跳到 detail3 锚点位置 </view>
->>>>>>> main
-=======
+
 <view class="btn"  bindtap="jump" data-detail="detail3" > 跳到 detail3 锚点位置 </view>
->>>>>>> main
+
+
+<view class="btn"  bindtap="jump" data-detail="detail3" > 跳到 detail3 锚点位置 </view>
+

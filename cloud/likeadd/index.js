@@ -29,11 +29,7 @@ exports.main = async (event, context) => {
     postId:event.statusid,              //设置帖子id
     userId: wxContext.OPENID,     //设置点赞者id
     isA: false,
-<<<<<<< HEAD
-    LikeTime: db.serverDate()    //入数据库时间
-=======
     sendTime: db.serverDate()    //入数据库时间
->>>>>>> main
     },
     success:res=>{
       console.log(res);
