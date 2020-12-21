@@ -21,7 +21,6 @@ totalPages:0,
 //options(Object)
 onLoad: function(options) {
   this.QueryParams.cid=options.cid;
-  console.log(this.QueryParams.cid=options.cid)
   this.initImageSize();
   this.getStatusList();
 },
@@ -33,13 +32,15 @@ getStatusList:function(){
     data:this.QueryParams
   }).then(result=>{
     console.log(result)
-    const total=result.result.list.length;
-    console.log(total)
-    this.totalPages=Math.floor(total/this.QueryParams.pagesize);
-    console.log(this.totalPages)
+
+    console.log(result.result.status)
+    //没懂totalpage的意义何在，注释掉了
+    // const total=result.data;
+    // this.totalPages=Math.ceil(total/this.QueryParams.pagesize);
     this.setData({
       //将原status数据与新请求的数据拼接在一起
-      status:[...this.data.status,...result.result.list]
+      status:[...this.data.status,...result.result.status]
+
     });
   })
   console.log(this.date.status)

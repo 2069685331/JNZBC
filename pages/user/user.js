@@ -5,13 +5,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    WXuserinfo:{},  //用户的微信信息（用户登录后会自动写入）
+    userinfo:{},  //用户的微信信息（用户登录后会自动写入）
 
-    userInfo:{  //服务器上用户的信息（从服务器获取）
-      userId:"1",
+    userData:{  //服务器上用户的信息（从服务器获取）
+      userId:"",
       userName:"TESTNAME",   //昵称
       avatar:"/dongtai/user1.jpg",  //头像
-      motto:"暨南针不戳暨南针不戳暨南针不戳暨南针不戳！",  //简介
+      motto:"暨南针不戳！",  //简介
       followNum:'13',  //我关注的数量
       followerNum:'15',  //关注我的数量
       statusNum:'5'  //动态数量
@@ -66,7 +66,12 @@ getuserInfo:function(){
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    const userinfo=wx.getStorageSync("userinfo");
+    this.setData({
+      userinfo:userinfo
+    });
     this.getuserInfo()
+
   },
 
   /**

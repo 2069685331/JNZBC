@@ -10,6 +10,7 @@
                 <navigator class="avatar" target="" url="../userindex/userindex?userId={{item1.userId}}" hover-class="navigator-hover" open-type="navigate">
                     <image class="" src="{{item1.goods_small_logo}}"  lazy-load="false" binderror="" bindload="">
                     </image>
+
                 </navigator>
 
 
@@ -56,6 +57,7 @@
                     </image>{{item1.likenum}}
                 </view>
             </view>
+
         </view>
 
     </view>

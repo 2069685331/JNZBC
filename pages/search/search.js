@@ -72,12 +72,23 @@ Page({
 
   //发送请求，获取搜索建议数据
   qsearch:function(query){
-    request({url:this.QueryParams.advicequery,data:{query}})
-    .then(result=>{
-          console.log(result)
-          this.setData({
-            advice:result.data.message
-          })
-  })
+  //   request({url:this.QueryParams.advicequery,data:{query}})
+  //   .then(result=>{
+  //         console.log(result)
+  //         this.setData({
+  //           advice:result.data.message
+  //         })
+  // })
+  wx.cloud.callFunction({ 
+    name:"getsearchadvice", 
+    data:{query}, 
+  }).then(result=>{ 
+    console.log(result.result.status) 
+    this.setData({ 
+      //将原status数据与新请求的数据拼接在一起 
+      advice:result.result.status 
+    }); 
+    console.log(this.data.advice) 
+  }) 
   }
 })

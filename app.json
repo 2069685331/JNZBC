@@ -20,10 +20,11 @@
     "pages/test/test",
     "pages/commentreply/commentreply",
     "pages/upload/upload",
-    "pages/officemessage/officemessage",
-    "pages/commentmessage/commentmessage",
-    "pages/followmessage/followmessage",
-    "pages/likemessage/likemessage"
+    "pages/annoucement/annoucement",
+    "pages/office/office",
+    "pages/commentannounce/commentannouce",
+    "pages/followannounce/followannounce",
+    "pages/likeannounce/likeannounce"
   ],
   "tabBar": {
     "color": "#515151",

@@ -6,6 +6,7 @@ const db=cloud.database()
 // 云函数入口函数
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
+
   if(event.listType==0) //请求自己主页的信息
   {var userId=wxContext.OPENID}
   if(event.listType==1) //请求他人主页的信息
@@ -25,6 +26,7 @@ exports.main = async (event, context) => {
       }).get();
       //{username,userinfo,}扁平化数组
       userinfo= userinfo.data[0]
+
   }
   //无则返回匿名用户信息
   else if(flag.total==0)
@@ -83,4 +85,5 @@ exports.main = async (event, context) => {
     requestId:wxContext.OPENID,
     haveFollowed:haveFollowed.total
   }}
+
 }

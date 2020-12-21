@@ -32,11 +32,11 @@
  
                     <view class="function-list">
                         <!-- 评论的评论按钮 -->
-                         <view   class="comment-group" bindtap='focusCommentButn' data-statusid='{{comment.statusid}}' data-commentId='{{comment.commentId}}'>回复</view>
+                         <view   class="comment-group" bindtap='focusCommentButn' data-statusid='{{comment.postId}}' data-commentId='{{comment._id}}'>回复</view>
                         <!-- 评论的评论按钮 -->
 
                         <!-- 删除 -->
-                        <view class="delete-comment" bindtap="deleteComment" wx:if="{{myinfo.myUserId==comment.userId}}">删除</view>
+                        <view class="delete-comment" bindtap="deleteComment" data-commentId='{{comment._id}}' wx:if="{{myinfo.myUserId==comment.userId}}">删除</view>
                         <!-- 删除 -->
                     </view>
                 </view>
@@ -47,7 +47,7 @@
     <!-- 回复列表 -->
     <view class="reply-area-container">
         <view class="single-reply" 
-        wx:for="{{comment.reply}}"
+        wx:for="{{reply}}"
         wx:for-index="index1"
         wx:for-item="item1">                    
             <view class="left-part">
@@ -73,13 +73,13 @@
                     
                     <!-- 评论内容 -->
                     <view class="replypart">
-                        <text class="reply-text" user-select="{{true}}" decode="{{true}}">{{item1.replyText}}</text> 
+                        <text class="reply-text" user-select="{{true}}" decode="{{true}}">{{item1.reply}}</text> 
                     </view>
                     <!-- 评论内容 -->
                      
                     <view class="function-list">
                         <!-- 删除 -->
-                        <view class="delete-reply" bindtap="deleteReply" wx:if="{{myinfo.myUserId==item1.userId}}">删除</view>
+                        <view class="delete-reply" bindtap="deleteReply" data-commentId='{{item1._id}}' wx:if="{{myinfo.myUserId==item1.myUserId}}">删除</view>
                         <!-- 删除 -->
                     </view>
                 </view>

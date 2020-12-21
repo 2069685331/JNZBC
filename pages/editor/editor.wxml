@@ -6,6 +6,7 @@
     <!-- 图片添加区 -->
     
    <view class='img-add'>
+
       <view class="container flex">
     <view>
         <image src="{{form.avatar}}" class="avatar" bindtap="upload"></image>
@@ -24,6 +25,7 @@
     </view>
 
         <view class="page-section">
+
         <view class="weui-cells__title">新的个性签名(长度小于20)</view>
         <view class="weui-cells weui-cells_after-title">
           <view class="weui-cell weui-cell_input">

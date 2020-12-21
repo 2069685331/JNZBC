@@ -28,69 +28,71 @@ Page({
     //确定多图时图片宽度
     imagesSize:0,
     //存储搜索的动态结果
-    status:[
-      {
-        //用户id
-        userId:"01",
-        //动态id
-        statusid:"1",
-        //头像
-        avatar:"/dongtai/user1.jpg",
-        //用户名
-        userName:'Leonardo',
-        //日期
-        time:'2020/11/11 11:11:11',
-        //文本
-        content:"The Revenant was the product of the tireless efforts of an unbelievable cast and crew. First off, to my brother in this endeavor, Mr. Tom Hardy. Tom, your talent on screen can only be surpassed by your friendship off screen… thank you for creating a transcendent cinematic experience. Thank you to everybody at Fox and New Regency…my entire team. I have to thank everyone from the very onset of my career… To my parents, none of this would be possible without you. And to my friends, I love you dearly, you know who you are.And lastly I just want to say this: Making ‘The Revenant’ was about man's relationship to the natural world. A world that we collectively felt in 2015 as the hottest year in recorded history. Our production needed to move to the southern tip of this planet just to be able to find snow. Climate change is real, it is happening right now. It is the most urgent threat facing our entire species, and we need to work collectively together and stop procrastinating. We need to support leaders around the world who do not speak for the big polluters, but who speak for all of humanity, for the indigenous people of the world, for the billions and billions of underprivileged people out there who would be most affected by this. For our children’s children, and for those people out there whose voices have been drowned out by the politics of greed. I thank you all for this amazing award tonight. Let us not take this planet for granted. I do not take tonight for granted. Thank you so very much.",
-        //图片
-        imgArr:[],
-        //评论
-        commentnum:76,
-        //点赞数
-        likenum:53,
-        //本用户是否点赞过
-        collected:0
-      },
-      {
-        //用户id
-        userId:"01",
-        //动态id
-        statusid:"1",
-        //头像
-        avatar:"/dongtai/user2.jpg",
-        //用户名
-        userName:'Depp',
-        //日期
-        time:'2020/11/11 11:11:11',
-        //文本
-        content:"1998",
-        //图片
-        imgArr:[
-          "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1604499631080&di=d857331ea96b03c3f2440491cb60e0f4&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201708%2F16%2F20170816131622_fVYmk.thumb.700_0.jpeg",
-          "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1604826933589&di=8e10305e8e9a85bf3618765a4a613a08&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201805%2F30%2F20180530172421_kdKcu.jpeg",
-          "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3580164859,3776785180&fm=26&gp=0.jpg",
-          "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=485066500,410625334&fm=26&gp=0.jpg"],
-         //评论
-        commentnum:76,
-        //点赞数
-        likenum:53,  
-         //本用户是否点赞过
-        collected:0
-        },
+    // status:[
+    //   {
+    //     //用户id
+    //     userId:"01",
+    //     //动态id
+    //     statusid:"1",
+    //     //头像
+    //     avatar:"/dongtai/user1.jpg",
+    //     //用户名
+    //     userName:'Leonardo',
+    //     //日期
+    //     time:'2020/11/11 11:11:11',
+    //     //文本
+    //     content:"The Revenant was the product of the tireless efforts of an unbelievable cast and crew. First off, to my brother in this endeavor, Mr. Tom Hardy. Tom, your talent on screen can only be surpassed by your friendship off screen… thank you for creating a transcendent cinematic experience. Thank you to everybody at Fox and New Regency…my entire team. I have to thank everyone from the very onset of my career… To my parents, none of this would be possible without you. And to my friends, I love you dearly, you know who you are.And lastly I just want to say this: Making ‘The Revenant’ was about man's relationship to the natural world. A world that we collectively felt in 2015 as the hottest year in recorded history. Our production needed to move to the southern tip of this planet just to be able to find snow. Climate change is real, it is happening right now. It is the most urgent threat facing our entire species, and we need to work collectively together and stop procrastinating. We need to support leaders around the world who do not speak for the big polluters, but who speak for all of humanity, for the indigenous people of the world, for the billions and billions of underprivileged people out there who would be most affected by this. For our children’s children, and for those people out there whose voices have been drowned out by the politics of greed. I thank you all for this amazing award tonight. Let us not take this planet for granted. I do not take tonight for granted. Thank you so very much.",
+    //     //图片
+    //     imgArr:[],
+    //     //评论
+    //     commentnum:76,
+    //     //点赞数
+    //     likenum:53,
+    //     //本用户是否点赞过
+    //     collected:0
+    //   },
+    //   {
+    //     //用户id
+    //     userId:"01",
+    //     //动态id
+    //     statusid:"1",
+    //     //头像
+    //     avatar:"/dongtai/user2.jpg",
+    //     //用户名
+    //     userName:'Depp',
+    //     //日期
+    //     time:'2020/11/11 11:11:11',
+    //     //文本
+    //     content:"1998",
+    //     //图片
+    //     imgArr:[
+    //       "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1604499631080&di=d857331ea96b03c3f2440491cb60e0f4&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201708%2F16%2F20170816131622_fVYmk.thumb.700_0.jpeg",
+    //       "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1604826933589&di=8e10305e8e9a85bf3618765a4a613a08&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201805%2F30%2F20180530172421_kdKcu.jpeg",
+    //       "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3580164859,3776785180&fm=26&gp=0.jpg",
+    //       "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=485066500,410625334&fm=26&gp=0.jpg"],
+    //      //评论
+    //     commentnum:76,
+    //     //点赞数
+    //     likenum:53,  
+    //      //本用户是否点赞过
+    //     collected:0
+    //     },
        
-      ],
-      users:[
-        {
-          userName:'Leonardo',
-          avatar:"/dongtai/user1.jpg",
-          motto:"暨南针不戳！"
-        },
-        {
-          userName:'Depp',
-          avatar:"/dongtai/user2.jpg",
-          motto:"暨南针不错！"
-        }
-      ],
+    //   ],
+    //   users:[
+    //     {
+    //       userName:'Leonardo',
+    //       avatar:"/dongtai/user1.jpg",
+    //       motto:"暨南针不戳！"
+    //     },
+    //     {
+    //       userName:'Depp',
+    //       avatar:"/dongtai/user2.jpg",
+    //       motto:"暨南针不错！"
+    //     }
+    //   ],
+    status:[],
+    users:[],
     //存储搜多到的用户结果
     //判断是否有输入
     hasInput:false,
@@ -119,7 +121,7 @@ Page({
     statusquery:"",//获取动态的链接
     usersquery:"",//获取用户的链接
     //cid:"",//注意，此处没有分区号，因为首页可以看到任何类型的分区内容
-    pagenum:1,//页码
+    pagenum:0,//页码
     pagesize:10//页长度
   },
 
@@ -138,18 +140,42 @@ Page({
   })
   //调用页面初始化数据获取函数
   //建议改写getStatusList函数实现getStatus，这个存动态进status中
-  this.getStatus();
+  this.getStatus(options);
   //建议参照getStatusList函数实现getUsers，这个存用户进users中
-  this.getUsers();
+  this.getUsers(options);
 },
 //请求status结果,存进this.data.status（未实现）
-getStatus:function(){
-
-},
+getStatus:function(options){ 
+  wx.cloud.callFunction({ 
+    name:"getsearchstatus", 
+    data:{ 
+      value:options.value, 
+      data:this.QueryParams, 
+    } 
+  }).then(result=>{ 
+    console.log(result) 
+    this.setData({ 
+      //将原status数据与新请求的数据拼接在一起 
+      status:[...this.data.status,...result.result.status] 
+    }); 
+  }) 
+}, 
 //请求users结果，存进this.data.users(未实现)
-getUsers:function(){
-
-},
+getUsers:function(options){ 
+  wx.cloud.callFunction({ 
+    name:"getsearchusers", 
+    data:{ 
+      value:options.value, 
+      data:this.QueryParams, 
+    } 
+  }).then(result=>{ 
+    console.log(result) 
+    this.setData({ 
+      //将原status数据与新请求的数据拼接在一起 
+      users:[...this.data.users,...result.result.status] 
+    }); 
+  }) 
+}, 
 // 更改点赞状态(未实现)
 onCollectionTap: function(event) {  
 
@@ -269,14 +295,26 @@ handlePreviewImg:function(e){
 
   //发送请求，获取搜索建议数据
   qsearch:function(query){
-    request({url:"https://api-hmugo-web.itheima.net/api/public/v1/goods/qsearch",data:{query}})
-    .then(result=>{
-          console.log(result)
-          this.setData({
-            advice:result.data.message
-          })
-  })
-  },
+  //   request({url:"https://api-hmugo-web.itheima.net/api/public/v1/goods/qsearch",data:{query}})
+  //   .then(result=>{
+  //         console.log(result)
+  //         this.setData({
+  //           advice:result.data.message
+  //         })
+  // })
+    wx.cloud.callFunction({ 
+      name:"getsearchadvice", 
+      data:{query}, 
+    }).then(result=>{ 
+      console.log(result.result.status) 
+      this.setData({ 
+        //将原status数据与新请求的数据拼接在一起 
+        advice:result.result.status 
+      }); 
+      console.log(this.data.advice) 
+    }) 
+}, 
+
 
   //点击切换tab分页
   clickTab:function(e){
