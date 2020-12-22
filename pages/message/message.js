@@ -12,14 +12,14 @@ Page({
         icon:'../../icon/message_page/notification.png',
         title:"官方通知",
         isUnread:true,
-        unreadNum:1,
+        unreadNum:1000,
       },
       {
         url:'../followmessage/followmessage',
         icon:'../../icon/message_page/follow.png',
         title:"关注",
-        isUnread:false,
-        unreadNum:1,
+        isUnread:true,
+        unreadNum:5,
       },
       {
         url:'../commentmessage/commentmessage',
