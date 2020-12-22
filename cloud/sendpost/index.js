@@ -7,6 +7,7 @@ exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
   console.log(event)
   
+  
   //增加帖子记录
   return await db.collection("posts").add({
     data:{

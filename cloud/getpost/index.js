@@ -8,21 +8,21 @@ const db=cloud.database()
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
 
-  var pagenum=event.pagenum//页码
-  var pagesize=event.pagesize//页长度
+  var pagenum=await event.pagenum//页码
+  var pagesize=await event.pagesize//页长度
 
   console.log(event.listType)
   
   let oristatus=null
   switch(event.listType){
     case 0:   //获取首页帖子
-      oristatus=db.collection("posts").aggregate().sort({
+      oristatus=await db.collection("posts").aggregate().sort({
         sendTime:-1
       }).skip(pagesize*pagenum).limit(pagesize)
       
       break;
     case 1: //获取分区帖子
-    oristatus=db.collection("posts").aggregate().match({
+    oristatus=await db.collection("posts").aggregate().match({
       cid:event.cid
     }).sort({
       sendTime:-1
@@ -40,7 +40,7 @@ exports.main = async (event, context) => {
 
     break;
     case 3://获取他人主页帖子
-    oristatus=db.collection("posts").aggregate().match({
+    oristatus=await db.collection("posts").aggregate().match({
       userId:event.userId
     }).sort({
       sendTime:-1
