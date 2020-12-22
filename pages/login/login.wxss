@@ -11,7 +11,7 @@
     .but{
         width: 70%;
         height:80rpx;
-        background-color: var(--themecolor);
+        background-color: #04be01;
         border-radius: 10rpx;
         /* align-content: center; */
         text-align: center;

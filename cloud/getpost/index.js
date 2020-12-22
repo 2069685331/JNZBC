@@ -10,6 +10,7 @@ exports.main = async (event, context) => {
 
   var pagenum=event.pagenum//页码
   var pagesize=event.pagesize//页长度
+
   console.log(event.listType)
   
   let oristatus=null
@@ -111,5 +112,6 @@ exports.main = async (event, context) => {
   
   console.log(status)
   return await status;
+
 
 }

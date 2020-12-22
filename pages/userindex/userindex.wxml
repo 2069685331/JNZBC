@@ -2,29 +2,23 @@
   <!-- 用户资料框 -->
   <view class="avatar-warp">
     <view class="user-info">
-      <image class="avatar" mode='aspectFill' src='{{targetInfo.avatar}}'></image>
+      <image class="avatar" mode='aspectFill' src='{{userData.avatar}}'></image>
       <view class="user-right-info">
-        <view class="nickname">{{targetInfo.userName}}</view>
+        <view class="nickname">{{userData.userName}}</view>
         <view class="motto">
-          简介：{{targetInfo.motto}}
+          简介：{{userData.motto}}
         </view>
-        
       </view>
-      <!-- 关注按钮(userinfo.userId与targetinfo.userId相同则不显示) -->
-      <view class="follow-wrap" wx:if="{{userId!=targetInfo.userId}}">
-        <button class="follow-btn" style='{{btnColor}}' bindtap="handleFollow">{{followText}}</button>
-      </view>
-      <!-- 关注按钮 -->
     </view>
       
   
     <view class="article-info">
       <navigator url="../follows/follows" class="article-item">
-        <text class="num">{{targetInfo.followNum}}</text>关注</navigator>
+        <text class="num">{{userData.followNum}}</text>我针对的</navigator>
       <navigator url="../followers/followers" class="article-item">
-        <text class="num">{{targetInfo.followerNum}}</text>关注者</navigator>
+        <text class="num">{{userData.followerNum}}</text>针对我的</navigator>
       <view class="article-item">
-        <text class="num">{{targetInfo.statusNum}}</text>动态</view>
+        <text class="num">{{userData.statusNum}}</text>动态</view>
     </view>
   </view>
 
@@ -60,7 +54,7 @@ wx:for-item="item1">
 
         <view class="status-content-group">
             <!-- 文本部分 -->
-            <navigator class="content" url="/pages/statusdetail/statusdetail?statusid={{item1.statusid}}">
+            <navigator class="content" url="/pages/statusdetail/statusdetail?statusid={{item1._id}}">
                 <text class="conts" selectable="{{true}}" decode="{{true}}">{{item1.content}}
                 </text> 
             </navigator>
@@ -83,7 +77,7 @@ wx:for-item="item1">
         </view>
         <view class="status-handle">
             <!-- 评论 -->
-            <navigator class="comment-group" url="/pages/statusdetail/statusdetail?statusid={{item1.statusid}}">
+            <navigator class="comment-group" url="/pages/statusdetail/statusdetail?statusid={{item1._id}}">
                 <image class="" src="/dongtai/comment.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">   
                 </image>{{item1.commentnum}}
             </navigator>

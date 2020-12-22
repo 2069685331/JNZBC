@@ -5,13 +5,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    WXuserinfo:{},  //用户的微信信息（用户登录后会自动写入）
+    userinfo:{},  //用户的微信信息（用户登录后会自动写入）
 
-    userInfo:{  //服务器上用户的信息（从服务器获取）
-      userId:"1",
+    userData:{  //服务器上用户的信息（从服务器获取）
+      userId:"",
       userName:"TESTNAME",   //昵称
       avatar:"/dongtai/user1.jpg",  //头像
-      motto:"暨南针不戳暨南针不戳暨南针不戳暨南针不戳！",  //简介
+      motto:"暨南针不戳！",  //简介
       followNum:'13',  //我关注的数量
       followerNum:'15',  //关注我的数量
       statusNum:'5'  //动态数量
@@ -27,12 +27,32 @@ Page({
     
     
   },
+    //向端口请求用户首页信息，送给端口的数据
+    LoginParams:{
+      listType:0,//请求自己主页数据
+      userId:""
+    },
 
+//向后端请求该主页的用户信息及haveFollowed信息
+getuserInfo:function(){
+  wx.cloud.callFunction({
+    name:"login",
+    data:this.LoginParams
+  }).then(result=>{
+    console.log(result)
+    this.setData({
+      //将原status数据与新请求的数据拼接在一起
+      WXuserinfo: result.result.data.userinfo, //设置targetInfo
+    });
+    getApp().globalData.userInfo=result.result.data.userinfo
+    console.log(getApp().globalData.userInfo)
+  }) 
+},
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+     
   },
 
   /**
@@ -46,10 +66,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    const WXuserinfo=wx.getStorageSync("WXuserinfo");
+    const userinfo=wx.getStorageSync("userinfo");
     this.setData({
-      WXuserinfo:WXuserinfo
+      userinfo:userinfo
     });
+    this.getuserInfo()
+
   },
 
   /**

@@ -32,5 +32,5 @@
 <!--  wx：if的效果是如果hasInput为true，则显示搜索结果-->
 <view class="search-contain" wx:if="{{hasInput}}">
     <navigator class="search-item" 
-    wx:for="{{advice}}" target="" url="/pages/statusdetail/statusdetail?statusid={{item.statusid}}" hover-class="navigator-hover" open-type="navigate">{{item.goods_name}}</navigator>
+    wx:for="{{advice}}" target="" url="/pages/statusdetail/statusdetail?statusid={{item._id}}" hover-class="navigator-hover" open-type="navigate">{{item.content}}</navigator>
 </view>

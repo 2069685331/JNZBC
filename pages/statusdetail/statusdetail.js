@@ -1,97 +1,99 @@
 // pages/statusdetail/statusdetail.js
 Page({
   data: {
-    status:
-      {
-        //用户id
-        userId:'01',
-        //动态id
-        statusid:1,
-        //头像
-        avatar:"/dongtai/user1.jpg",
-        //用户名
-        userName:'Leonardo',
-        //日期
-        sendTime:'2020/11/11 11:11:11',
-        //文本
-        content:"The Revenant was the product of the tireless efforts of an unbelievable cast and crew. First off, to my brother in this endeavor, Mr. Tom Hardy. Tom, your talent on screen can only be surpassed by your friendship off screen… thank you for creating a transcendent cinematic experience. Thank you to everybody at Fox and New Regency…my entire team. I have to thank everyone from the very onset of my career… To my parents, none of this would be possible without you. And to my friends, I love you dearly, you know who you are.And lastly I just want to say this: Making ‘The Revenant’ was about man's relationship to the natural world. A world that we collectively felt in 2015 as the hottest year in recorded history. Our production needed to move to the southern tip of this planet just to be able to find snow. Climate change is real, it is happening right now. It is the most urgent threat facing our entire species, and we need to work collectively together and stop procrastinating. We need to support leaders around the world who do not speak for the big polluters, but who speak for all of humanity, for the indigenous people of the world, for the billions and billions of underprivileged people out there who would be most affected by this. For our children’s children, and for those people out there whose voices have been drowned out by the politics of greed. I thank you all for this amazing award tonight. Let us not take this planet for granted. I do not take tonight for granted. Thank you so very much.",
-        //图片,，支持0~4张图片
-        imgArr:[],
-        //评论
-        commentnum:76,
-        //点赞数
-        likenum:54,
-        //本用户是否点赞过
-        collected:0
-      },
-  comments:[
-    {
-      //评论Id
-      commentId:'01',
-      //用户名
-      userName:'XXX',
-      //头像
-      avatar:"/dongtai/user1.jpg",
-      //评论时间
-      sendTime:'2020/11/11 11:11:11',
-      //用户id
-      userId:'01',
-      //评论内容
-      commentText:'这是评论',
-      //评论的回复数目
-      replyNum:2
-    },
-    {
-      //评论Id
-      commentId:'02',
-      //用户名
-      userName:'XXX',
-      //头像
-      avatar:"/dongtai/user1.jpg",
-      //评论时间
-      sendTime:'2020/11/11 11:11:11',
-      //用户id
-      userId:'02',
-      //评论内容
-      commentText:'这是评论',
-      //评论的回复数目
-      replyNum:0
-    },
-    {
-      //评论Id
-      commentId:'03',
-      //用户名
-      userName:'XXX',
-      //头像
-      avatar:"/dongtai/user1.jpg",
-      //评论时间
-      sendTime:'2020/11/11 11:11:11',
-      //用户id
-      userId:'03',
-      //评论内容
-      commentText:'这是评论',
-      //评论的回复数目
-      replyNum:0
-    },
-    {
-      //评论Id
-      commentId:'04',
-      //用户名
-      userName:'XXX',
-      //头像
-      avatar:"/dongtai/user1.jpg",
-      //评论时间
-      sendTime:'2020/11/11 11:11:11',
-      //用户id
-      userId:'04',
-      //评论内容
-      commentText:'这是评论',
-      //评论的回复数目
-      replyNum:4
-    },
+    // status:
+    //   {
+    //     //用户id
+    //     userId:'01',
+    //     //动态id
+    //     statusid:1,
+    //     //头像
+    //     avatar:"/dongtai/user1.jpg",
+    //     //用户名
+    //     userName:'Leonardo',
+    //     //日期
+    //     sendTime:'2020/11/11 11:11:11',
+    //     //文本
+    //     content:"The Revenant was the product of the tireless efforts of an unbelievable cast and crew. First off, to my brother in this endeavor, Mr. Tom Hardy. Tom, your talent on screen can only be surpassed by your friendship off screen… thank you for creating a transcendent cinematic experience. Thank you to everybody at Fox and New Regency…my entire team. I have to thank everyone from the very onset of my career… To my parents, none of this would be possible without you. And to my friends, I love you dearly, you know who you are.And lastly I just want to say this: Making ‘The Revenant’ was about man's relationship to the natural world. A world that we collectively felt in 2015 as the hottest year in recorded history. Our production needed to move to the southern tip of this planet just to be able to find snow. Climate change is real, it is happening right now. It is the most urgent threat facing our entire species, and we need to work collectively together and stop procrastinating. We need to support leaders around the world who do not speak for the big polluters, but who speak for all of humanity, for the indigenous people of the world, for the billions and billions of underprivileged people out there who would be most affected by this. For our children’s children, and for those people out there whose voices have been drowned out by the politics of greed. I thank you all for this amazing award tonight. Let us not take this planet for granted. I do not take tonight for granted. Thank you so very much.",
+    //     //图片,，支持0~4张图片
+    //     imgArr:[],
+    //     //评论
+    //     commentnum:76,
+    //     //点赞数
+    //     likenum:54,
+    //     //本用户是否点赞过
+    //     collected:0
+    //   },
+  // comments:[
+  //   {
+  //     //评论Id
+  //     commentId:'01',
+  //     //用户名
+  //     userName:'XXX',
+  //     //头像
+  //     avatar:"/dongtai/user1.jpg",
+  //     //评论时间
+  //     sendTime:'2020/11/11 11:11:11',
+  //     //用户id
+  //     userId:'01',
+  //     //评论内容
+  //     commentText:'这是评论',
+  //     //评论的回复数目
+  //     replyNum:2
+  //   },
+  //   {
+  //     //评论Id
+  //     commentId:'02',
+  //     //用户名
+  //     userName:'XXX',
+  //     //头像
+  //     avatar:"/dongtai/user1.jpg",
+  //     //评论时间
+  //     sendTime:'2020/11/11 11:11:11',
+  //     //用户id
+  //     userId:'02',
+  //     //评论内容
+  //     commentText:'这是评论',
+  //     //评论的回复数目
+  //     replyNum:0
+  //   },
+  //   {
+  //     //评论Id
+  //     commentId:'03',
+  //     //用户名
+  //     userName:'XXX',
+  //     //头像
+  //     avatar:"/dongtai/user1.jpg",
+  //     //评论时间
+  //     sendTime:'2020/11/11 11:11:11',
+  //     //用户id
+  //     userId:'03',
+  //     //评论内容
+  //     commentText:'这是评论',
+  //     //评论的回复数目
+  //     replyNum:0
+  //   },
+  //   {
+  //     //评论Id
+  //     commentId:'04',
+  //     //用户名
+  //     userName:'XXX',
+  //     //头像
+  //     avatar:"/dongtai/user1.jpg",
+  //     //评论时间
+  //     sendTime:'2020/11/11 11:11:11',
+  //     //用户id
+  //     userId:'04',
+  //     //评论内容
+  //     commentText:'这是评论',
+  //     //评论的回复数目
+  //     replyNum:4
+  //   },
     
-  ],
+  // ],
   //本用户相关信息（在getmyinfo中使用）
+  status:{}, 
+  comments:[], 
   myinfo:{
     myUserId:"01"
   },
@@ -130,19 +132,46 @@ onLoad: function(options) {
   //获取上个页面传过来的参数写入QueryParams
   console.log(options)
   //如果有多张图片，提前计算图片宽度
+  this.QueryParams.statusid=options.statusid; 
   this.initImageSize();
   //获取用户信息
   this.getMyInfo();
   //借助QueryParams获取页面
   this.getStatusDetail();
   //设置锚点
+  console.log(this.data.scrollId)
   this.setData({
     scrollId:options.scrollId
   })
+  console.log(this.data.scrollId)
+
 },
 //获取初始化页面(未实现)
 getStatusDetail:function(){
-  console.log('获取statusdetail页面')
+  console.log('获取statusdetail页面') 
+  wx.cloud.callFunction({ 
+    name: 'getstatusdetail', 
+    data: { 
+      statusid: this.QueryParams
+    }, 
+  }).then(result=>{ 
+    console.log(result) 
+    this.setData({ 
+      //将原status数据与新请求的数据拼接在一起 
+      status:result.result, 
+    }); 
+  }) 
+  wx.cloud.callFunction({ 
+    name:'getcomments', 
+    data:{ 
+      statusid:this.QueryParams 
+    }, 
+  }).then(result=>{ 
+    console.log(result.result.temp); 
+    this.setData({ 
+      comments:[...this.data.comments,...result.result.temp] 
+    }) 
+  }) 
 },
 //向后端发送动态评论及相关信息(未实现,tip:任何对后端的修改都需要重新request重新获取以便重新渲染页面)
 sendComment:function(){
@@ -155,6 +184,15 @@ sendComment:function(){
     return;
   }
   console.log(this.data.mycomment);
+  wx.cloud.callFunction({ 
+    name:'sendcomment', 
+    data:{ 
+      mycomment:this.data.mycomment 
+    }, 
+    success:res=>{ 
+      console.log(res); 
+    } 
+  }) 
 },
 //向后端发送动态评论的回复的相关信息（未实现）
 sendReply:function(){
@@ -167,7 +205,15 @@ sendReply:function(){
     return;
   }
   //发送回复
-
+  wx.cloud.callFunction({ 
+    name:'sendreply', 
+    data:{ 
+      myreply:this.data.myreply 
+    }, 
+    success:res=>{ 
+      console.log(res); 
+    } 
+  }) 
   
   console.log(this.data.myreply);
 
@@ -180,6 +226,16 @@ deleteComment:function(){
     success (res) {
       if (res.confirm) {
         console.log('用户点击确定')
+        wx.cloud.callFunction({ 
+          name:'deleteComment', 
+          data:{ 
+            statusid:statusId,
+            commentId:commentId
+          }, 
+          success:res=>{ 
+            console.log(res); 
+          } 
+        }) 
         //删除要发送什么还没实现
       } else if (res.cancel) {
         console.log('用户点击取消')
@@ -195,7 +251,17 @@ sendLike:function(){
 },
 //获取我的信息（未实现，存于this.data.myinfo中）
 getMyInfo:function(){
-
+wx.cloud.callFunction({ 
+    name:'getMyInfo', 
+    data:{}, 
+    success:res=>{ 
+      console.log(res.result.openid); 
+      this.setData({
+        ['myinfo.myUserId']:res.result.openid
+      })
+      console.log(this.myinfo)
+    } 
+  }) 
 },
 // 更改动态点赞状态（未完全实现）
 onCollectionTap: function(event) {

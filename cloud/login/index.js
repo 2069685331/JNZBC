@@ -6,6 +6,7 @@ const db=cloud.database()
 // 云函数入口函数
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
+
   if(event.listType==0) //请求自己主页的信息
   {var userId=wxContext.OPENID}
   if(event.listType==1) //请求他人主页的信息
@@ -25,14 +26,20 @@ exports.main = async (event, context) => {
       }).get();
       //{username,userinfo,}扁平化数组
       userinfo= userinfo.data[0]
+
   }
   //无则返回匿名用户信息
   else if(flag.total==0)
   {
+    //对别人是返回匿名信息
      userinfo= {
       userName:"匿名用户",
       avatar:""
     }
+    //对自己是返回空信息
+    if(event.listType==0)
+    return{userinfo: {
+    }}
   }
   //查询发帖总数
   let statusNum= await db.collection("posts").where({
@@ -42,12 +49,25 @@ exports.main = async (event, context) => {
   console.log(statusNum)
   //查询关注总数
   let followNum=await db.collection("interests").where({
-    followerId:userId
+    userId:userId
   }).count()
   //查询被关注总数
   let followerNum=await db.collection("interests").where({
-    userId:userId
+    followId:userId
   }).count()
+
+  userinfo['statusNum']=await statusNum.total
+  userinfo['followNum']=await followNum.total
+  userinfo['followerNum']=await followerNum.total
+
+  //如果参数为0请求的是自己主页，就此返回，不查询haveFollowed
+  if(event.listType==0)
+  {
+    return await {data:{
+      userinfo:userinfo,
+      requestId:wxContext.OPENID,
+    }}
+  }
   
   //如果请求为他人主页，要查询是否关注
   var haveFollowed=null
@@ -58,13 +78,12 @@ exports.main = async (event, context) => {
       followerId:userId
     }).count()
   }
-  userinfo['statusNum']=await statusNum.total
-  userinfo['followNum']=await followNum.total
-  userinfo['followerNum']=await followerNum.total
 
   console.log(userinfo)
   return await {data:{
     userinfo:userinfo,
+    requestId:wxContext.OPENID,
     haveFollowed:haveFollowed.total
   }}
+
 }
