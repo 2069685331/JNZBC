@@ -53,7 +53,7 @@ wx:for-item="item1">
 
         <view class="status-content-group">
             <!-- 文本部分 -->
-            <navigator class="content" url="/pages/statusdetail/statusdetail?statusid={{item1._id}}">
+            <navigator class="content" url="/pages/statusdetail/statusdetail?statusid={{item1._id}}&scrollId=statusGroup">
                 <text class="conts" selectable="{{true}}" decode="{{true}}">{{item1.content}}
                 </text> 
             </navigator>
@@ -76,7 +76,7 @@ wx:for-item="item1">
         </view>
         <view class="status-handle">
             <!-- 评论 -->
-            <navigator class="comment-group" url="/pages/statusdetail/statusdetail?statusid={{item1._id}}">
+            <navigator class="comment-group" url="/pages/statusdetail/statusdetail?statusid={{item1._id}}&scrollId=handleGroup">
                 <image class="" src="/dongtai/comment.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">   
                 </image>{{item1.commentnum}}
             </navigator>

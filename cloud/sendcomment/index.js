@@ -22,6 +22,7 @@ exports.main = async (event, context) => {
     commentText: event.mycomment.comment, //评论文本
     postId: event.mycomment.statusid, //评论的帖子
     parentId:0,
+    isA:false,
     avatar:temp[0].avatar,//头像
     isA:false,//是否已读
     userName:temp[0].userName,//名字

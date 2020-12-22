@@ -66,7 +66,7 @@ Page({
         
       }
     })
-    /*
+    
     wx.request({
       url: '请求地址',
       data: {
@@ -89,7 +89,7 @@ Page({
       fail: function (err) { },//请求失败
       complete: function () { }//请求完成后执行的函数
     })
-    */
+    
   },
   /**
    * 生命周期函数--监听页面加载
