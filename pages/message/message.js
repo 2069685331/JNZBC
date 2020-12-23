@@ -12,12 +12,14 @@ Page({
         icon:'../../icon/message_page/notification.png',
         title:"官方通知",
         isUnread:true,
+        unreadNum:1000,
       },
       {
         url:'../followmessage/followmessage',
         icon:'../../icon/message_page/follow.png',
         title:"关注",
-        isUnread:false
+        isUnread:true,
+        unreadNum:5,
       },
       {
         url:'../commentmessage/commentmessage',
@@ -66,7 +68,7 @@ Page({
         
       }
     })
-    /*
+    
     wx.request({
       url: '请求地址',
       data: {
@@ -89,7 +91,7 @@ Page({
       fail: function (err) { },//请求失败
       complete: function () { }//请求完成后执行的函数
     })
-    */
+    
   },
   /**
    * 生命周期函数--监听页面加载
