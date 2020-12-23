@@ -1,9 +1,8 @@
 <view>
   <view class="avatar-warp">
     <!-- 如果用户已登录，获取其信息 -->
-    <view wx:if="{{userinfo}}">  
+    <view wx:if="{{WXuserinfo}}">  
       <view class="user-info">
-
         <image class="avatar" mode='aspectFill' src='{{WXuserinfo.avatar}}'></image>
         <view class="right-info">
           <view class="nickname">{{WXuserinfo.userName}}</view>
@@ -15,7 +14,6 @@
       <!-- 关注/被关注/动态信息 -->
       <view class="article-info">
       <!-- 一下navigator点击后均会触发事件携带userid向服务器请求数据 -->
-
         <navigator url="../follows/follows?userId={{WXuserinfo.userId}}" class="article-item">
           <text class="num">{{WXuserinfo.followNum}}</text>关注</navigator>
         <navigator url="../followers/followers?userId={{WXuserinfo.userId}}" class="article-item">
@@ -57,7 +55,7 @@
     </navigator>
   </view>
   
-  <view wx:if="{{userinfo}}">  
+  <view wx:if="{{WXuserinfo}}">  
     <navigator url="../editor/editor" class="btm" style='width:80%;margin-top:20px;margin-bottom:20px; background-color:#0F6A7B; color:white'>编辑我的资料</navigator>
   </view>
   

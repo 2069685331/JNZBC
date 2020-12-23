@@ -196,6 +196,7 @@ Page({
           }
         })   
       }
+      
     this.setData({
       ['status.imgArr']:newimgs
     });

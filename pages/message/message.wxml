@@ -8,7 +8,7 @@ wx:for-item="item1">
       <view class="right-info">
         <view class="title">{{item1.title}}</view>
       </view>
-      <view wx-if="{{item1.isUnread}}" class="reddot"></view>
+      <view wx-if="{{item1.isUnread}}" class="reddot"><text class="unread-Num">{{item1.unreadNum}}</text></view>
     </view>
   </navigator>
 </view>

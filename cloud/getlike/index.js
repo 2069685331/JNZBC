@@ -46,7 +46,7 @@ exports.main = async (event, context) => {
       
    
   //置为已读
-    db.collection("interests").where({
+    await db.collection("interests").where({
       likeId:wxContext.OPENID,
       isA:false
     }).update({
