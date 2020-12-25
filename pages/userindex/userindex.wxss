@@ -117,6 +117,11 @@ page {
   font-weight: bold;
 }
 
+.deleteStatus{
+  color:var(--themecolor);
+  font-size: 31rpx;
+  padding-right: 10rpx;
+}
 .toptabswrap {
   display: flex;
   width: 100%;
