@@ -24,7 +24,7 @@ Page({
        },
      },
      //分区选择（array后期从数据库获取）
-     array: [{cate:'校园生活',cid:"0"},
+     array: [{cate:'校友圈',cid:"0"},
       {cate:"表白墙",cid:"1"},
       {cate:"寻物/寻失主",cid:"2"},
       {cate:"好物/资源分享",cid:"3"},
