@@ -173,7 +173,11 @@ Page({
     //将图片打包上传到图床
     var newimgs=[];     //储存转换后的链接
     var imgs = this.data.status.imgArr;  //获取本地链接
+<<<<<<< HEAD
     console.log(imgs)
+=======
+    
+>>>>>>> main
     for (var i = 0; i < imgs.length; i++) {
         //转换地方还不会写
         //微信API将图片上传到图床

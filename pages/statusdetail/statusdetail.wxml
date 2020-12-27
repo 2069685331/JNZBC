@@ -106,7 +106,7 @@
                         <!-- 评论的评论按钮 -->
 
                         <!-- 删除 -->
-                        <view class="delete-comment" bindtap="deleteComment" wx:if="{{myinfo.myUserId==item1.userId}}">删除</view>
+                        <view class="delete-comment" data-commentId='{{item1.commentId}}' bindtap="deleteComment" wx:if="{{myinfo.myUserId==item1.userId}}">删除</view>
                         <!-- 删除 -->
                     </view>
                 </view>
