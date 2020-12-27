@@ -124,7 +124,7 @@ Page({
   windowHeight:""
   },
   QueryParams:{
-    query:"",//链接
+    listType:4,//链接
     statusid:"",//动态id
   },
 //options(Object)(未实现)
@@ -150,21 +150,22 @@ onLoad: function(options) {
 getStatusDetail:function(){
   console.log('获取statusdetail页面') 
   wx.cloud.callFunction({ 
-    name: 'getstatusdetail', 
-    data: { 
-      statusid: this.QueryParams
-    }, 
+    name: 'getpost', 
+    data: this.QueryParams
+    , 
   }).then(result=>{ 
     console.log(result) 
     this.setData({ 
       //将原status数据与新请求的数据拼接在一起 
-      status:result.result, 
+      status:result.result.list[0], 
     }); 
   }) 
+  var statusid=this.QueryParams.statusid
+  console.log(statusid)
   wx.cloud.callFunction({ 
     name:'getcomments', 
     data:{ 
-      statusid:this.QueryParams 
+      statusid:statusid
     }, 
   }).then(result=>{ 
     console.log(result.result.temp); 
@@ -220,16 +221,18 @@ sendReply:function(){
 },
 //删除评论(未实现)(tip:删除后要重新request改变js里面的数据重新渲染，否则用户看到的页面不会改变，应该任何执行删除操作的都需要重新request)
 deleteComment:function(){
+  var statusid=this.QueryParams.statusid
   wx.showModal({
     title: '提示',
     content: '确定删除这条评论及该评论下所有内容吗',
     success (res) {
       if (res.confirm) {
+        
         console.log('用户点击确定')
         wx.cloud.callFunction({ 
           name:'deleteComment', 
           data:{ 
-            statusid:statusId,
+            statusid:statusid,
             commentId:commentId
           }, 
           success:res=>{ 
@@ -245,62 +248,67 @@ deleteComment:function(){
     }
   })
 },
-//发送点赞信息（未实现）
-sendLike:function(){
-  console.log('发送like信息');
-},
-//获取我的信息（未实现，存于this.data.myinfo中）
 getMyInfo:function(){
-wx.cloud.callFunction({ 
+  wx.cloud.callFunction({ 
     name:'getMyInfo', 
-    data:{}, 
-    success:res=>{ 
-      console.log(res.result.openid); 
-      this.setData({
-        ['myinfo.myUserId']:res.result.openid
-      })
-      console.log(this.myinfo)
-    } 
+  }).then(result=>{ 
+    console.log(result); 
+    this.setData({ 
+      ['myinfo.myUserId']:result.result.openid
+    }) 
   }) 
 },
-// 更改动态点赞状态（未完全实现）
+
+// 更改点赞状态
 onCollectionTap: function(event) {
+  console.log("collectiontap is chaging")
   // 获取当前点击下标
-  var index = event.currentTarget.dataset.index;
-  console.log(event);
+  // var index = event.currentTarget.dataset.index;
+  // console.log(event);
   // data中获取列表
   var message = this.data.status;
-  for (let i in message) { //遍历列表数据
-    if (i == index) { //根据下标找到目标
-      var collectStatus = false
-      if (message[i].collected == 0) { //如果是没点赞+1
-        collectStatus = true
-        message[i].collected = parseInt(message[i].collected) + 1
-        message[i].likenum = parseInt(message[i].likenum) + 1
+      if (message.collected == false) { 
+        //前端：界面修改
+        //如果是没点赞+1
+        message.collected = true
+        message.likenum = parseInt(message.likenum) + 1
         console.log('like');
+        console.log(message)
+        //后端：上传数据postid,调用云函数like点赞
+        wx.cloud.callFunction({
+          name:"likeadd",
+          data:{
+            statusid:message._id,
+            userId:message.userId
+          },
+          success:res=>{
+            console.log(res);
+          }
+        })
+
       } else {
-        collectStatus = false
-        message[i].collected = parseInt(message[i].collected) - 1
-        message[i].likenum = parseInt(message[i].likenum) - 1
+        //前端：修改界面
+        message.collected = false
+        message.likenum = parseInt(message.likenum) - 1
         console.log('quitlike');
-      }
+        
+        console.log(message);
+
+        //后端：上传数据postid,调用云函数lickcancel取消点赞
+        wx.cloud.callFunction({
+        name:"likecancel",
+        data:{
+          statusid:message._id
+        },
+        success:res=>{
+          console.log(res);
+        }
+      })
     }
-  }
+
   this.setData({
     status: message
   })
-  //向后端返回点赞数据（还没实现）
-  //////////////
-  this.sendLike();
-
-
-
-
-
-
-
-
-  /////////////
 },
 //弹出动态评论框函数
   inputFocus(e) {
@@ -402,32 +410,4 @@ this.setData({
 })
 },
 
-onReady: function() {
-  
-},
-onShow: function() {
-  
-},
-onHide: function() {
-
-},
-onUnload: function() {
-
-},
-onPullDownRefresh: function() {
-
-},
-onReachBottom: function() {
-
-},
-onShareAppMessage: function() {
-
-},
-onPageScroll: function() {
-
-},
-//item(index,pagePath,text)
-onTabItemTap:function(item) {
-
-}
 });

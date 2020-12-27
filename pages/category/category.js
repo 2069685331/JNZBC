@@ -8,7 +8,10 @@ Page({
    */
   data: {
     /*轮播图数组 */
-    swiperList:[],
+       swiperList:[
+        {image_src:"https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=362709193,2074951448&fm=26&gp=0.jpg"},
+        {image_src:"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201208%2F18%2F20120818153004_MjAKF.jpeg&refer=http%3A%2F%2Fb-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1611290001&t=1f05acf18cef6b485c8992f40b189c09"},
+      {image_src:"https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=558090378,2420497563&fm=26&gp=0.jpg"}],
     /*分区数组 */
     catesList:[]
     
@@ -23,39 +26,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-   // wx.request({
-   //   url: 'https://api-hmugo-web.itheima.net/api/public/v1/home/swiperdata',
-   //   data: {},
-   //   header: {'content-type':'application/json'},
-   //   method: 'GET',
-   //   dataType: 'json',
-   //   responseType: 'text',
-   //   success: (result)=>{
-   //     this.setData({
-   //       swiperList:result.data.message
-   //     })
-   //   },
-   //   fail: ()=>{},
-   //   complete: ()=>{}
-   // }); 
-   // request
-   // 
-   // wx.request({
-   //   url: "https://api-hmugo-web.itheima.net/api/public/v1/home/catitems",
-   //   data: {},
-   //   header: {'content-type':'application/json'},
-   //   method: 'GET',
-   //   dataType: 'json',
-   //   responseType: 'text',
-   //   success: (result)=>{
-   //     this.setData({
-   //       catesList:result.data.message
-   //     })
-   //   },
-   //     
-   //   fail: ()=>{},
-   //   complete: ()=>{}
-   // }); 
+ 
    wx.cloud.callFunction({
     name:'cate',
     data:{},
@@ -66,26 +37,8 @@ Page({
       })
     }
   })
-   //轮播图加载函数
-   request({url:this.QueryParams.swiperquery})
-   .then(result=>{
-     this.setData({
-      swiperList:result.data.message
-     })
-   });
-   //分区加载函数
-   //调用云函数
+  
    
-  //  request({url:this.QueryParams.catequery})
-  //  .then(result=>{
-    
-  //     this.cates=result.data.message
-  //     //构造catelist
-  //     let catesList=this.cates[0].children
-  //     this.setData({
-  //       catesList
-  //     })
-  // })
   },
 
   /**

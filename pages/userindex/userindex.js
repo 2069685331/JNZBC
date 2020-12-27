@@ -230,5 +230,63 @@ onReachBottom: function() {
     this.getStatusList();
     console.log("还有下一页");
   }
-}
+},
+// 更改点赞状态
+onCollectionTap: function(event) {
+  // 获取当前点击下标
+  var index = event.currentTarget.dataset.index;
+  console.log(event);
+  // data中获取列表
+  var message = this.data.status;
+  for (let i in message) { //遍历列表数据
+    if (i == index) { //根据下标找到目标
+      var collectStatus = false
+      if (message[i].collected == false) { 
+        //前端：界面修改
+        //如果是没点赞+1
+        collectStatus = true
+        message[i].collected = true
+        message[i].likenum = parseInt(message[i].likenum) + 1
+        console.log('like');
+        console.log(message[i])
+        //后端：上传数据postid,调用云函数like点赞
+        wx.cloud.callFunction({
+          name:"likeadd",
+          data:{
+            statusid:message[i]._id,
+            userId:message[i].userId
+          },
+          success:res=>{
+            console.log(res);
+          }
+        })
+
+      } else {
+        //前端：修改界面
+        collectStatus = false
+        message[i].collected = false
+        message[i].likenum = parseInt(message[i].likenum) - 1
+        console.log('quitlike');
+        
+        console.log(message[i]);
+
+        //后端：上传数据postid,调用云函数lickcancel取消点赞
+        wx.cloud.callFunction({
+        name:"likecancel",
+        data:{
+          statusid:message[i]._id
+        },
+        success:res=>{
+          console.log(res);
+        }
+      })
+    }
+  }
+
+     
+  }
+  this.setData({
+    status: message
+  })
+},
 })

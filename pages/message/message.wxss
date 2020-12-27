@@ -62,13 +62,17 @@
 
   .reddot {
     display:block;
+    padding: 3rpx 20rpx;
     background:rgb(216, 0, 0);
-    border-radius:50%;
-    width:40rpx;
-    height:40rpx;
-    top:43rpx;
+    border-radius:29rpx;
+    /* width:40rpx; */
+    height:58rpx;
+    top:35rpx;
     right:60rpx;
     position:absolute;
+
+    color:white;
+    font-size: 35rpx;
     }
 
   .unread-Num {

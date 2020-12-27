@@ -1,31 +1,9 @@
 <view class="jnz_index">
-
-<view class="toptabswrap">
-    <view class="toptabs" hover-class="none" hover-stop-propagation="false">
-
-        <!--搜素框开始-->
-        <view class="searchtab" hover-class="none" hover-stop-propagation="false">
-            <searchinput class=""></searchinput>
-        </view>
-        <!--搜索框结束-->
-
-        <!--动态发布框--> 
-        <view class="releasetab" hover-class="none" hover-stop-propagation="false">
-            <navigator class="" target="" url="../add/add" hover-class="navigator-hover" open-type="navigate">
-                <image class="" src="/icon/add.png" mode="scaleToFill" lazy-load="false" binderror="" bindload="">
-                </image>
-            </navigator> 
-        </view>
-        <!--动态发布框--> 
-    </view>
-</view>
-
-
-<view class="container" 
-wx:for="{{status}}"
-wx:for-index="index1"
-wx:for-item="item1">
-    <!--用户动态-->
+    <view class="container" 
+    wx:for="{{status}}"
+    wx:for-index="index1"
+    wx:for-item="item1">
+         <!--用户动态-->
     <view class="status-group" >
         <view class="user-group">
             <!-- 头像 -->
@@ -53,7 +31,7 @@ wx:for-item="item1">
 
         <view class="status-content-group">
             <!-- 文本部分 -->
-            <navigator class="content" url="/pages/statusdetail/statusdetail?statusid={{item1._id}}">
+            <navigator class="content" url="/pages/statusdetail/statusdetail?statusid={{item1.statusid}}">
                 <text class="conts" selectable="{{true}}" decode="{{true}}">{{item1.content}}
                 </text> 
             </navigator>
@@ -76,7 +54,7 @@ wx:for-item="item1">
         </view>
         <view class="status-handle">
             <!-- 评论 -->
-            <navigator class="comment-group" url="/pages/statusdetail/statusdetail?statusid={{item1._id}}">
+            <navigator class="comment-group" url="/pages/statusdetail/statusdetail?statusid={{item1.statusid}}&scrollId=handleGroup">
                 <image class="" src="/dongtai/comment.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">   
                 </image>{{item1.commentnum}}
             </navigator>
@@ -88,15 +66,8 @@ wx:for-item="item1">
             </view>
         </view>
     </view>
-    
-</view>
 
-
-
-
-
-
-
+    </view>
     
 </view>
 

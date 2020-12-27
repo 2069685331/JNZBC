@@ -156,7 +156,7 @@ getStatus:function(options){
     console.log(result) 
     this.setData({ 
       //将原status数据与新请求的数据拼接在一起 
-      status:[...this.data.status,...result.result.status] 
+      status:[...this.data.status,...result.result.status.list] 
     }); 
   }) 
 }, 

@@ -47,6 +47,11 @@ exports.main = async (event, context) => {
     }).skip(pagesize*pagenum).limit(pagesize)
     
     break;
+    case 4://获取statusid的帖子
+    oristatus=await db.collection("posts").aggregate().match({
+      _id:event.statusid
+    })
+    break;
   }
   
 
@@ -63,14 +68,17 @@ exports.main = async (event, context) => {
   })//将用户表输出到根结点
   .addFields({
     userName:'$userName',
-    avatar:'$avatar'
+    avatar:'$avatar',
+    likedId:"$userId"
   })
   .project({
+    _id:1,
     userName:1,
     avatar:1,
     content:1,
     imgArr:1,
     likenum:1,
+    likedId:1,
     commentnum:1,
     cid:1,
     userId:1,
@@ -83,9 +91,11 @@ exports.main = async (event, context) => {
     })
   })
   
-  
+ 
   //结合user表处理动态
-  let status=await oristatus2.lookup({
+  let status=await oristatus2.project({
+    userId:0,
+  }).lookup({
     from:"likes",
     localField:"_id",
     foreignField:"postId",
@@ -94,18 +104,20 @@ exports.main = async (event, context) => {
     newRoot: $.mergeObjects([$.arrayElemAt(['$posts', 0]), '$$ROOT'])
   })//将用户表输出到根结点
   .addFields({
-    collected:$.eq([wxContext.OPENID,'$userId'])//是否为点赞者
+    collected:$.eq(['$userId',wxContext.OPENID]),//是否为点赞者
+    userId:"$likedId"
   })
   .project({
+    _id:1,
     userName:1,
     avatar:1,
     content:1,
     imgArr:1,
     likenum:1,
-    commentnum:1,
     collected:1,
-    userId:1,
+    commentnum:1,
     cid:1,
+    userId:1,
     //设置为字符串
     sendTime:1
   }).end()

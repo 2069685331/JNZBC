@@ -9,7 +9,7 @@ Page({
        userId:"1",//用户id
        content:"",//动态文本
        imgArr: [], //上传的结果图片集合
-       cid:0,//分区号
+       cid:'0',//分区号
       //  sendTime:"" //上传时间
      },
     
@@ -24,13 +24,13 @@ Page({
        },
      },
      //分区选择（array后期从数据库获取）
-     array: [{cate:'校园生活',cid:0},
-      {cate:"表白墙",cid:1},
-      {cate:"寻物/寻失主",cid:2},
-      {cate:"好物/资源分享",cid:3},
-      {cate:"提问/解答",cid:4},
-      {cate:"组局",cid:5},
-      {cate:"闲置转让",cid:6}
+     array: [{cate:'校园生活',cid:'0'},
+      {cate:"表白墙",cid:'1'},
+      {cate:"寻物/寻失主",cid:'2'},
+      {cate:"好物/资源分享",cid:'3'},
+      {cate:"提问/解答",cid:'4'},
+      {cate:"组局",cid:'5'},
+      {cate:"闲置转让",cid:'6'}
     ],
      index:0,
   
@@ -64,6 +64,7 @@ Page({
       sizeType: ['original', 'compressed'], // original 原图，compressed 压缩图，默认二者都有
       sourceType: ['album', 'camera'], // album 从相册选图，camera 使用相机，默认二者都有
       success: function (res) {
+        console.log(res)
         var imgs = res.tempFilePaths;
         for (var i = 0; i < imgs.length; i++) {
           imgArr.push(imgs[i])
@@ -173,18 +174,18 @@ Page({
     //将图片打包上传到图床
     var newimgs=[];     //储存转换后的链接
     var imgs = this.data.status.imgArr;  //获取本地链接
-    
+    console.log(imgs)
     for (var i = 0; i < imgs.length; i++) {
         //转换地方还不会写
         //微信API将图片上传到图床
         //返回网络地址
         console.log(imgs[i])
-        
         wx.uploadFile({
-          url: 'https://sm.ms/api/v2/upload',
-          header:{'Authorization': 'e0aOnsYCCG8HBcXX9UZjH6JC4bVBVvXm',
-          'Content-Type':'multipart/form-data'}, //个人令牌
-          filePath:imgs[i] ,
+          url: "https://sm.ms/api/v2/upload",
+          filePath:imgs[i],
+          formData:{
+            Authorization: "e0aOnsYCCG8HBcXX9UZjH6JC4bVBVvXm"
+          },
           name: 'smfile',
           success: res => {
             //逆向转换JSON字符串后抽取网址
@@ -193,12 +194,15 @@ Page({
             var url=JSON.parse(res.data)
             console.log(url)
             newimg.push(url.data.url)
+          },
+          complete(res){
+            console.log(res)
           }
         })   
       }
       
     this.setData({
-      ['status.imgArr']:newimgs
+      ['status.imgArr']: newimgs
     });
     
 

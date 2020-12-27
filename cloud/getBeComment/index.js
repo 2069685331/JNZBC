@@ -6,10 +6,9 @@ const db=cloud.database()
 // 云函数入口函数
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
+  //console.log(event.statusid)
   //获取对应id的post
-  const de = await db.collection('comments').where({postId:event.statusid,parentId:0}).get()
-  console.log(event.statusid)
-  console.log(de)
+  const de = await db.collection('comments').where({commId:wxContext.OPENID}).get();
   //相关post返回的格式
   var temp = await de.data;
   console.log(temp)
@@ -28,5 +27,5 @@ exports.main = async (event, context) => {
     temp[i].userName = userName1;
     console.log(temp[i])
   }
-  return {temp};
+  return temp;
 }

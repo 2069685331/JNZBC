@@ -53,7 +53,7 @@
            </view>
            <!-- like -->
            <view class="praise-group" hover-class="none" hover-stop-propagation="false" bindtap="onCollectionTap" data-index='{{index1}}'>
-               <image class="" src="{{item1.collected?'/dongtai/haslike.png':'/dongtai/like.png'}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
+               <image class="" src="{{status.collected?'/dongtai/haslike.png':'/dongtai/like.png'}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
                </image>{{status.likenum}}
            </view>
     </view>
