@@ -170,7 +170,8 @@ getStatusDetail:function(){
   }).then(result=>{ 
     console.log(result.result.temp); 
     this.setData({ 
-      comments:[...this.data.comments,...result.result.temp] 
+      //comments:[...this.data.comments,...result.result.temp] 
+      comments:result.result.temp
     }) 
   }) 
 },
@@ -194,6 +195,8 @@ sendComment:function(){
       console.log(res); 
     } 
   }) 
+  this.onLoad();
+
 },
 //向后端发送动态评论的回复的相关信息（未实现）
 sendReply:function(){
@@ -232,8 +235,8 @@ deleteComment:function(e){
         wx.cloud.callFunction({ 
           name:'deleteComment', 
           data:{ 
-            statusid:statusid,
-            commentId:e.currentTarget.dataset.commentId
+            statusId:statusid,
+            commentId:e.currentTarget.dataset.commentid
           }, 
           success:res=>{ 
             console.log(res); 
