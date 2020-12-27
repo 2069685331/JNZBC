@@ -25,7 +25,7 @@ Page({
       console.log(result)
       this.setData({
         //将原status数据与新请求的数据拼接在一起
-        follows: result.result.list, //设置targetInfo
+        followers: result.result.list, //设置targetInfo
       });
     }) 
   },

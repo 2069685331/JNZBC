@@ -75,7 +75,7 @@ exports.main = async (event, context) => {
   {
     haveFollowed= await db.collection("interests").where({
       userId:wxContext.OPENID,
-      followerId:userId
+      followId:userId
     }).count()
   }
 
