@@ -170,7 +170,8 @@ getStatusDetail:function(){
   }).then(result=>{ 
     console.log(result.result.temp); 
     this.setData({ 
-      comments:[...this.data.comments,...result.result.temp] 
+      //comments:[...this.data.comments,...result.result.temp] 
+      comments:result.result.temp
     }) 
   }) 
 },
@@ -194,6 +195,8 @@ sendComment:function(){
       console.log(res); 
     } 
   }) 
+  this.onLoad();
+
 },
 //向后端发送动态评论的回复的相关信息（未实现）
 sendReply:function(){
@@ -220,7 +223,7 @@ sendReply:function(){
 
 },
 //删除评论(未实现)(tip:删除后要重新request改变js里面的数据重新渲染，否则用户看到的页面不会改变，应该任何执行删除操作的都需要重新request)
-deleteComment:function(){
+deleteComment:function(e){
   var statusid=this.QueryParams.statusid
   wx.showModal({
     title: '提示',
@@ -228,12 +231,12 @@ deleteComment:function(){
     success (res) {
       if (res.confirm) {
         
-        console.log('用户点击确定')
+        console.log('用户点击确定',e)
         wx.cloud.callFunction({ 
           name:'deleteComment', 
           data:{ 
-            statusid:statusid,
-            commentId:commentId
+            statusId:statusid,
+            commentId:e.currentTarget.dataset.commentid
           }, 
           success:res=>{ 
             console.log(res); 

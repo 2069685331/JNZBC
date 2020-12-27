@@ -5,22 +5,22 @@ Page({
    */
   data: {
     likeMsg:[
-      {
-        //点赞Id
-        liketId:'01',
-        //用户Id
-        userId:"01",
-        //用户名
-        userName:'XXX',
-        //头像
-        avatar:"/dongtai/user1.jpg",
-        //点赞的动态id
-        statusId:"",
-        //点赞时间
-        sendTime:'2020/11/11 11:11:11',
-        //评论内容
-        commentText:'这是评论',
-      }
+      // {
+      //   //点赞Id
+      //   liketId:'01',
+      //   //用户Id
+      //   userId:"01",
+      //   //用户名
+      //   userName:'XXX',
+      //   //头像
+      //   avatar:"/dongtai/user1.jpg",
+      //   //点赞的动态id
+      //   statusId:"",
+      //   //点赞时间
+      //   sendTime:'2020/11/11 11:11:11',
+      //   //评论内容
+      //   commentText:'这是评论',
+      // }
     ],
 
     //触底加载向端口请求新的数据时送给端口的数据

@@ -7,6 +7,8 @@ const db=cloud.database()
 
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
+  console.log(event.commentId)
+  console.log(event.statusId)
   //删除的记录数
   const _ = db.command;
   

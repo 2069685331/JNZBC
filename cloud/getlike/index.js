@@ -10,9 +10,21 @@ exports.main = async (event, context) => {
   
   const $=db.command.aggregate
   let status=null
-  
+  //置为已读
+  const message= await db.collection("likes").where({
+    likeId:wxContext.OPENID,
+    isA:false
+  }).update({
+    data:{
+    isA:true
+    },
+    success: function(res) {
+      console.log(res.data)
+    }
+  })
+  console.log(message)
   //获取我关注的用户
-      status=db.collection("likes").aggregate().match({
+      status=await db.collection("likes").aggregate().match({
         likeId:wxContext.OPENID
       }).sort({
         sendTime:-1
@@ -45,15 +57,7 @@ exports.main = async (event, context) => {
       }).end()
       
    
-  //置为已读
-    await db.collection("interests").where({
-      likeId:wxContext.OPENID,
-      isA:false
-    }).update({
-      data:{
-      isA:true
-      }
-    })
   
-  return status
+  
+  return await status
 }
