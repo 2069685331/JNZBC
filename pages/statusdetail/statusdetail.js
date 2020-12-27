@@ -220,7 +220,7 @@ sendReply:function(){
 
 },
 //删除评论(未实现)(tip:删除后要重新request改变js里面的数据重新渲染，否则用户看到的页面不会改变，应该任何执行删除操作的都需要重新request)
-deleteComment:function(){
+deleteComment:function(e){
   var statusid=this.QueryParams.statusid
   wx.showModal({
     title: '提示',
@@ -228,12 +228,12 @@ deleteComment:function(){
     success (res) {
       if (res.confirm) {
         
-        console.log('用户点击确定')
+        console.log('用户点击确定',e)
         wx.cloud.callFunction({ 
           name:'deleteComment', 
           data:{ 
             statusid:statusid,
-            commentId:commentId
+            commentId:e.currentTarget.dataset.commentId
           }, 
           success:res=>{ 
             console.log(res); 
