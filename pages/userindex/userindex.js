@@ -85,6 +85,34 @@ handleFollow:function(){
     })
   }
   },
+  //删除动态(未实现)(tip:删除后要重新request改变js里面的数据重新渲染，否则用户看到的页面不会改变，应该任何执行删除操作的都需要重新request)
+deleteStatus:function(e){
+  var statusid=this.QueryParams.statusid
+  wx.showModal({
+    title: '提示',
+    content: '确定删除这条动态吗',
+    success (res) {
+      if (res.confirm) {
+        
+        console.log('用户点击确定',e)
+        wx.cloud.callFunction({ 
+          name:'deleteComment', 
+          data:{ 
+            statusId:statusid,
+          }, 
+          success:res=>{ 
+            console.log(res); 
+          } 
+        }) 
+        //删除要发送什么还没实现
+      } else if (res.cancel) {
+        console.log('用户点击取消')
+        //取消直接return就行
+        return;
+      }
+    }
+  })
+},
 
 //图片预览函数
 handlePreviewImg:function(e){
