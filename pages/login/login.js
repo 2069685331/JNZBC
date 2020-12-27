@@ -10,11 +10,11 @@ Page({
     // console.log(e);
 
     const {userInfo}=e.detail;
-    wx.setStorageSync("userinfo", userInfo);
+    wx.setStorageSync("WXuserinfo", userInfo);
     //这里需要接收服务器发送的newFlag与userId，直接声明变量接收或写入data中
-    if(newFlag){   //第一次登录则跳到编辑资料页面
+    if(this.data.newFlag){   //第一次登录则跳到编辑资料页面
       wx.navigateTo({
-        url: '../editor/editor?userId=' + userId
+        url: '../editor/editor?userId=' + this.data.userId
       });
     }
     else{   //非第一次登录：跳到上一次页面
