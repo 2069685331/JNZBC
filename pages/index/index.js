@@ -45,18 +45,78 @@ getStatusList:function(){
   }).then(result=>{
     console.log(result)
     const total=result.result.list.length;
-    console.log(total)
     this.totalPages=Math.floor(total/this.QueryParams.pagesize);
-    console.log(this.totalPages)
+    //status=this.turntoimage(this.data.status)
+    //console.log(status)
+    var status=result.result.list    
     this.setData({
       //将原status数据与新请求的数据拼接在一起
       status:[...this.data.status,...result.result.list]
     });
+    this.handleImgarr()
+    this.handleAvatar()
   })
 },
+//将云储存链接转换成本地链接
+handleImgarr()
+{
+  var status=this.data.status
+  var that=this
+  for(var i=0;i<status.length;i++){
+       var imgArr=status[i].imgArr
+       for(var j=0;j<status[i].imgArr.length;j++){
+         var tmp=i
+         var tmp2=j
+         wx.cloud.downloadFile({
+          fileID: imgArr[j],
+          success: res => {
+            // get temp file path
+            console.log(res.tempFilePath)
+            console.log('i='+i)
+            console.log('tmp='+tmp)
+            console.log('j='+j)
+            console.log('tmp2='+tmp2)
+            console.log(that.data.status[tmp])
+            console.log(that.data.status[tmp].imgArr[j])
+            that.setData({
+              [`status[${tmp}].imgArr[${j}]`]:res.tempFilePath
+            })
+            console.log(that.data.status[tmp].imgArr[j])
+          }
+        })
+       }
+    }
+},
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+//将云储存链接转换成本地链接
+handleAvatar:function()
+{
+  var status=this.data.status
+  var that=this
+  for (var i = 0; i < status.length; i++) {
+    for(var j=0;j<1;j++){
+      var tmp=i
+        //下载图片
+        wx.cloud.downloadFile({
+          fileID: status[i].avatar,
+          success: res => {
+            // get temp file path
+            console.log(res.tempFilePath)
+            console.log('i='+i)
+            console.log('tmp='+tmp)
+            that.setData({
+              [`status[${tmp}].avatar`]:res.tempFilePath
+            })
+            console.log(that.data.status)
+          },
+          fail: err => {
+            // handle error
+          }
+        })    
+      }
+   }
 
-
+},
 
 // 更改点赞状态
 onCollectionTap: function(event) {

@@ -10,6 +10,7 @@ Page({
        content:"",//动态文本
        imgArr: [], //上传的结果图片集合
        cid:'0',//分区号
+       newimg:[] //文件id号
       //  sendTime:"" //上传时间
      },
     
@@ -160,7 +161,66 @@ Page({
   //   console.log("还没有获取用户ID")
   // },
   //打包发送
-  send: function(e){
+  //生成唯一id
+  guid:function() {
+    return Number(Math.random().toString().substr(3, 3) + Date.now()).toString(36);
+},
+  handleimgarr: function()
+  {
+    var that = this
+    //var p= new Promise(function (resolve,reject){
+      //将图片打包上传到图床
+    var newimgs=[];     //储存转换后的链接
+    var imgs = that.data.status.imgArr;  //获取本地链接
+    console.log(imgs)
+    for (var i = 0; i < imgs.length; i++) {
+       //上传到cloud里
+        console.log('进入端口')
+        if(i==imgs.length){
+            that.uploadimgarr(imgs[i]);
+            console.log('回到handleimgarr')
+            resolve();
+        }
+        else{that.uploadimgarr(imgs[i])}
+      }
+    //})
+   
+    //return p;
+   
+    
+  },
+  uploadimgarr: function(imgs)
+  {
+    console.log('进入端口')
+    var that = this
+    console.log(imgs)
+    //var p= new Promise(function(resolve,reject){
+      
+      //将图片打包上传到图床
+       //上传到cloud里
+        wx.cloud.uploadFile({
+        cloudPath: 'photo/'+String(that.guid())+'.png',
+        filePath: imgs, // 文件路径
+        success: function(res)  {
+          // get resource ID
+          console.log(res.fileID)
+          that.data.status.newimg.push(res.fileID)
+          console.log('离开')
+          that.sendpost()
+          //resolve();
+        },
+        fail: err => {
+          // handle error
+          console.log(err)
+          reject(err);
+        }
+        
+      })
+         
+    //})
+  
+  },
+  send: async function(e){
     //检查文本是否为空
     if(!this.data.status.content.trim())
     {
@@ -171,46 +231,15 @@ Page({
       return;
     }
    
-    //将图片打包上传到图床
-    var newimgs=[];     //储存转换后的链接
-    var imgs = this.data.status.imgArr;  //获取本地链接
-    console.log(imgs)
-    for (var i = 0; i < imgs.length; i++) {
-        //转换地方还不会写
-        //微信API将图片上传到图床
-        //返回网络地址
-        console.log(imgs[i])
-        wx.uploadFile({
-          url: "https://sm.ms/api/v2/upload",
-          filePath:imgs[i],
-          formData:{
-            Authorization: "e0aOnsYCCG8HBcXX9UZjH6JC4bVBVvXm"
-          },
-          name: 'smfile',
-          success: res => {
-            //逆向转换JSON字符串后抽取网址
-            console.log("图片上传成功！")
-            console.log(res)
-            var url=JSON.parse(res.data)
-            console.log(url)
-            newimg.push(url.data.url)
-          },
-          complete(res){
-            console.log(res)
-          }
-        })   
-      }
-      
-    this.setData({
-      ['status.imgArr']: newimgs
-    });
+    var that=this
+    //处理图片
+    this.handleimgarr()
     
-
-    //检测代码用，后期可删除
+    
+  },
+  sendpost:function(){
     console.log("打包发送下列信息")
     console.log(this.data.status)
-
-    //调用云函数
     wx.cloud.callFunction({
       name:'sendpost',
       data:{
@@ -218,15 +247,13 @@ Page({
       },
       success:res=>{
         console.log(res);
-      }
-    })
-
-    //跳转到首页
-    wx.switchTab({
+        //跳转到首页
+       wx.switchTab({
       url: '/pages/index/index'
     })
+      }
+    })
   },
-  
     /**
      * 生命周期函数--监听页面加载
      */

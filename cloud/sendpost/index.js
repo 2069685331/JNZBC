@@ -12,7 +12,8 @@ exports.main = async (event, context) => {
   return await db.collection("posts").add({
     data:{
     userId: wxContext.OPENID,     //设置点赞者id
-    imgArr:event.status.imgArr,
+    imgArr:event.status.newimg,
+    //newimg:event.status.newimg,
     content:event.status.content,
     likenum:0,
     commentnum:0,

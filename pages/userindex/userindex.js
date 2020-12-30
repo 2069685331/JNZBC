@@ -87,18 +87,17 @@ handleFollow:function(){
   },
   //删除动态(未实现)(tip:删除后要重新request改变js里面的数据重新渲染，否则用户看到的页面不会改变，应该任何执行删除操作的都需要重新request)
 deleteStatus:function(e){
-  var statusid=this.QueryParams.statusid
+  console.log(e.currentTarget.dataset)
   wx.showModal({
     title: '提示',
     content: '确定删除这条动态吗',
     success (res) {
       if (res.confirm) {
-        
         console.log('用户点击确定',e)
         wx.cloud.callFunction({ 
-          name:'deleteComment', 
+          name:'deletepost', 
           data:{ 
-            statusId:statusid,
+            statusId:e.currentTarget.dataset.statusid,
           }, 
           success:res=>{ 
             console.log(res); 
@@ -212,6 +211,7 @@ handlePreviewImg:function(e){
   },
 //获取动态列表数据
 getStatusList:function(){
+  var that=this
   wx.cloud.callFunction({
     name:"getpost",
     data:this.QueryParams
@@ -224,7 +224,10 @@ getStatusList:function(){
     this.setData({
       //将原status数据与新请求的数据拼接在一起
       status:[...this.data.status,...result.result.list]
+      
     });
+    that.handleImgarr()
+    this.handleAvatar()
   })
 },
 //下拉刷新事件
@@ -239,6 +242,60 @@ onPullDownRefresh: function(){
   this.getStatusList();
   //完成请求，关闭下拉刷新界面
   wx.stopPullDownRefresh();
+},
+//将云储存链接转换成本地链接
+handleImgarr()
+{
+  var status=this.data.status
+  var that=this
+  for(var i=0;i<status.length;i++){
+       var imgArr=status[i].imgArr
+       for(var j=0;j<status[i].imgArr.length;j++){
+         var tmp=i
+         var tmp2=j
+         wx.cloud.downloadFile({
+          fileID: imgArr[j],
+          success: res => {
+            // get temp file path
+            console.log(res.tempFilePath)
+            that.setData({
+              [`status[${tmp}].imgArr[${j}]`]:res.tempFilePath
+            })
+            console.log(that.data.status[tmp].imgArr[j])
+          }
+        })
+       }
+    }
+},
+//将云储存链接转换成本地链接
+handleAvatar:function()
+{
+  var status=this.data.status
+  var avatar=this.data.targetInfo.avatar
+  var that=this
+        //下载图片
+        wx.cloud.downloadFile({
+          fileID: avatar,
+          success: res => {
+            // get temp file path
+            console.log(res.tempFilePath)
+            for (var i = 0; i < status.length; i++) {
+            that.setData({
+              [`status[${i}].avatar`]:res.tempFilePath
+            })
+            }
+            that.setData({
+              ['targetInfo.avatar']:res.tempFilePath
+            })
+            console.log(that.data.status)
+          },
+          fail: err => {
+            // handle error
+          }
+        })    
+      
+   
+
 },
 //页面触底事件
 onReachBottom: function() {

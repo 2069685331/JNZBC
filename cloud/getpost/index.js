@@ -121,6 +121,8 @@ exports.main = async (event, context) => {
     //设置为字符串
     sendTime:1
   }).end()
+
+  
   
   console.log(status)
   return await status;

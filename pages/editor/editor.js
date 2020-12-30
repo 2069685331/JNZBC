@@ -1,5 +1,7 @@
 //const { userInfo } = require("os")
 
+//const { threadId } = require("worker_threads");
+
 // pages/editor/editor.js
 Page({
 
@@ -20,7 +22,10 @@ Page({
       motto:"",
     },
   },
-
+  //生成唯一id
+  guid:function() {
+    return Number(Math.random().toString().substr(3, 3) + Date.now()).toString(36);
+},
   //图片选取
   upload () {
     wx.chooseImage({
@@ -29,7 +34,8 @@ Page({
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success (res) {
         const src = res.tempFilePaths[0]
-
+        
+        
         wx.redirectTo({
           url: `../upload/upload?src=${src}`
         })
@@ -68,18 +74,32 @@ Page({
   //提交表单
   submitForm: function(e){
     console.log(this.data.form)  //此内容为要提交的表单内容
-
-    //调用后端接口editor
-    wx.cloud.callFunction({
-      name:"editor",
-      data:this.data.form
-    }).then(result=>{
-      console.log(result)
+    var that=this
+    wx.cloud.uploadFile({
+      cloudPath: 'photo/'+String(that.guid())+'.png',
+      filePath: that.data.form.avatar, // 文件路径
+      success: function(res)  {
+        // get resource ID
+        console.log(res.fileID)
+        that.setData({
+          ['form.avatar']:res.fileID
+        })
+        console.log('离开')
+        //调用后端接口editor
+        wx.cloud.callFunction({
+         name:"editor",
+         data:that.data.form
+       }).then(result=>{
+         console.log(result)
+         wx.switchTab({
+         url: '/pages/user/user'
+       })
+     })
+      }
     })
+    
 
-    wx.switchTab({
-      url: '/pages/user/user'
-    })
+   
   },
   /**
    * 生命周期函数--监听页面加载

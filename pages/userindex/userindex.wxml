@@ -57,7 +57,7 @@ wx:for-item="item1">
                 <!-- 日期 -->
             </view>
             <!-- 删除动态按钮 -->
-            <view class="deleteStatus" wx:if="{{userId==targetInfo.userId}}" bindtap="deleteStatus" data-statusid='{{status._id}}'>
+            <view class="deleteStatus" wx:if="{{userId==targetInfo.userId}}" bindtap="deleteStatus" data-statusid='{{item1._id}}'>
               删除
             </view>
             <!-- 删除动态按钮 -->
