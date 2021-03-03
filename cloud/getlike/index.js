@@ -40,13 +40,14 @@ exports.main = async (event, context) => {
         userName:'$userName',
         avatar:'$avatar',
         motto:"$motto",
-        statusId:"$postId"
+        statusId:"$postId",
       })
       .project({
         userName:1,
         avatar:1,
         motto:1,
         statusId:1,
+        userId:1,
         //设置为字符串
       sendTime:$.dateToString({
         date:'$sendTime',

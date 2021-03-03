@@ -106,6 +106,7 @@ Page({
 
   //向端口请求动态送给端口的数据
   QueryParams:{
+    listType:1,//用于请求getcomment
     query:"",//获取该条评论及其回复内容的链接
     statusid:"",//动态ID
     commentId:"",//评论ID
@@ -139,26 +140,24 @@ Page({
   getCommentReply:function(){
     console.log('获取初始化页面');
     wx.cloud.callFunction({ 
-      name: 'getcommentreply', 
-      data: { 
-        statusid: this.QueryParams 
-      }, 
+      name: 'getcomments', 
+      data: this.QueryParams 
+      , 
     }).then(result=>{ 
       console.log(result.result) 
       this.setData({ 
         //将原status数据与新请求的数据拼接在一起 
-        comment:result.result, 
+        comment:result.result.temp.list[0], 
       }); 
     }) 
     wx.cloud.callFunction({ 
       name:'getcommentreplydetail', 
-      data:{ 
-        statusid:this.QueryParams 
-      }, 
+      data:this.QueryParams 
+      , 
     }).then(result=>{ 
       console.log(result.result.temp); 
       this.setData({ 
-        reply:[...this.data.reply,...result.result.temp] 
+        reply:[...this.data.reply,...result.result.temp.list] 
       }) 
       console.log(this.comment)
     }) 

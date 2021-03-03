@@ -7,12 +7,51 @@ const db=cloud.database()
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
   //获取对应id的post
-  const de = await db.collection('comments').where({parentId:event.statusid.commentId}).get()
-  console.log(event.statusid.commentId)
-  console.log(de)
+  const de = await db.collection('comments').aggregate().match({
+    parentId:event.commentId
+  }).sort({
+    sendTime:-1
+  })
+  console.log(de.end())
   //相关post返回的格式
-  var temp = await de.data;
+ 
+
+  const $=db.command.aggregate
+  //结合user表处理动态,处理时间
+  let temp=await de.lookup({
+    from:"user",
+    localField:"myUserId",
+    foreignField:"userId",
+    as:"comments" //联合查询用户表
+  }).replaceRoot({
+    newRoot: $.mergeObjects([$.arrayElemAt(['$commnents', 0]), '$$ROOT'])
+  })//将用户表输出到根结点
+  .addFields({
+    userName:'$userName',
+    avatar:'$avatar',
+    userId:'$myUserId'
+  })
+  .project({
+    _id:1,
+    userId: 1,     //评论者id
+    reply: 1, //评论文本
+    postId: 1, //评论的帖子
+    parentId: 1,
+    isA:1,//是否已读
+    userName:1,
+    avatar:1,
+    //设置为字符串
+    sendTime:$.dateToString({
+      date:'$sendTime',
+      //格式2020/11/10 12:20:30
+      format:'%G/%m/%d %H:%M:%S',
+      timezone:'Asia/Shanghai'
+    })
+  }).end()
+
   console.log(temp)
+  return {temp};
+  /*
   for(let i in temp){
     //处理时间
     var newdate=await temp[i].sendTime
@@ -28,5 +67,6 @@ exports.main = async (event, context) => {
     temp[i].userName = userName1;
     console.log(temp[i])
   }
-  return {temp};
+  */
+  
 }

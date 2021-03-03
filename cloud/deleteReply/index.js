@@ -10,17 +10,22 @@ exports.main = async (event, context) => {
   //删除的记录数
   const _ = db.command;
   console.log(event.statusId)
-  db.collection('comments').where({_id:event.statusId}).update({
+  await db.collection('comments').where({_id:event.statusId}).update({
     data: {
       replyNum: _.inc(-1)
     },
   success: function(res) {
     console.log(res.data)
   }});
-  db.collection('comments').where({_id:event.commentId}).remove({
+  await db.collection('comments').where({_id:event.commentId}).remove({
     success: function(res) {
       console.log(res.data)
     }
   })
+  return  await db.collection('posts').where({_id:event.statusId}).update({
+    data: {
+      commentnum: _.inc(1)
+    }
+    })
   
 }

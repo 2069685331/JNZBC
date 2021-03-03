@@ -165,13 +165,14 @@ getStatusDetail:function(){
   wx.cloud.callFunction({ 
     name:'getcomments', 
     data:{ 
-      statusid:statusid
+      statusid:statusid,
+      listType:0,
     }, 
   }).then(result=>{ 
     console.log(result.result.temp); 
     this.setData({ 
       //comments:[...this.data.comments,...result.result.temp] 
-      comments:result.result.temp
+      comments:result.result.temp.list
     }) 
   }) 
 },
