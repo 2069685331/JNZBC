@@ -102,7 +102,7 @@
                      
                     <view class="function-list">
                         <!-- 评论的评论按钮 -->
-                        <view   class="comment-group" bindtap='focusCommentButn' data-statusid='{{status._id}}' data-commentId='{{item1._id}}'>回复</view>
+                        <view   class="comment-group" bindtap='focusCommentButn' data-statusid='{{status._id}}' data-commentId='{{item1._id}}' data-commId='{{item1.userId}}'>回复</view>
                         <!-- 评论的评论按钮 -->
 
                         <!-- 删除 -->

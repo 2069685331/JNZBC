@@ -24,7 +24,7 @@ exports.main = async (event, context) => {
     foreignField:"userId",
     as:"comments" //联合查询用户表
   }).replaceRoot({
-    newRoot: $.mergeObjects([$.arrayElemAt(['$commnents', 0]), '$$ROOT'])
+    newRoot: $.mergeObjects([$.arrayElemAt(['$comments', 0]), '$$ROOT'])
   })//将用户表输出到根结点
   .addFields({
     userName:'$userName',

@@ -27,6 +27,7 @@ exports.main = async (event, context) => {
     reply: event.myreply.reply, //评论文本
     postId: event.myreply.statusid, //评论的帖子
     parentId: event.myreply.commentId,
+    commId:event.myreply.userId, //被评论者的userId
     isA:false,//是否已读
     sendTime: db.serverDate()    //评论时间
   },

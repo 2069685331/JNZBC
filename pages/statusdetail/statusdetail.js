@@ -190,7 +190,8 @@ sendComment:function(){
   wx.cloud.callFunction({ 
     name:'sendcomment', 
     data:{ 
-      mycomment:this.data.mycomment 
+      mycomment:this.data.mycomment,
+      userId:this.data.status.userId
     }, 
     success:res=>{ 
       console.log(res); 
@@ -369,11 +370,13 @@ onCollectionTap: function(event) {
     console.log(e);
     var statusid=e.currentTarget.dataset.statusid;
     var commentId=e.currentTarget.dataset.commentid;
+    var commId=e.currentTarget.dataset.commId
     this.setData({
       commentFocusInput: true,
       commentIsInput: true,
       ['myreply.statusid']:statusid,
-      ['myreply.commentId']:commentId
+      ['myreply.commentId']:commentId,
+      ['myreply.commId']:commId
     })
   },
   //获取回复内容

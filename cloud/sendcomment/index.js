@@ -20,6 +20,7 @@ exports.main = async (event, context) => {
     userId: wxContext.OPENID,     //评论者id
     commentText: event.mycomment.comment, //评论文本
     postId: event.mycomment.statusid, //评论的帖子
+    commId:event.userId, //被评论者的userId
     parentId:0,
     isA:false,//是否已读
     replyNum:0,//回复数目
