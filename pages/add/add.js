@@ -173,6 +173,10 @@ Page({
     var newimgs=[];     //储存转换后的链接
     var imgs = that.data.status.imgArr;  //获取本地链接
     console.log(imgs)
+    if(imgs.length==0)
+    {
+      that.sendpost()
+    }
     for (var i = 0; i < imgs.length; i++) {
        //上传到cloud里
         console.log('进入端口')

@@ -57,6 +57,7 @@ exports.main = async (event, context) => {
     })
     .project({
       userName:1,
+      userId:1,
       avatar:1,
       motto:1,
       //设置为字符串
@@ -89,6 +90,7 @@ exports.main = async (event, context) => {
     })
     .project({
       userName:1,
+      userId:1,
       avatar:1,
       motto:1,
       //设置为字符串

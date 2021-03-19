@@ -85,7 +85,7 @@ Page({
       console.log(result.result) 
       this.setData({ 
         //将原status数据与新请求的数据拼接在一起 
-        commentMsg:result.result
+        commentMsg:result.result.list
       }); 
       console.log(this.data.advice) 
     }) 
