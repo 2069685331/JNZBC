@@ -24,6 +24,7 @@ Page({
     status:[],
     //确定多图时图片宽度
     imagesSize:0,
+    ifOnShow : false,
 
   },
 
@@ -51,7 +52,8 @@ getStatusList:function(){
     var status=result.result.list    
     this.setData({
       //将原status数据与新请求的数据拼接在一起
-      status:[...this.data.status,...result.result.list]
+      //status:[...this.data.status,...result.result.list]
+      status:result.result.list
     });
     this.handleImgarr()
     this.handleAvatar()
@@ -200,6 +202,21 @@ onReachBottom: function() {
     console.log("还有下一页");
   }
 },
+//new
+onHide() {
+  this.ifOnShow = true;
+  //this.status = [];
+  console.log(this);
+},
+
+onShow() {
+  if(this.ifOnShow){
+    this.initImageSize();
+    this.getStatusList();
+  }
+  // this.ifOnShow = false;
+},
+//new
 
 //下拉刷新事件
 onPullDownRefresh: function(){

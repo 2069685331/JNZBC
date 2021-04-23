@@ -10,7 +10,7 @@ Page({
        content:"",//动态文本
        imgArr: [], //上传的结果图片集合
        cid:'0',//分区号
-       newimg:[] //文件id号
+       newimg:[], //文件id号
       //  sendTime:"" //上传时间
      },
     
@@ -176,10 +176,11 @@ Page({
     for (var i = 0; i < imgs.length; i++) {
        //上传到cloud里
         console.log('进入端口')
-        if(i==imgs.length){
+        if(i==imgs.length-1){//改为长度-1
             that.uploadimgarr(imgs[i]);
             console.log('回到handleimgarr')
-            resolve();
+            //resolve();
+            // that.sendpost();
         }
         else{that.uploadimgarr(imgs[i])}
       }
@@ -206,7 +207,9 @@ Page({
           console.log(res.fileID)
           that.data.status.newimg.push(res.fileID)
           console.log('离开')
-          that.sendpost()
+          that.sendpost();
+          
+          
           //resolve();
         },
         fail: err => {
@@ -234,25 +237,30 @@ Page({
     var that=this
     //处理图片
     this.handleimgarr()
+    if(this.data.status.imgArr.length==0)
+      that.sendpost()//new
     
     
   },
   sendpost:function(){
-    console.log("打包发送下列信息")
-    console.log(this.data.status)
-    wx.cloud.callFunction({
-      name:'sendpost',
-      data:{
-        status:this.data.status
-      },
-      success:res=>{
-        console.log(res);
-        //跳转到首页
-       wx.switchTab({
-      url: '/pages/index/index'
-    })
-      }
-    })
+    if(this.data.status.newimg.length == this.data.status.imgArr.length){
+      console.log("打包发送下列信息")
+      console.log(this.data.status)
+      wx.cloud.callFunction({
+        name:'sendpost',
+        data:{
+          status:this.data.status
+        },
+        success:res=>{
+          console.log(res);
+          //跳转到首页
+         wx.switchTab({
+        url: '/pages/index/index'
+      })
+        }
+      })
+    }
+    
   },
     /**
      * 生命周期函数--监听页面加载

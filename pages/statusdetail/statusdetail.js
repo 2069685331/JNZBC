@@ -118,7 +118,8 @@ Page({
   //用于弹出回复框
   commentFoucusInput:false,
   commentIsInput:false,
-
+  //设置自动刷新
+  ifOnShow : false,
   //设置锚点
   scrollId:"",
   windowHeight:""
@@ -136,6 +137,8 @@ onLoad: function(options) {
   this.initImageSize();
   //获取用户信息
   this.getMyInfo();
+
+  console.log(1)
   //借助QueryParams获取页面
   this.getStatusDetail();
   //设置锚点
@@ -222,6 +225,9 @@ sendReply:function(){
   }) 
   
   console.log(this.data.myreply);
+    //  this.initImageSize();
+    //  this.getMyInfo();
+     //this.getStatusDetail();
 
 },
 //删除评论(未实现)(tip:删除后要重新request改变js里面的数据重新渲染，否则用户看到的页面不会改变，应该任何执行删除操作的都需要重新request)

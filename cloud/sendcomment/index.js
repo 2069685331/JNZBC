@@ -14,7 +14,10 @@ exports.main = async (event, context) => {
   success: function(res) {
     console.log(res.data)
   }});
-  
+  const oristatus = await db.collection("user").where({userId:wxContext.OPENID}).get()
+  var temp = oristatus.data
+  const oristatus1 = await db.collection("posts").where({_id:event.mycomment.statusid}).get()
+  var temp1 = oristatus.data
   return await db.collection("comments").add({
     data:{
     userId: wxContext.OPENID,     //评论者id
@@ -22,6 +25,9 @@ exports.main = async (event, context) => {
     postId: event.mycomment.statusid, //评论的帖子
     commId:event.userId, //被评论者的userId
     parentId:0,
+    isA:false,
+    commId:temp[0].userId,
+    avatar:temp[0].avatar,//头像
     isA:false,//是否已读
     replyNum:0,//回复数目
     sendTime: db.serverDate()    //评论时间
