@@ -52,8 +52,8 @@ getStatusList:function(){
     var status=result.result.list    
     this.setData({
       //将原status数据与新请求的数据拼接在一起
-      //status:[...this.data.status,...result.result.list]
-      status:result.result.list
+      status:[...this.data.status,...result.result.list]
+      //status:result.result.list
     });
     this.handleImgarr()
     this.handleAvatar()
