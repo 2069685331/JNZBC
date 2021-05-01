@@ -6,30 +6,35 @@ Page({
    */
   data: {
     userid:"",
+    ifOnShow : false,
     messageList:[
       {
         url:'../officemessage/officemessage',
         icon:'../../icon/message_page/notification.png',
         title:"官方通知",
         isUnread:true,
+        unreadNum:0,
       },
       {
         url:'../followmessage/followmessage',
         icon:'../../icon/message_page/follow.png',
         title:"关注",
-        isUnread:false
+        isUnread:false,
+        unreadNum:0,
       },
       {
         url:'../commentmessage/commentmessage',
         icon:'../../icon/message_page/comment.png',
         title:"评论",
-        isUnread:false
+        isUnread:false,
+        unreadNum:0,
       },
       {
         url:'../likemessage/likemessage',
         icon:'../../icon/message_page/like.png',
         title:"赞",
-        isUnread:false
+        isUnread:false,
+        unreadNum:0,
       },
       
     ]
@@ -66,30 +71,30 @@ Page({
         
       }
     })
-    /*
-    wx.request({
-      url: '请求地址',
-      data: {
-        "key": "isUnread",  //请求的新officeMsg
-        "userId": that.data.userId,  //主页用户id
-      },
-      method: "POST",
-      success: function (res) {
-        var isUnread = res.data.isUnread; //从此次请求返回的数据中获取isUnread数组
-        that.setData({
-          //把messageList里面的isUnread项都与isUnread数组里面的值一对一对应地修改
-          'messageList[0].isUnread':isUnread[0],
-          'messageList[1].isUnread':isUnread[1],
-          'messageList[2].isUnread':isUnread[2],
-          'messageList[3].isUnread':isUnread[3]
+    
+    // wx.request({
+    //   url: '请求地址',
+    //   data: {
+    //     "key": "isUnread",  //请求的新officeMsg
+    //     "userId": that.data.userId,  //主页用户id
+    //   },
+    //   method: "POST",
+    //   success: function (res) {
+    //     var isUnread = res.data.isUnread; //从此次请求返回的数据中获取isUnread数组
+    //     that.setData({
+    //       //把messageList里面的isUnread项都与isUnread数组里面的值一对一对应地修改
+    //       'messageList[0].isUnread':isUnread[0],
+    //       'messageList[1].isUnread':isUnread[1],
+    //       'messageList[2].isUnread':isUnread[2],
+    //       'messageList[3].isUnread':isUnread[3]
           
 
-        })
-      },
-      fail: function (err) { },//请求失败
-      complete: function () { }//请求完成后执行的函数
-    })
-    */
+    //     })
+    //   },
+    //   fail: function (err) { },//请求失败
+    //   complete: function () { }//请求完成后执行的函数
+    // })
+    
   },
   /**
    * 生命周期函数--监听页面加载
@@ -148,5 +153,19 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  //new
+onHide() {
+  this.ifOnShow = true;
+  //this.status = [];
+  console.log(this);
+},
+
+onShow() {
+  if(this.ifOnShow){
+    this.setIsUnread();
   }
+  this.ifOnShow = false;
+},
+//new
 })
